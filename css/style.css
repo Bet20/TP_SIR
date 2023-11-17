@@ -1,0 +1,152 @@
+:root{
+    --grey: #d9d9d9;
+}
+
+.navbar {
+    height: 80px;
+}
+
+.navbar-brand {
+    color: #ffffff;
+}
+
+.nav-item.active {
+    color: #ffffff;
+    border-color: #000;
+    border-style: solid;
+    border-width: 2px 2px 4px 2px;
+    border-radius: 10px;
+}
+
+.top{
+    height: calc(100vh - 80px);
+}
+
+.nav-link {
+    font-weight: bold;
+    color: #0a0a0a !important;
+}
+
+h5 {
+    margin: 0;
+}
+
+ul, li, a {
+    list-style: none;
+    text-decoration: none;
+    padding: 0;
+}
+
+.teste {
+    color: #000;
+    background: var(--grey);
+    border-color: #000;
+    border-style: solid;
+    border-width: 2px 2px 4px 2px;
+    border-radius: 10px;
+}
+
+.special-border{
+    border-color: #000;
+    border-style: solid;
+    border-width: 2px 2px 4px 2px;
+    border-radius: 10px;
+}
+
+img{
+    border-radius: 6px !important;
+}
+
+.spin {
+    font-size: 40px;
+    animation: spin 1s linear infinite;
+}
+
+/* Social */
+.wrapper .button {
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    margin: 0 5px;
+    overflow: hidden;
+    background: #eeecec;
+    border-radius: 40px;
+    cursor: pointer;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.25);
+    transition: all 0.3s ease-out;
+}
+
+.wrapper .button:hover {
+    width: 160px;
+}
+
+.wrapper .button .icon {
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+    border-radius: 40px;
+    box-sizing: border-box;
+    line-height: 40px;
+    transition: all 0.3s ease-out;
+}
+
+.wrapper .button .icon i {
+    font-size: 20px;
+    line-height: 40px;
+    transition: all 0.3s ease-out;
+}
+
+.wrapper .button:hover .icon i {
+    color: #fff;
+}
+
+.wrapper .button span {
+    font-size: 20px;
+    line-height: 40px;
+    margin-left: 10px;
+    transition: all 0.3s ease-out;
+}
+
+/*Cores do Botao*/
+.wrapper .button:nth-child(1):hover .icon{
+    background: #4267B2;
+}
+
+.wrapper .button:nth-child(2):hover .icon{
+    background: #E1306C;
+}
+
+.wrapper .button:nth-child(3):hover .icon {
+    background: #ff0000;
+}
+
+/*Cores do texto*/
+.facebook, .facebook:hover {
+    color: #4267B2;
+}
+
+.instagram, .instagram:hover {
+    color: #E1306C;
+}
+
+.youtube, .youtube:hover {
+    color: #ff0000;
+}
+
+/*Cores do texto*/
+.facebook {
+    color: #4267B2;
+}
+
+.instagram {
+    color: #E1306C;
+}
+
+.youtube {
+    color: #ff0000;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
