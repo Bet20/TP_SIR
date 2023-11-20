@@ -9,6 +9,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
     integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+  <!-- /Google Fonts -->
   <link href="css/style.css" rel="stylesheet">
 </head>
 
@@ -50,21 +57,21 @@
     <!-- Banner -->
     <div class="row">
       <div class="col">
-        <div class="pv-4 teste top align-items-center justify-content-center d-flex">
+        <div class="pv-4 pb-5 pt-5 teste align-items-center justify-content-center d-flex">
           <div class="text-center text-dark">
             <div>
-              Logo
+              <img class="logo" src="logo.svg">
             </div>
             <div class="d-flex flex-column align-items-center">
               <h2 class="p-3">Reparação e Cuidado - Onde a Performance Encontra a Confiança</h2>
-              <h5 class="pb-3 col-9"><i>
-                  Com uma equipa apaixonada pela mecânica, dedicamo-nos a oferecer o melhor serviço,
-                  desde reparações essenciais até otimizações de desempenho.
-                  Somos o teu parceiro confiável na busca por qualidade e fiabilidade.
-                  Confia-nos o teu veículo e descobre a diferença, onde precisão encontra paixão pela condução.
-              </i></h5>
-              <button class="btn btn-secondary special-border col-2 mt-3">
-                <a href="#propostas" class="text-white text-decoration-none">Adira Já</a>
+              <h5 class="pb-3 col-9 fw-light">
+                Com uma equipa apaixonada pela mecânica, dedicamo-nos a oferecer o melhor serviço,
+                desde reparações essenciais até otimizações de desempenho.
+                Somos o teu parceiro confiável na busca por qualidade e fiabilidade.
+                Confia-nos o teu veículo e descobre a diferença, onde precisão encontra paixão pela condução.
+              </h5>
+              <button class="btn btn-secondary special-border col-md-2 col-8 mt-3">
+                <a href="#propostas" class="w-100 text-white text-decoration-none">Adira Já</a>
               </button>
             </div>
           </div>
@@ -72,10 +79,10 @@
       </div>
     </div>
     <!-- Advantages section -->
-    <div id="vantagens" class="vh-100 d-flex flex-column align-items-center justify-content-center">
+    <div id="vantagens" class="d-flex flex-column align-items-center justify-content-center">
       <div>
         <h1 class="col-12 text-center pt-5 pb-4">
-          Vantagens da/o {$NomeCompanhia}
+          Vantagens da CarDoom
         </h1>
         <div class="col-12 text-center">
           <p class="col-8 mx-auto">
@@ -86,39 +93,40 @@
           </p>
         </div>
       </div>
-      <div class="row text-center">
-        <div class="col-md-3 col-12 p-5">
-          <span>Eficiência e Prazos Cumpridos</span>
-          <div class="special-border">
-            <img class="img-thumbnail" src="images/flat_tire.png">
+      <hr class="w-75 mb-4">
+      <div class="row w-75 text-center mb-5">
+        <div class="col-md-3 col-12 ">
+          <span class="fs-4">Experiência Profissional</span>
+          <div class="special-border pb-2">
+            <img class="img-thumbnail rounded-0" src="images/flat_tire.png">
+            <span class="fs-5 mt-3">Equipa de mecânicos altamente qualificados e experientes.</span>
           </div>
-          <span>Serviço eficiente e cumprimento rigoroso dos prazos acordados.</span>
         </div>
-        <div class="col-md-3 col-12 p-5">
-          <span>Experiência Profissional</span>
-          <div class="special-border">
-            <img class="img-thumbnail" src="images/flat_tire.png">
+        <div class="col-md-3 col-12">
+          <span class="fs-4">Experiência Profissional</span>
+          <div class="special-border pb-2">
+            <img class="img-thumbnail rounded-0" src="images/flat_tire.png">
+            <span class="fs-5">Equipa de mecânicos altamente qualificados e experientes.</span>
           </div>
-          <span>Equipa de mecânicos altamente qualificados e experientes.</span>
         </div>
-        <div class="col-md-3 col-12 p-5">
-          <span>Preços Competitivos</span>
-          <div class="special-border">
-            <img class="img-thumbnail" src="images/flat_tire.png">
+        <div class="col-md-3 col-12">
+          <span class="fs-4">Experiência Profissional</span>
+          <div class="special-border pb-2">
+            <img class="img-thumbnail rounded-0" src="images/flat_tire.png">
+            <span class="fs-5">Equipa de mecânicos altamente qualificados e experientes.</span>
           </div>
-          <span>Oferecemos serviços de alta qualidade a preços competitivos.</span>
         </div>
-        <div class="col-md-3 col-12 p-5">
-          <span>Experiência Profissional</span>
-          <div class="special-border">
-            <img class="img-thumbnail" src="images/flat_tire.png">
+        <div class="col-md-3 col-12">
+          <span class="fs-4">Experiência Profissional</span>
+          <div class="special-border pb-2">
+            <img class="img-thumbnail rounded-0" src="images/flat_tire.png">
+            <span class="fs-5">Equipa de mecânicos altamente qualificados e experientes.</span>
           </div>
-          <span>Equipa de mecânicos altamente qualificados e experientes.</span>
         </div>
       </div>
     </div>
     <!-- Carousel -->
-    <div class="vh-100 teste">
+    <div class="teste">
       <div id="carouselLanding" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">
@@ -149,50 +157,65 @@
       <div class="row justify-content-center col-12">
         <div class="col-md-4">
           <div class="card text-center teste">
-            <div class="card-body">
-              <h5 class="card-title">Plano Básico</h5>
-              <ul>
-                <li>Vantagem 1</li>
-                <li>Vantagem 2</li>
-                <li>Vantagem 3</li>
-              </ul>
+            <div class="card-body custom">
+              <h5 class="py-3 rounded-3 bg-black fg-white card-title">
+                Uma vez sem vez</h5>
+              <p class="fs-5">Precisa de um arranjo pontual. Sem qualquer tipo de compromisso.</p>
+              <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                  <ul class="text-start">
+                    <li><u>Garantimos um preço competitivo</u></li>
+                    <li>A mesma profissionalidade de sempre</li>
+                    <li>E muito mais</li>
+                  </ul>
+                </div>
+                <div class="col-md-2"></div>
+              </div>
               <p class="card-text">A escolha perfeita para iniciantes.</p>
-              <p class="card-text"><strong>Preço:</strong> $19.99/mês</p>
+              <hr />
+              <p class="fs-2 card-text"><strong>Preço:</strong> $19.99/mês</p>
             </div>
           </div>
         </div>
         <div class="col-md-4">
           <div class="card text-center teste">
-            <div class="card-body">
-              <h5 class="card-title">Plano Premium</h5>
+            <div class="card-body custom">
+              <h5 class="py-3 rounded-3 bg-black fg-white card-title">Um carro, um plano</h5>
+              <p class="fs-5">
+                Com este plano, cobrimos as reparações do seu carro durante um ano.
+              </p>
               <ul>
                 <li>Vantagem 1</li>
                 <li>Vantagem 2</li>
                 <li>Vantagem 3</li>
               </ul>
+
               <p class="card-text">O nosso plano mais popular.</p>
-              <p class="card-text"><strong>Preço:</strong> $29.99/mês</p>
+              <hr>
+              <p class="fs-2 card-text"><strong>Preço:</strong> $29.99/mês</p>
             </div>
           </div>
         </div>
         <div class="col-md-4">
           <div class="card text-center teste">
             <div class="card-body">
-              <h5 class="card-title">Plano Avançado</h5>
+              <h5 class="py-3 rounded-3 bg-black fg-white card-title">Plano Total</h5>
+              <p class="fs-5">Com este plano, cobrimos as reparações de até 3 dos seus carros, durante um ano</p>
               <ul>
                 <li>Vantagem 1</li>
                 <li>Vantagem 2</li>
                 <li>Vantagem 3</li>
               </ul>
               <p class="card-text">Para utilizadores avançados.</p>
-              <p class="card-text"><strong>Preço:</strong> $39.99/mês</p>
+              <p class="fs-2 card-text"><strong>Preço:</strong> $39.99/mês</p>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    
+
     <div id="contactos" class="vh-100">
       <div class="row">
         <!-- Form -->
@@ -200,7 +223,8 @@
           <div class="d-flex align-items-center justify-content-center">
             <div class="teste p-4">
               <h3>Envie-nos uma mensagem</h3>
-              <p>A sua opinião é bem-vinda e estamos sempre disponíveis para ajudar. Por favor preencha o formulário.</p>
+              <p>A sua opinião é bem-vinda e estamos sempre disponíveis para ajudar. Por favor preencha o formulário.
+              </p>
               <span><i class="text-gray text-xs">Todos os campos são de preenchimento obrigatório</i></span>
               <div class="row">
                 <div class="col-md-6">
@@ -292,7 +316,8 @@
           </a>
         </div>
         <div class="button">
-          <a href="https://www.youtube.com/channel/UCaKwmpakn6fALZrQ6Wz_YaA" target="_blank" rel='noreferrer' class="youtube">
+          <a href="https://www.youtube.com/channel/UCaKwmpakn6fALZrQ6Wz_YaA" target="_blank" rel='noreferrer'
+            class="youtube">
             <div class="icon">
               <i class="fab fa-youtube"></i>
             </div>
