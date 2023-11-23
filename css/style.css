@@ -1,5 +1,6 @@
 :root{
     --grey: #d9d9d9;
+    --icon: #2f2f2f;
 }
 
 .navbar {
@@ -15,11 +16,11 @@
 }
 
 .text-shadow {
-    text-shadow: 0em 3px 1px black;
+    text-shadow: 0 3px 1px black;
 }
 
 .lead {
-    text-shadow: 0em 1.5px 1px black;
+    text-shadow: 0 1.5pt 0 black;
 }
 
 .nav-link {
@@ -87,31 +88,30 @@ img{
 /* Social */
 .wrapper .button {
     display: inline-block;
-    height: 46px;
-    width: 45px;
+    height: 40px;
+    width: 40px;
     margin: 0 5px;
     overflow: hidden;
     background: #eeecec;
+    border-radius: 40px;
     cursor: pointer;
-    border-color: #000;
-    border-style: solid;
-    outline: 2px 2px 5px 2px solid #000;
-    border-radius: 39px;
     transition: all 0.3s ease-out;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
 .wrapper .button:hover {
-    width: 170px;
+    width: 160px;
 }
 
 .wrapper .button .icon {
     display: inline-block;
+    height: 40px;
+    width: 40px;
     text-align: center;
-    height: 43px;
-    width: 42px;
     border-radius: 40px;
+    box-sizing: border-box;
+    line-height: 40px;
     transition: all 0.3s ease-out;
-    background: rgb(207, 207, 207);
 }
 
 .wrapper .button .icon i {
@@ -126,40 +126,66 @@ img{
 
 .wrapper .button span {
     font-size: 20px;
-    line-height: 45px;
+    line-height: 40px;
     margin-left: 10px;
     transition: all 0.3s ease-out;
 }
 
-/*Cores do Botao*/
 .wrapper .button:nth-child(1):hover .icon{
-    background: #4267B2;
+    background: var(--icon);
 }
 
 .wrapper .button:nth-child(2):hover .icon{
-    background: #E1306C;
+    background: var(--icon);
 }
 
 .wrapper .button:nth-child(3):hover .icon {
-    background: #ff0000;
+    background: var(--icon);
 }
 
-/*Cores do texto*/
 .facebook, .facebook:hover {
-    color: #4267B2;
+    color: var(--icon);
 }
 
 .instagram, .instagram:hover {
-    color: #E1306C;
+    color: var(--icon);
 }
 
 .youtube, .youtube:hover {
-    color: #ff0000;
+    color: var(--icon);
+}
+
+.facebook {
+    color: var(--icon);
+}
+
+.instagram {
+    color: var(--icon);
+}
+
+.youtube {
+    color: var(--icon);
 }
 
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+/* Cards - planos */
+
+.card:hover{
+    background-color: white;
+    cursor: pointer;
+
+    .card-title{
+        background-color: grey;
+    }
+
+    .strong{
+        color: grey;
+
+    }
 }
 
 /* changes */
