@@ -3,8 +3,14 @@
     --icon: #2f2f2f;
 }
 
+.obj-fit {
+  object-fit: cover;
+}
+
 .navbar {
     height: 80px;
+    border-width: 0 0 4px 0 !important;
+    border-radius: 0 0 4px 0 !important;
 }
 
 .navbar-brand {
@@ -242,3 +248,41 @@ hr {
   border: 1px solid black;
 }
 /* end of changes */
+
+.grad {
+    background: linear-gradient(270deg, #a3a3a3, #878787, #a3a3a3);
+    background-size: 600% 600%;
+
+    -webkit-animation: GradientPos 30s ease infinite;
+    -moz-animation: GradientPos 30s ease infinite;
+    animation: GradientPos 30s ease infinite;
+}
+
+@-webkit-keyframes GradientPos {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@-moz-keyframes GradientPos {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@keyframes GradientPos {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+@media (max-width: 767px) {
+   /* Styles for screens smaller than 768px wide */
+   #carouselLanding {
+      /* Adjust styles for the carousel container */
+      margin-bottom: 10px; /* Add a margin to separate it from the section below */
+   }
+
+   #planos {
+      /* Adjust styles for the "Secção Planos" container */
+      margin-top: 10px; /* Add a margin to separate it from the carousel above */
+   }
+}
