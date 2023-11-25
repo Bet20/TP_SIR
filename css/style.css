@@ -77,6 +77,14 @@ a, a:active {
     border-radius: 10px;
 }
 
+.navbar-toggler{
+    background-color: var(--grey);
+    margin-right: 20px;
+}
+
+.navbar-toggler-icon{
+    color: red !important;
+}
 img{
     border-radius: 6px !important;
 }
@@ -89,6 +97,11 @@ img{
 #carouselLanding{
     background-color: var(--grey);
     border-radius: 10px !important;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    background: rgba(245, 245, 245, 0.291);
 }
 
 /* Social */
@@ -223,6 +236,11 @@ body {
   animation: logo-anim 4s cubic-bezier(0.86, 0, 0.07, 1) infinite;
 }
 
+label::after {
+  content: ' *';
+  color: red;
+}
+
 @keyframes logo-anim {
     0% {
         left: 0;
@@ -234,7 +252,7 @@ body {
         left: 0;
         transform: scale(-1, 1);
     }
-        75% {
+    75% {
         left: 30%;
     }
     100% {
