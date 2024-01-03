@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -47,15 +48,55 @@
               <li class="nav-item mx-auto p-1">
                 <a class="nav-link" href="#contactos">Contactos</a>
               </li>
-              <li class="nav-item special-border mx-auto  p-1">
-                <a class="nav-link" href="#">Login</a>
+              <li class="nav-item special-border mx-auto p-1"  data-bs-toggle="modal" data-bs-target="#loginModal">
+                <a class="nav-link">Login</a>
               </li>
             </ul>
           </div>
         </nav>
       </div>
     </div>
-
+    <!-- Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <form action="/TP_SIR/controllers/auth/signin.php" method="post">
+            <div class="modal-header">
+              <h5 class="modal-title" id="loginModalLabel">Login</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+              <section>
+                <?php
+                if (isset($_SESSION['errors'])) {
+                  echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
+                  foreach ($_SESSION['errors'] as $error) {
+                    echo $error . '<br>';
+                  }
+                  echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
+                  unset($_SESSION['errors']);
+                }
+                ?>
+              </section>
+              <div class="p-2">
+                <label for="email" class="form-label">Email:</label>
+                <input type="text" class="form-control special-border" id="email" name="email" required 
+                value="<?= isset($_REQUEST['email']) ? $_REQUEST['email'] : null ?>" />
+              </div>
+              <div class="p-2">
+                <label for="password" class="form-label">Password:</label>
+                <input type="password" class="form-control special-border" id="password" name="password" required 
+                value="<?= isset($_REQUEST['password']) ? $_REQUEST['password'] : null ?>" />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
+              <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
     <!-- Banner -->
     <div id="banner" style="margin-top: 82px;">
       <div class="grad special-border top d-flex align-items-center">
@@ -217,7 +258,7 @@
                 <p class="fs-5">Reparação pontual com preço competitivo.</p>
                 <ul class="text-start col-9 mx-auto">
                   <li>Preço competitivo</li>
-                  <li>Profissionalismo garantido</li>
+                  <li>TP_SIRissionalismo garantido</li>
                   <li>Serviços adicionais</li>
                 </ul>
                 <p class="card-text"><u><b>Ideal para necessidades ocasionais.</b></u></p>
