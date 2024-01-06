@@ -1,7 +1,7 @@
 <?php
 
 try {
-    $DATABASE_HOST = 'localhost:90';
+    $DATABASE_HOST = 'localhost';
     $DATABASE_USER = 'root';
     $DATABASE_PASS = '';
     $DATABASE_NAME = 'tp_sir';

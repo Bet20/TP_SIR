@@ -3,7 +3,7 @@ require_once __DIR__ . '../../../../infra/middlewares/middleware-user.php';
 include_once __DIR__ . '../../../../templates/header.php';
 @require_once __DIR__ . '/../../../helpers/session.php';
 
-$title = ' - TP_SIRile';
+$title = ' - Profile';
 $user = user();
 ?>
 
@@ -13,7 +13,7 @@ $user = user();
 <main>
   <section class="py-4">
     <div class="d-flex justify-content">
-      <a href="/TP_SIR/"><button type="button" class="btn btn-secondary px-5 me-2">Back</button></a>
+      <a href="/sir/"><button type="button" class="btn btn-secondary px-5 me-2">Back</button></a>
       <a href="./password.php"><button class="btn btn-warning px-2 me-2">Change Password</button></a>
     </div>
   </section>
@@ -36,7 +36,7 @@ $user = user();
     ?>
   </section>
   <section>
-    <form enctype="multipart/form-data" action="/TP_SIR/controllers/admin/user.php" method="post"
+    <form enctype="multipart/form-data" action="/sir/controllers/admin/user.php" method="post"
       class="form-control py-3">
       <div class="input-group mb-3">
         <span class="input-group-text">Name</span>
@@ -44,14 +44,9 @@ $user = user();
           value="<?= isset($_REQUEST['name']) ? $_REQUEST['name'] : $user['name'] ?>" required>
       </div>
       <div class="input-group mb-3">
-        <span class="input-group-text">Lastname</span>
-        <input type="text" class="form-control" name="lastname" placeholder="lastname" maxlength="100" size="100"
-          value="<?= isset($_REQUEST['lastname']) ? $_REQUEST['lastname'] : $user['lastname'] ?>" required>
-      </div>
-      <div class="input-group mb-3">
-        <span class="input-group-text">Phone Number</span>
-        <input type="tel" class="form-control" name="phoneNumber" maxlength="9"
-          value="<?= isset($_REQUEST['phoneNumber']) ? $_REQUEST['phoneNumber'] : $user['phoneNumber'] ?>" required>
+        <span class="input-group-text">Telemóvel</span>
+        <input type="tel" class="form-control" name="telemovel" maxlength="9"
+          value="<?= isset($_REQUEST['telemovel']) ? $_REQUEST['telemovel'] : $user['telemovel'] ?>" required>
       </div>
       <div class="input-group mb-3">
         <span class="input-group-text">email</span>
@@ -63,7 +58,7 @@ $user = user();
         <input accept="image/*" type="file" class="form-control" id="inputGroupFile01" name="foto" />
       </div>
       <div class="d-grid col-4 mx-auto">
-        <button class="w-100 btn btn-lg btn-success mb-2" type="submit" name="user" value="TP_SIRile">Change</button>
+        <button class="w-100 btn btn-lg btn-success mb-2" type="submit" name="user" value="Profile">Change</button>
       </div>
     </form>
   </section>

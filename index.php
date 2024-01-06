@@ -19,6 +19,14 @@
   <!-- /Google Fonts -->
   <link rel="shortcut icon" type="imagex/png" href="logo.svg">
   <link href="css/style.css" rel="stylesheet">
+  <script src="scripts/script.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+    crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -30,8 +38,9 @@
           <a class="navbar-brand p-3" href="#">
             <i class="fa-solid fa-gear fa-fw spin text-secondary"></i>
           </a>
-          <button id="navbarToggleBtn" class="navbar-toggler special-border mr-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <button id="navbarToggleBtn" class="navbar-toggler special-border mr-2" type="button"
+            data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+            aria-label="Toggle navigation">
             <i class="fa-solid fa-bars"></i>
           </button>
           <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
@@ -48,8 +57,9 @@
               <li class="nav-item mx-auto p-1">
                 <a class="nav-link" href="#contactos">Contactos</a>
               </li>
-              <li class="nav-item special-border mx-auto p-1"  data-bs-toggle="modal" data-bs-target="#loginModal">
-                <a class="nav-link">Login</a>
+              <!-- TODO - data-bs-toggle="modal" data-bs-target="#loginModal" -->
+              <li class="nav-item special-border mx-auto p-1">
+                <a class="nav-link" href="/sir/pages/public/signin.php">Login</a>
               </li>
             </ul>
           </div>
@@ -60,33 +70,21 @@
     <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-          <form action="/TP_SIR/controllers/auth/signin.php" method="post">
+          <form action="/sir/controllers/auth/signin.php" method="post">
             <div class="modal-header">
               <h5 class="modal-title" id="loginModalLabel">Login</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body p-4">
-              <section>
-                <?php
-                if (isset($_SESSION['errors'])) {
-                  echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
-                  foreach ($_SESSION['errors'] as $error) {
-                    echo $error . '<br>';
-                  }
-                  echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
-                  unset($_SESSION['errors']);
-                }
-                ?>
-              </section>
               <div class="p-2">
                 <label for="email" class="form-label">Email:</label>
-                <input type="text" class="form-control special-border" id="email" name="email" required 
-                value="<?= isset($_REQUEST['email']) ? $_REQUEST['email'] : null ?>" />
+                <input type="text" class="form-control special-border" id="email" name="email" required
+                  value="<?= isset($_REQUEST['email']) ? $_REQUEST['email'] : null ?>" />
               </div>
               <div class="p-2">
                 <label for="password" class="form-label">Password:</label>
-                <input type="password" class="form-control special-border" id="password" name="password" required 
-                value="<?= isset($_REQUEST['password']) ? $_REQUEST['password'] : null ?>" />
+                <input type="password" class="form-control special-border" id="password" name="password" required
+                  value="<?= isset($_REQUEST['password']) ? $_REQUEST['password'] : null ?>" />
               </div>
             </div>
             <div class="modal-footer">
@@ -107,18 +105,18 @@
           <div class="d-flex flex-column align-items-center">
             <h1 class="text-white text-shadow">CloudGarage</h1>
             <h3 class="p-3 text-white font-weight-bold">Onde a <span class="text-dark">Performance</span> encontra a
-              <span class="text-dark">Confiança</span></h2>
-              <h5 class="pb-3 col-9 text-white lead">
-                Com uma equipa apaixonada pela mecânica, dedicamo-nos a oferecer o melhor serviço,
-                desde reparações essenciais até otimizações de desempenho.
-                Somos o teu parceiro confiável na busca por qualidade e fiabilidade.
-                Confia-nos o teu veículo e descobre a diferença, onde precisão encontra paixão pela condução.
-              </h5>
-              <a class="w-100 text-white" href="#planos">
-                <button class="btn btn-secondary special-border col-md-2 col-8 mt-3">
-                  Adira Já
-                </button>
-              </a>
+              <span class="text-dark">Confiança</span></h3>
+            <h5 class="pb-3 col-9 text-white lead">
+              Com uma equipa apaixonada pela mecânica, dedicamo-nos a oferecer o melhor serviço,
+              desde reparações essenciais até otimizações de desempenho.
+              Somos o teu parceiro confiável na busca por qualidade e fiabilidade.
+              Confia-nos o teu veículo e descobre a diferença, onde precisão encontra paixão pela condução.
+            </h5>
+            <a class="w-100 text-white" href="#planos">
+              <button class="btn btn-secondary special-border col-md-2 col-8 mt-3">
+                Adira Já
+              </button>
+            </a>
           </div>
         </div>
       </div>
@@ -171,7 +169,6 @@
         </div>
       </div>
     </div>
-
     <!-- Carousel -->
     <div class="mb-xs-4 pb-xs-2">
       <div class="row d-block mb-sm-5 top">
@@ -207,7 +204,8 @@
                 </div>
                 <div class="m-1 p-2 bg-light rounded special-border">
                   <h2>Serviços Personalizados</h2>
-                  <p>Entendemos que cada veículo é único. Oferecemos serviços personalizados para atender às necessidades
+                  <p>Entendemos que cada veículo é único. Oferecemos serviços personalizados para atender às
+                    necessidades
                     específicas do seu carro, garantindo um tratamento individualizado.</p>
                 </div>
               </div>
@@ -218,7 +216,8 @@
                 </div>
                 <div class="m-1 p-2 bg-light rounded special-border">
                   <h2>Prioridade na Segurança</h2>
-                  <p>Sua segurança é nossa principal preocupação. Utilizamos peças de qualidade e aderimos aos mais altos
+                  <p>Sua segurança é nossa principal preocupação. Utilizamos peças de qualidade e aderimos aos mais
+                    altos
                     padrões de segurança em todas as nossas operações.</p>
                 </div>
               </div>
@@ -242,8 +241,6 @@
         </div>
       </div>
     </div>
-
-
     <!-- Secção "planos" -->
     <div id="planos" class="py-5 p-3 mt-5 mt-md-3">
       <div
@@ -258,7 +255,7 @@
                 <p class="fs-5">Reparação pontual com preço competitivo.</p>
                 <ul class="text-start col-9 mx-auto">
                   <li>Preço competitivo</li>
-                  <li>TP_SIRissionalismo garantido</li>
+                  <li>Profissionalismo garantido</li>
                   <li>Serviços adicionais</li>
                 </ul>
                 <p class="card-text"><u><b>Ideal para necessidades ocasionais.</b></u></p>
@@ -302,7 +299,6 @@
         </div>
       </div>
     </div>
-
     <div id="contactos">
       <!-- Form -->
       <div class="col-12">
@@ -354,7 +350,6 @@
             </form>
           </div>
         </div>
-
       </div>
       <!-- contactos -->
       <div class="col-12 mt-5">
@@ -375,7 +370,7 @@
                 <span>Viana do Castelo, Portugal</span>
               </div>
             </div>
-            <!-- Phone number -->
+            <!-- Telemovel -->
             <div class="d-flex align-items-center">
               <i class="fa-solid fa-phone-volume fa-fw mx-3"></i>
               <span>+351 258 819 700</span>
@@ -409,8 +404,7 @@
           </a>
         </div>
         <div class="button">
-          <a href="https://www.youtube.com/" target="_blank" rel='noreferrer'
-            class="youtube">
+          <a href="https://www.youtube.com/" target="_blank" rel='noreferrer' class="youtube">
             <div class="icon">
               <i class="fab fa-youtube"></i>
             </div>
@@ -419,7 +413,7 @@
         </div>
       </div>
     </div>
-    <hr>
+    <hr style="border: 1px solid black;opacity: 1">
     <footer>
       <div class="text-center mb-3">
         <span>&copy; Copyright 2023</span><br>
@@ -427,14 +421,6 @@
       </div>
     </footer>
   </div>
-  <script src="scripts/script.js"></script>
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
-    crossorigin="anonymous"></script>
 </body>
 
 </html>

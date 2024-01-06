@@ -34,7 +34,7 @@ function checkErrors($data, $req)
     if (isset($data['invalid'])) {
         $_SESSION['errors'] = $data['invalid'];
         $params = '?' . http_build_query($req);
-        header('location: /sir/pages/public/signin.php' . $params);
+        header('location: /crud/pages/public/signin.php' . $params);
         return false;
     }
 
@@ -50,7 +50,7 @@ function doLogin($data)
     setcookie("id", $data['id'], time() + (60 * 60 * 24 * 30), "/");
     setcookie("name", $data['name'], time() + (60 * 60 * 24 * 30), "/");
 
-    $home_url = 'http://' . $_SERVER['HTTP_HOST'] . '/sir/pages/secure';
+    $home_url = 'http://' . $_SERVER['HTTP_HOST'] . '/crud/pages/secure';
     header('Location: ' . $home_url);
 }
 
@@ -69,6 +69,6 @@ function logout()
     setcookie('id', '', time() - 3600, "/");
     setcookie('name', '', time() - 3600, "/");
 
-    $home_url = 'http://' . $_SERVER['HTTP_HOST'] . '/sir';
+    $home_url = 'http://' . $_SERVER['HTTP_HOST'] . '/crud';
     header('Location: ' . $home_url);
 }
