@@ -1,52 +1,71 @@
 <?php
-require_once __DIR__ . '/../../infra/middlewares/middleware-not-authenticated.php';
-$title = '- Sign Up';
-include_once __DIR__ . '../../../templates/header.php'; ?>
+require_once __DIR__ . '../../../infra/middlewares/middleware-not-authenticated.php';
+$title = ' - Login';
+include_once __DIR__ . '../../../templates/header.php';
+?>
 
-<main>
-  <section>
-    <?php
-    if (isset($_SESSION['success'])) {
-      echo '<div class="alert alert-success alert-dismissible fade show" role="alert">';
-      echo $_SESSION['success'] . '<br>';
-      echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
-      unset($_SESSION['success']);
-    }
-    if (isset($_SESSION['errors'])) {
-      echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
-      foreach ($_SESSION['errors'] as $error) {
-        echo $error . '<br>';
-      }
-      echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
-      unset($_SESSION['errors']);
-    }
-    ?>
-  </section>
-  <form action="/TP_SIR/controllers/auth/signup.php" method="post">
-    <h1 class="h3 mb-3 fw-normal">Sign Up</h1>
-    <div class="form-floating mb-2">
-      <input type="text" class="form-control" name="name" placeholder="name" maxlength="100" size="100"
-        value="<?= isset($_REQUEST['name']) ? $_REQUEST['name'] : null ?>" required>
-      <label for="name">Name</label>
+<div class="vh-100 d-flex flex-column justify-content-between special-background">
+  <main class="d-flex justify-content-center align-items-center h-100">
+    <div class="col-md-6 col-10">
+      <div>
+        <div class="d-flex justify-content-center">
+          <img class="logo" src="../../logo.svg">
+        </div>
+        <div class="d-flex flex-column align-items-center">
+          <h1 class="text-white text-shadow">CloudGarage</h1>
+        </div>
+      </div>
+      <form action="/sir/controllers/auth/signup.php" method="post" class=" special-border simple-background p-5">
+          <section>
+          <?php
+          if (isset($_SESSION['errors'])) {
+            echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
+            foreach ($_SESSION['errors'] as $error) {
+              echo $error . '<br>';
+            }
+            echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
+            unset($_SESSION['errors']);
+          }
+          ?>
+        </section>
+        <h1 class="h3 mb-3 fw-bold text-center">Login</h1>
+        <div class="col-12">
+          <div class="px-2 py-2">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control special-border" id="email" name="email" required maxlength="255"
+            value="<?= isset($_REQUEST['email']) ? $_REQUEST['email'] : null ?>" />
+            </div>
+        </div>
+        <div class="col-12">
+          <div class="px-2 py-2">
+            <label for="name" class="form-label">Nome</label>
+            <input type="text" class="form-control special-border" id="name" name="name" required maxlength="255"
+            value="<?= isset($_REQUEST['name']) ? $_REQUEST['name'] : null ?>" />
+            </div>
+        </div>
+        <div class="col-12">
+          <div class="px-2 py-2">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control special-border" id="password" name="password" required
+              maxlength="255" value="<?= isset($_REQUEST['password']) ? $_REQUEST['password'] : null ?>" />
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="px-2 py-2">
+            <label for="confirm_password" class="form-label">Confirmar Password</label>
+            <input type="password" class="form-control special-border" id="confirm_password" name="confirm_password" required maxlength="255"
+            value="<?= isset($_REQUEST['confirm_password']) ? $_REQUEST['confirm_password'] : null ?>" />
+            </div>
+        </div>
+        <a href="/sir/pages/public/signin.php" class="text-center col-12">Já tem conta?</a>
+        <div class="row justify-content-between mt-3 px-4">
+          <button class="btn btn-lg  special-border btn-success col-md-4 col-12 my-2" type="submit" name="user"
+            value="signUp"><b class="text-dark">Criar conta</b></button>
+          <a href="/sir/" class="btn btn-lg  special-border btn-secondary col-md-4 col-12 my-2">Voltar</a>
+        </div>
+      </form>
     </div>
-    <div class="form-floating mb-2">
-      <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com"
-        value="<?= isset($_REQUEST['email']) ? $_REQUEST['email'] : null ?>">
-      <label for="floatingInput">Email</label>
-    </div>
-    <div class="form-floating mb-2">
-      <input type="password" class="form-control" id="password" name="password" placeholder="Password">
-      <label for="password">Password</label>
-    </div>
-    <div class="form-floating mb-2">
-      <input type="password" class="form-control" id="confirmar_palavra_passe" name="confirmar_palavra_passe"
-        placeholder="Confirm password">
-      <label for="confirmar_palavra_passe">Confirm Password</label>
-    </div>
-    <button class="w-100 btn btn-lg btn-success mb-2" type="submit" name="user" value="signUp">Sign Up</button>
-  </form>
-  <a href="/TP_SIR/"><button class="w-100 btn btn-lg btn-info">Back</button></a>
-</main>
+  </main>
 <?php
-include_once __DIR__ . '../../../templates/footer.php'; ?>
+include_once __DIR__ . '../../../templates/footer.php';
 ?>

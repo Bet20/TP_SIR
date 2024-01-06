@@ -21,9 +21,9 @@ function userId()
     return  $_SESSION['id'];
 }
 
-function administrator()
+function admin()
 {
     $user = user();
-    return $user['administrator'] ? true : false;
+    return $user['admin'] ? true : false;
 }
 ?>
