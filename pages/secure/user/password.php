@@ -7,13 +7,11 @@ $title = ' - Change password';
 $user = user();
 ?>
 
-<div class="p-5 mb-2 bg-dark text-white">
-  <h1>Change Password</h1>
-</div>
-<main>
-  <section class="py-4">
-    <a href="/sir/pages/secure/user/Profile.php"><button type="button" class="btn btn-secondary px-5">Back</button></a>
-  </section>
+    <main class="container mt-3">
+        <div class="mb-3 text-black">
+            <h1>Edit your profile</h1>
+        </div>
+
   <section>
     <?php
     if (isset($_SESSION['success'])) {
@@ -33,7 +31,7 @@ $user = user();
     ?>
   </section>
   <section>
-    <form action="/sir/controllers/admin/user.php" method="post" class="form-control py-3">
+    <form action="/sir/controllers/admin/user.php" method="post" class="form-control py-3 special-border">
       <div class="input-group mb-3">
         <span class="input-group-text">Name</span>
         <input type="text" readonly class="form-control" name="name" placeholder="<?= $user['name'] ?>"
@@ -47,9 +45,20 @@ $user = user();
         <span class="input-group-text">Confirm Password</span>
         <input type="password" class="form-control" name="confirm_password" maxlength="255" required>
       </div>
-      <div class="d-grid col-4 mx-auto">
-        <button class="w-100 btn btn-lg btn-success mb-2" type="submit" name="user" value="password">Change</button>
-      </div>
+
+        <div class="row justify-content-end">
+            <div class="d-grid col-4 ">
+                <a href="/sir/pages/secure/user/profile.php"
+                   class="btn btn-md btn-warning special-border mb-2" type="submit">
+                    Cancel
+
+                </a>
+            </div>
+            <div class="d-grid col-4">
+                <button class="btn btn-md btn-success special-border mb-2" type="submit" name="user" value="password">Confirm</button>
+            </div>
+        </div>
+
     </form>
   </section>
 </main>
