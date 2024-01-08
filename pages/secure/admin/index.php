@@ -1,8 +1,10 @@
 <?php
 require_once __DIR__ . '/../../../infra/repositories/userRepository.php';
+require_once __DIR__ . '/../../../infra/repositories/carRepository.php';
 require_once __DIR__ . '/../../../infra/middlewares/middleware-admin.php';
 
 $users = getAll();
+$carCount = getMaintCarCount();
 $title = ' - Admin';
 require_once __DIR__ . '/../../../templates/header.php'; 
 ?>
@@ -38,6 +40,10 @@ require_once __DIR__ . '/../../../templates/header.php';
       ?>
     </section>
     <section>
+        <?php
+        echo "<script>console.log('" . json_encode($carCount) . "');</script>";
+        echo "<p>There are $carCount cars in maintenance</p>"
+        ?>
       <div class="table-responsive">
         <table class="table">
           <thead class="table-secondary">
@@ -99,6 +105,7 @@ require_once __DIR__ . '/../../../templates/header.php';
         </table>
       </div>
     </section>
+
   </main>
 </div>
 <?php

@@ -114,3 +114,9 @@ function deleteCar($id)
     $PDOStatement->bindValue(1, $id, PDO::PARAM_INT);
     return $PDOStatement->execute();
 }
+
+function getMaintCarCount() {
+    $PDOStatement = $GLOBALS['pdo']->prepare('SELECT COUNT(*) FROM car WHERE estado = (SELECT id FROM estadoManutencao WHERE nome = "Em Manutenção");');
+    $PDOStatement->execute();
+    return $PDOStatement->fetch()['COUNT(*)'];
+}
