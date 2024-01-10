@@ -1,9 +1,9 @@
 <?php
 require_once __DIR__ . '../../../../infra/middlewares/middleware-user.php';
-include_once __DIR__ . '../../../../templates/header.php';
 @require_once __DIR__ . '/../../../helpers/session.php';
-
 $title = ' - Profile';
+include_once __DIR__ . '../../../../templates/header.php';
+
 $user = user();
 ?>
     <main>

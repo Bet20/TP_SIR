@@ -18,7 +18,7 @@ include_once __DIR__ . '../../../templates/header.php';
 
         <!-- Dropdown botao login -->
         <div class="dropdown">
-            <button class="d-flex align-items-center p-2 btn btn-outline-light dropdown-toggle" id="dropdownUser"
+            <button class="d-flex align-items-center p-2 btn btn-dark dropdown-toggle" id="dropdownUser"
                 data-bs-toggle="dropdown" aria-expanded="false">
                 <span class="mx-2">
                     <?= $user['name'] ?>

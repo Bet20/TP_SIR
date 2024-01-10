@@ -42,6 +42,7 @@ require_once __DIR__ . '/../../../templates/header.php';
               <th scope="col">Modelo</th>
               <th scope="col">descricao</th>
               <th scope="col">Cor</th>
+              <th scope="col">Estado</th>
               <th scope="col">Opções</th>
             </tr>
           </thead>
@@ -67,6 +68,11 @@ require_once __DIR__ . '/../../../templates/header.php';
                         <i class="fa-solid fa-car-side"></i>
                       </div>
                     </td>
+                    <td>
+                      <?php
+                        echo $car['estado'] === 1 ? 'Disponivel' : 'Indisponivel';
+                      ?>
+                    </td> 
                     <td>
                       <div class="d-flex justify-content">
                         <a href="/sir/controllers/car/car.php?<?= 'car=update&id=' . $car['id'] ?>"><button type="button"
@@ -130,6 +136,10 @@ require_once __DIR__ . '/../../../templates/header.php';
                                           <label for="preco">Preço:</label>
                                           <input type="number" id="preco" name="preco">
                                       </div>
+                                      <div>
+                                        <label for="estado">Estado:</label>
+                                        <span id="estado" name="estado"><?= isset($car['estado']) ? $car['estado'] : null ?></span>
+                                    </div>
                                       <input type="hidden" id="id_user" name="id_user" value="<?= isset($_SESSION['id']) ? $_SESSION['id'] : null ?>">
                                       <input type="hidden" id="estado" name="estado" value="0">
 
@@ -156,23 +166,23 @@ require_once __DIR__ . '/../../../templates/header.php';
                                   <!-- Campos do formulário -->
                                   <div>
                                       <label for="dt_inicio">Data de Início:</label>
-                                      <span id="dt_inicio" name="dt_inicio"><?= isset($maintenance['dt_inicio']) ? $maintenance['dt_inicio'] : null ?></span>
+                                      <span id="dt_inicio" name="dt_inicio"><?= isset($maintenance['dt_inicio']) ? $maintenance['dt_inicio'] : 'N/D' ?></span>
                                   </div>
                                   <div>
                                       <label for="dt_fim">Data de Fim:</label>
-                                      <span id="dt_fim" name="dt_fim"><?= isset($maintenance['dt_fim']) ? $maintenance['dt_fim'] : null ?></span>
+                                      <span id="dt_fim" name="dt_fim"><?= isset($maintenance['dt_fim']) ? $maintenance['dt_fim'] : 'N/D' ?></span>
                                   </div>
                                   <div>
                                       <label for="descricao">Descrição:</label>
-                                      <span name="descricao" rows="4"><?= isset($maintenance['descricao']) ? $maintenance['descricao'] : null ?></span>
+                                      <span name="descricao" rows="4"><?= isset($maintenance['descricao']) ? $maintenance['descricao'] : 'N/D' ?></span>
                                   </div>
                                   <div>
                                       <label for="preco">Preço:</label>
-                                      <span id="preco" name="preco"><?= isset($maintenance['preco']) ? $maintenance['preco'] : null ?></span>
+                                      <span id="preco" name="preco"><?= isset($maintenance['preco']) ? $maintenance['preco'] : 'N/D' ?></span>
                                   </div>
                                   <div>
                                       <label for="estado">Estado:</label>
-                                      <span id="estado" name="estado"><?= isset($maintenance['estado']) ? $maintenance['estado'] : null ?></span>
+                                      <span id="estado" name="estado"><?= isset($maintenance['estado']) ? $maintenance['estado'] : 'N/D' ?></span>
                                   </div>
                                   <!-- Adicione outros campos conforme necessário -->
 

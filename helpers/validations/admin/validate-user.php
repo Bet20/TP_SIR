@@ -17,11 +17,11 @@ function validatedUser($req)
     if (!filter_var($req['email'], FILTER_VALIDATE_EMAIL)) {
         $errors['email'] = 'The Email field cannot be empty and must have the email format, for example: nome@example.com.';
     }
-
-    if (getByEmail($req['email'])) {
-        if(!($_POST['user'] == 'update' && $_REQUEST['id'] == $_POST['id'])){
+    
+    $email = getByEmail($req['email']);
+    if ($email) {
+        if(($_POST['user'] != 'update' || $_REQUEST['id'] != $email['id'])){
             $errors['email'] = 'Email already registered in our system.';
-            return ['invalid' => $errors];
         }
     }
 
