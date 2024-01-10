@@ -75,7 +75,6 @@ function updateCar($car)
         marca =     :marca, 
         modelo =    :modelo, 
         cor =       :cor, 
-        estado =    :estado, 
         descricao = :descricao
     WHERE id =      :id;";
 
@@ -86,8 +85,7 @@ function updateCar($car)
         ':marca'     => $car['marca'],
         ':modelo'    => $car['modelo'],
         ':cor'       => $car['cor'],
-        ':estado'    => $car['estado'],
-        ':descrica'  => $car['descrica'],
+        ':descricao' => $car['descricao'],
         ':id'        => $car['id']
     ]);
 

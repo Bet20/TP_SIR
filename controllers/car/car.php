@@ -24,9 +24,27 @@ if (isset($_POST['car'])) {
 if (isset($_GET['car'])) {
     if ($_GET['car'] == 'update') {
         $car = getCarById($_GET['id']);
+
+        if(!isset($car)){
+            $_SESSION['errors'] = ['Não existe esse carro.'];
+            header('location: /sir/pages/secure/car/car.php' . $params);
+        }
+
         $car['action'] = 'update';
         $params = '?' . http_build_query($car);
-        header('location: /sir/pages/secure/car/new-car.php' . $params);
+        header('location: /sir/pages/secure/car/car-new.php' . $params);
+    }
+
+    if ($_GET['car'] == 'details') {
+        $car = getCarById($_GET['id']);
+
+        if(!isset($car)){
+            $_SESSION['errors'] = ['Não existe esse carro.'];
+            header('location: /sir/pages/secure/car/car.php' . $params);
+        }
+
+        $params = '?' . http_build_query($car);
+        header('location: /sir/pages/secure/car/car-details.php' . $params);
     }
 
     if ($_GET['car'] == 'delete') {
@@ -73,18 +91,18 @@ function update($req)
         $_SESSION['errors'] = $data['invalid'];
         $_SESSION['action'] = 'update';
         $params = '?' . http_build_query($req);
-        header('location: /sir/pages/secure/admin/user.php' . $params);
+        header('location: /sir/pages/secure/car/car-new.php' . $params . '&action=update');
 
         return false;
     }
 
-    $success = updateUser($data);
+    $success = updateCar($data);
 
     if ($success) {
-        $_SESSION['success'] = 'User successfully changed!';
+        $_SESSION['success'] = 'Car successfully changed!';
         $data['action'] = 'update';
         $params = '?' . http_build_query($data);
-        header('location: /sir/pages/secure/admin/user.php' . $params);
+        header('location: /sir/pages/secure/car/car.php' . $params);
     }
 }
 

@@ -26,6 +26,12 @@ if (isset($_POST['user'])) {
 if (isset($_GET['user'])) {
     if ($_GET['user'] == 'update') {
         $user = getById($_GET['id']);
+        
+        if(!isset($user)){
+            $_SESSION['errors'] = ['Não existe esse utilizador'];
+            header('location: /sir/pages/secure/admin' . $params);
+        }
+
         $user['action'] = 'update';
         $params = '?' . http_build_query($user);
         header('location: /sir/pages/secure/admin/user.php' . $params);
@@ -73,9 +79,8 @@ function update($req)
 
     if (isset($data['invalid'])) {
         $_SESSION['errors'] = $data['invalid'];
-        $_SESSION['action'] = 'update';
         $params = '?' . http_build_query($req);
-        header('location: /sir/pages/secure/admin/user.php' . $params);
+        header('location: /sir/pages/secure/admin/user.php' . $params . '&action=update');
 
         return false;
     }

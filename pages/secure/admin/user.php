@@ -58,8 +58,13 @@ require_once __DIR__ . '/../../../templates/header.php';
       </div>
       <div class="d-grid col-4 mx-auto">
         <input type="hidden" name="id" value="<?= isset($_REQUEST['id']) ? $_REQUEST['id'] : null ?>">
-        <input type="hidden" name="foto" value="<?= isset($_REQUEST['foto']) ? $_REQUEST['foto'] : null ?>">
-        <button type="submit" class="btn btn-success" name="action" value="update"<?php isset($_REQUEST['action']) && $_REQUEST['action'] == 'update' ? 'update' : 'create' ?>><?= isset($_REQUEST['action']) && $_REQUEST['action'] == 'update' ? 'Atualizar' : 'Criar'  ; ?></button>
+        <?php 
+          if((isset($_REQUEST['action']) && $_REQUEST['action'] == 'update')){
+            echo '<button type="submit" class="btn btn-success" name="user" value="update">Atualizar</button>';
+          } else {
+            echo '<button type="submit" class="btn btn-success" name="user" value="create">Criar</button>';
+          }
+        ?>
       </div>
     </form>
   </section>

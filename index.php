@@ -105,7 +105,8 @@
           <div class="d-flex flex-column align-items-center">
             <h1 class="text-white text-shadow">CloudGarage</h1>
             <h3 class="p-3 text-white font-weight-bold">Onde a <span class="text-dark">Performance</span> encontra a
-              <span class="text-dark">Confiança</span></h3>
+              <span class="text-dark">Confiança</span>
+            </h3>
             <h5 class="pb-3 col-9 text-white lead">
               Com uma equipa apaixonada pela mecânica, dedicamo-nos a oferecer o melhor serviço,
               desde reparações essenciais até otimizações de desempenho.

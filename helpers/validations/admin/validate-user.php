@@ -19,8 +19,10 @@ function validatedUser($req)
     }
 
     if (getByEmail($req['email'])) {
-        $errors['email'] = 'Email already registered in our system.';
-        return ['invalid' => $errors];
+        if(!($_POST['user'] == 'update' && $_REQUEST['id'] == $_POST['id'])){
+            $errors['email'] = 'Email already registered in our system.';
+            return ['invalid' => $errors];
+        }
     }
 
     if (!empty($req['password']) && strlen($req['password']) < 6) {
