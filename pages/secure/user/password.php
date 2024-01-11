@@ -1,9 +1,8 @@
 <?php
-require_once __DIR__ . '../../../../infra/middlewares/middleware-user.php';
-include_once __DIR__ . '../../../../templates/header.php';
+$title = ' - Change password';
+include_once __DIR__ . '../../../../templates/header-secure.php';
 @require_once __DIR__ . '/../../../helpers/session.php';
 
-$title = ' - Change password';
 $user = user();
 ?>
 

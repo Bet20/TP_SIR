@@ -1,8 +1,7 @@
 <?php
-require_once __DIR__ . '../../../../infra/repositories/carRepository.php';
-
 $title = ' - Registar Veículo';
-require_once __DIR__ . '/../../../templates/header.php'; 
+require_once __DIR__ . '/../../../templates/header-secure.php'; 
+require_once __DIR__ . '../../../../infra/repositories/carRepository.php';
 ?>
     <main class="d-flex flex-column">
         <h2>Formulário de Criação de Carro</h2>
