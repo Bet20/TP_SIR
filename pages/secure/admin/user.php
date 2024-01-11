@@ -1,6 +1,6 @@
 <?php
 $title = ' - Atualizar utilizador';
-require_once __DIR__ . '/../../../templates/heade-securer.php'; 
+require_once __DIR__ . '/../../../templates/header-secure.php'; 
 require_once __DIR__ . '/../../../infra/middlewares/middleware-admin.php';
 
 ?>
