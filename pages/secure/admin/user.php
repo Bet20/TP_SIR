@@ -2,8 +2,11 @@
 require_once __DIR__ . '/../../../infra/middlewares/middleware-admin.php';
 
 $title = ' - Atualizar utilizador';
+$user = getById($_REQUEST['id']);
 require_once __DIR__ . '/../../../templates/header.php'; 
 ?>
+
+<?= require_once __DIR__ . '/../../../templates/navbar.php' ?>
 
 <main>
   <section class="py-4">

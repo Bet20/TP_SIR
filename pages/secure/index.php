@@ -1,48 +1,19 @@
 <?php
 require_once __DIR__ . '../../../infra/middlewares/middleware-user.php';
+require_once __DIR__ . '../../../infra/repositories/carRepository.php';
 @require_once __DIR__ . '/../../helpers/session.php';
 
 $user = user();
+$cars = getAllCarByUserId($user['id']);
 $title = ' - APP';
+
+$canCreateCar = count($cars) < 5;
+
 include_once __DIR__ . '../../../templates/header.php';
 ?>
 
 <main>
-    <header class="p-3 border-bottom d-flex justify-content-between">
-        <a href="/sir/pages/secure" class="d-flex align-items-center text-dark text-decoration-none">
-            <div class="d-flex flex-column align-items-center">
-                <img src="/sir/logo.svg" alt="logo" width="50" height="50">
-
-            </div>
-        </a>
-
-        <!-- Dropdown botao login -->
-        <div class="dropdown">
-            <button class="d-flex align-items-center p-2 btn btn-dark dropdown-toggle" id="dropdownUser"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                <span class="mx-2">
-                    <?= $user['name'] ?>
-                </span>
-                <i class="fa-solid fa-circle-user fs-2 me-2"></i>
-            </button>
-            <ul class="dropdown-menu">
-                <?php if (isAuthenticated() && $user['admin']) {
-                    echo '<li><a class="dropdown-item" href="/sir/pages/secure/admin/"><i class="fa-solid fa-circle-user  me-2"></i>Gerir Utilizadores</a></li>';
-                } ?>
-                <li><a class="dropdown-item" href="/sir/pages/secure/admin/"><i class="fas fa-key me-2"></i>Alterar
-                        palavra-passe</a></li>
-                <li>
-                    <hr class="dropdown-divider">
-                </li>
-                <li>
-                    <form action="/sir/controllers/auth/signin.php" method="post">
-                        <button class="dropdown-item text-danger fw-bold rounded" type="submit" name="user"
-                            value="logout"><i class="fa-solid fa-door-open me-2"></i>Logout</button>
-                    </form>
-                </li>
-            </ul>
-        </div>
-    </header>
+    <?= include_once __DIR__ . '../../../templates/navbar.php'; ?>
     <!-- Menus -->
 
     <div class="p-2 container">
@@ -50,33 +21,34 @@ include_once __DIR__ . '../../../templates/header.php';
             <div>
                 <div>
                     <div class="row">
+                        <?php
+                        foreach ($cars as $car) {
+                            echo '
+<a class="col-3" href="/sir/controllers/car/car.php?id=' . $car['id'] . '">
 
+            <div class="card text-center" style="background: ' . $car['cor'] . '22' . '">
+                <div class="card-body">
+                    <h5>' . $car['marca'] . '</h5>
+                    <i class="fa-solid fa-car-side my-3"></i>
+                    <h6 class="card-subtitle mb-2 text-muted">' . $car['matricula'] . '</h6>
+                </div>
+         
+        </div></a>';
+                        }
+                        ?>
 
-                        <div class="col-4">
-
-                            <a class="d-flex align-items-center p-2 btn btn-secondary special-border"
-                               href="/sir/pages/secure/car/car.php">
-                                <span class="mx-2">Veículos</span>
-                                <i class="fa-solid fa-car-side"></i>
+                        <?php if ($canCreateCar) { ?>
+                            <a class="col-3" href="./car/car-new.php">
+                                <div class="card h-100 text-center">
+                                    <div class="card-body justify-content-center d-flex align-items-center text-center">
+                                        <i class="fa-solid fa-plus my-3"></i>
+                                    </div>
+                                </div>
                             </a>
-                        </div>
-                        <div class="col-4">
+                        <?php } ?>
 
-                            <a class="d-flex align-items-center p-2 btn btn-secondary special-border"
-                               href="/sir/pages/secure/car/car.php">
-                                <span class="mx-2">Veículos</span>
-                                <i class="fa-solid fa-car-side"></i>
-                            </a>
-                        </div>
-                        <div class="col-4">
-
-                            <a class="d-flex align-items-center p-2 btn btn-secondary special-border"
-                               href="/sir/pages/secure/car/car.php">
-                                <span class="mx-2">Veículos</span>
-                                <i class="fa-solid fa-car-side"></i>
-                            </a>
-                        </div>
-
+                    </div>
+                    <div>
                     </div>
                 </div>
             </div>
@@ -113,9 +85,9 @@ include_once __DIR__ . '../../../templates/header.php';
         </div>
         <?php
         $logs_examples = array(
-                "Maintenance" => ["Mudança de óleo", 'xx/xx/xxxx'],
-                "Washing" => ["Lavagem", 'xx/xx/xxxx'],
-                "Others" => ["Investigar som estranho no motor", 'xx/xx/xxxx']);
+            "Maintenance" => ["Mudança de óleo", 'xx/xx/xxxx'],
+            "Washing" => ["Lavagem", 'xx/xx/xxxx'],
+            "Others" => ["Investigar som estranho no motor", 'xx/xx/xxxx']);
 
         echo '<div class="d-flex align-items-stretch mt-4"><h3>Latest</h3></div>';
         foreach ($logs_examples as $key => $value) {
