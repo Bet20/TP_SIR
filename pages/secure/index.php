@@ -3,7 +3,6 @@ require_once __DIR__ . '../../../infra/middlewares/middleware-user.php';
 require_once __DIR__ . '../../../infra/repositories/carRepository.php';
 @require_once __DIR__ . '/../../helpers/session.php';
 
-$user = user();
 $cars = getAllCarByUserId($user['id']);
 $title = ' - APP';
 
@@ -13,9 +12,7 @@ include_once __DIR__ . '../../../templates/header.php';
 ?>
 
 <main>
-    <?= include_once __DIR__ . '../../../templates/navbar.php'; ?>
-    <!-- Menus -->
-
+    <?php include_once __DIR__ . '../../../templates/navbar.php'; ?>
     <div class="p-2 container">
         <div class="mt-3">
             <div>
@@ -24,16 +21,16 @@ include_once __DIR__ . '../../../templates/header.php';
                         <?php
                         foreach ($cars as $car) {
                             echo '
-<a class="col-3" href="/sir/controllers/car/car.php?id=' . $car['id'] . '">
-
-            <div class="card text-center" style="background: ' . $car['cor'] . '22' . '">
-                <div class="card-body">
-                    <h5>' . $car['marca'] . '</h5>
-                    <i class="fa-solid fa-car-side my-3"></i>
-                    <h6 class="card-subtitle mb-2 text-muted">' . $car['matricula'] . '</h6>
-                </div>
-         
-        </div></a>';
+                                <a class="col-3" href="/sir/pages/secure/car/car.php?id=' . $car['id'] . '">
+                                    <div class="card text-center" style="background: ' . $car['cor'] . '22' . '">
+                                        <div class="card-body">
+                                            <h5>' . $car['marca'] . '</h5>
+                                            <i class="fa-solid fa-car-side my-3"></i>
+                                            <h6 class="card-subtitle mb-2 text-muted">' . $car['matricula'] . '</h6>
+                                        </div>
+                                
+                                    </div>
+                                </a>';
                         }
                         ?>
 

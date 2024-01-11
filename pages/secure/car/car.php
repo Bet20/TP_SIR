@@ -3,7 +3,7 @@ require_once __DIR__ . '/../../../infra/repositories/carRepository.php';
 require_once __DIR__ . '/../../../infra/repositories/maintenanceRepository.php';
 require_once __DIR__ . '/../../../infra/middlewares/middleware-user.php';
 
-$car = getCarById($_SESSION['id']);
+$car = getCarById($_GET['id']);
 
 $title = ' - Veículos';
 require_once __DIR__ . '/../../../templates/header.php'; 
@@ -46,7 +46,7 @@ require_once __DIR__ . '/../../../templates/header.php';
                         <i class="fa-solid fa-car-side"></i>
                     </div>
                 </div>
-                <h4 class="text-secondary"><?=$car['matricula']?><  /h4>
+                <h4 class="text-secondary"><?=$car['matricula']?></h4>
                 <p><?=$car['descricao']?></p>
 
                 <div class="d-flex align-self-end">
