@@ -11,12 +11,14 @@ if (isset($_POST['message'])) {
 
 function sendMessagePost($req)
 {
+    echo "teste";
     $data = validatedMessage($req);
 
+    echo "teste";
     if (isset($data['invalid'])) {
+        echo "teste";
         $_SESSION['errors'] = $data['invalid'];
-        $params = '?' . http_build_query($req);
-        header('location: /sir/pages/secure/email.php' . $params);
+        header('location: /sir/pages/secure/email.php?id=' . $_GET['id']);
         return false;
     }
 
@@ -24,7 +26,7 @@ function sendMessagePost($req)
 
     if ($success) {
         $params = '?' . http_build_query($data);
-        header('location: /sir/pages/secure/email.php' . $params);
+        header('location: /sir/pages/secure/email.php?id=' . $_GET['id']);
     }
 }
 
@@ -32,8 +34,7 @@ function checkErrors($data, $req)
 {
     if (isset($data['invalid'])) {
         $_SESSION['errors'] = $data['invalid'];
-        $params = '?' . http_build_query($req);
-        header('location: /crud/pages/secure/email.php' . $params);
+        header('location: /crud/pages/secure/email.php?id=' . $_GET['id']);
         return false;
     }
 

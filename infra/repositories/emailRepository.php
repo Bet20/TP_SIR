@@ -4,14 +4,12 @@ require_once __DIR__ . '../../db/connection.php';
 function sendMessage($message)
 {
     $sqlCreate = "INSERT INTO 
-    mensagens
-    (
+    mensagens (
         id_manutencao, 
         mensagem, 
-        `data`,
+        data,
         sender
-    )
-    VALUES(
+    ) VALUES (
         :id_manutencao, 
         :mensagem, 
         :data,
