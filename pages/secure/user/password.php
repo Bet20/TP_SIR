@@ -86,7 +86,6 @@ $user = user();
                             <a href="/sir/pages/secure/user/profile.php"
                                class="btn btn-md btn-warning special-border mb-2" type="submit">
                                 Cancel
-
                             </a>
                         </div>
                         <div class="d-grid col-4">

@@ -71,8 +71,8 @@ include_once __DIR__ . '../../../templates/header.php';
                         <div class="col-4">
 
                             <a class="d-flex align-items-center p-2 btn btn-secondary special-border"
-                               href="/sir/pages/secure/car/car.php">
-                                <span class="mx-2">Veículos</span>
+                               href="/sir/pages/secure/email.php">
+                                <span class="mx-2">Email</span>
                                 <i class="fa-solid fa-car-side"></i>
                             </a>
                         </div>
