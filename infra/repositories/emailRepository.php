@@ -47,7 +47,7 @@ function checkMessage($messageId)
 
 function getMessagesByMaintenceId($id)
 {
-    $PDOStatement = $GLOBALS['pdo']->prepare('SELECT * FROM mensagens WHERE id_manutencao = ?;');
+    $PDOStatement = $GLOBALS['pdo']->prepare('SELECT mensagem, u.name as sender FROM mensagens as m Join user as u on u.id = sender  WHERE id_manutencao = ?;');
     $PDOStatement->bindValue(1, $id, PDO::PARAM_INT);
     $PDOStatement->execute();
     return $PDOStatement->fetchAll();
