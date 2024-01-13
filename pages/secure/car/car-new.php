@@ -17,20 +17,20 @@ $user = user();
 
     <section>
         <?php
-        if (isset($_SESSION['success'])) {
-            echo '<div class="alert alert-success alert-dismissible fade show" role="alert">';
-            echo $_SESSION['success'] . '<br>';
-            echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
-            unset($_SESSION['success']);
-        }
-        if (isset($_SESSION['errors'])) {
-            echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
-            foreach ($_SESSION['errors'] as $error) {
-                echo $error . '<br>';
+            if (isset($_SESSION['success'])) {
+                echo '<div class="alert alert-success alert-dismissible fade show" role="alert">';
+                echo $_SESSION['success'] . '<br>';
+                echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+                unset($_SESSION['success']);
             }
-            echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
-            unset($_SESSION['errors']);
-        }
+            if (isset($_SESSION['errors'])) {
+                echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
+                foreach ($_SESSION['errors'] as $error) {
+                    echo $error . '<br>';
+                }
+                echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
+                unset($_SESSION['errors']);
+            }
         ?>
     </section>
 
@@ -84,14 +84,14 @@ $user = user();
                 <?php
                 if ((isset($_REQUEST['action']) && $_REQUEST['action'] == 'update')) {
                     echo '<div class="d-grid col-4 ">
-                    <button class="btn btn-md btn-success special-border mb-2" type="submit" name="user"
+                    <button class="btn btn-md btn-success special-border mb-2" type="submit" name="car"
                             value="update">
                         Atualizar
                     </button>
                 </div>';
                 } else {
                     echo '<div class="d-grid col-4 ">
-                    <button class="btn btn-md btn-success special-border mb-2" type="submit" name="user"
+                    <button class="btn btn-md btn-success special-border mb-2" type="submit" name="car"
                             value="create">
                         Criar
                     </button>

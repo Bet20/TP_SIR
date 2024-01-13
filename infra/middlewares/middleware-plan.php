@@ -1,8 +1,9 @@
 <?php
 require_once __DIR__ . '/../../infra/repositories/planRepository.php';
+require_once __DIR__ . '/../../helpers/session.php';
 
     if (isset($_SESSION['id'])) {
-        if(!isset($_SESSION['plan'])){
+        if(!isset($_SESSION['plan']) && !admin()){
             $userPlan = getPlanByUserId($_SESSION['id']);
             if($userPlan){
                 $_SESSION['plan'] = $userPlan;
