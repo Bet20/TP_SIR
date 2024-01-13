@@ -3,18 +3,14 @@ $title = ' - Admin';
 require_once __DIR__ . '/../../../templates/header-secure.php'; 
 require_once __DIR__ . '/../../../infra/repositories/userRepository.php';
 require_once __DIR__ . '/../../../infra/middlewares/middleware-admin.php';
-require_once __DIR__ . '/../../../helpers/session.php';
 
 $users = getAll();
-$user = user();
-$title = ' - Admin';
-require_once __DIR__ . '/../../../templates/header.php'; 
 ?>
 
 <?php require_once __DIR__ . '/../../../templates/navbar.php' ?>
 
-<div class="pt-1 container">
-  <div class="p-5 mb-2 bg-dark text-white">
+<div class="mt-4 container">
+  <div class="p-5 mb-2 bg-dark text-white rounded">
     <h1>Utilizadores</h1>
   </div>
 
@@ -44,10 +40,10 @@ require_once __DIR__ . '/../../../templates/header.php';
       ?>
     </section>
     <section>
-      <div class="table-responsive">
+      <div class="table-responsive bg-white">
         <table class="table">
-          <thead class="table-secondary">
-            <tr>
+          <thead class="table-secondary bg-white">
+            <tr class="bg-white">
               <th scope="col">Name</th>
               <th scope="col">Telemóvel</th>
               <th scope="col">Email</th>
