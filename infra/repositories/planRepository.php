@@ -58,7 +58,7 @@ function createUserPlan($userPlan)
     $PDOStatement = $GLOBALS['pdo']->prepare($sqlCreate);
 
     $success = $PDOStatement->execute([
-        'id_user' => $_SESSION['id'],
+        'id_user' =>  $userPlan['id_user'],
         'id_plan' => $userPlan['id_plan'],
         'dt_inicio' => date('Y-m-d')
     ]);

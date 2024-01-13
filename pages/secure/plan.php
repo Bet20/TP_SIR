@@ -4,7 +4,10 @@ session_start();
 include_once __DIR__ . '../../../templates/header.php';
 require_once __DIR__ . '../../../infra/repositories/planRepository.php';
 include_once __DIR__ . '../../../templates/navbar.php';
+
 $plans = getAllPlans();
+$user = user();
+
 ?>
 
 <!-- Secção "planos" -->
@@ -15,7 +18,7 @@ $plans = getAllPlans();
     <p class="lead text-center mb-5 text-white">Seleciona o plano que melhor se adeque a si</p>
     <div class="row justify-content-center col-12">
       <?php foreach ($plans as $plan) { ?>
-        <div class="col-md-4 col-12 h-100 mb-4 mb-md-0" id="<?='plano' . $plan['id']?>" value="<?= $plan['id']?>">
+        <div class="col-md-4 col-12 h-100 mb-4 mb-md-0 plan-element" value="<?= $plan['id']?>">
           <div class="card text-center simple-background special-border">
             <div class="card-body custom">
               <h5 class="py-3 rounded-3 bg-black fg-white card-title"><?= $plan['titulo']?></h5>
@@ -39,4 +42,15 @@ $plans = getAllPlans();
 </div>
 <?php 
 include_once __DIR__ . '../../../templates/footer.php';
+
+echo "<script>
+    const planos = document.querySelectorAll('.plan-element');
+    console.log(planos);
+    planos.forEach(plano => {
+        plano.addEventListener('click', () => {
+            window.location.href = '/sir/controllers/userPlan/userPlan.php?userPlan=create&id_plan=' + plano.getAttribute('value') + '&id_user=" . $user['id'] . "' ;
+        });
+    });
+</script>";
+
 ?>
