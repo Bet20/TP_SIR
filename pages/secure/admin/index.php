@@ -1,4 +1,6 @@
 <?php
+$title = ' - Admin';
+require_once __DIR__ . '/../../../templates/header-secure.php'; 
 require_once __DIR__ . '/../../../infra/repositories/userRepository.php';
 require_once __DIR__ . '/../../../infra/middlewares/middleware-admin.php';
 require_once __DIR__ . '/../../../helpers/session.php';

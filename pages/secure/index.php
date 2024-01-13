@@ -2,13 +2,14 @@
 require_once __DIR__ . '../../../infra/middlewares/middleware-user.php';
 require_once __DIR__ . '../../../infra/repositories/carRepository.php';
 @require_once __DIR__ . '/../../helpers/session.php';
+include_once __DIR__ . '../../../templates/header-secure.php';
 
 $cars = getAllCarByUserId($user['id']);
 $title = ' - APP';
 
 $canCreateCar = count($cars) < 5;
 
-include_once __DIR__ . '../../../templates/header.php';
+$user = user();
 ?>
 
 <main>
@@ -42,7 +43,27 @@ include_once __DIR__ . '../../../templates/header.php';
                                     </div>
                                 </div>
                             </a>
+<<<<<<< HEAD
                         <?php } ?>
+=======
+                        </div>
+                        <div class="col-4">
+
+                            <a class="d-flex align-items-center p-2 btn btn-secondary special-border"
+                               href="/sir/pages/secure/car/car.php">
+                                <span class="mx-2">Veículos</span>
+                                <i class="fa-solid fa-car-side"></i>
+                            </a>
+                        </div>
+                        <div class="col-4">
+
+                            <a class="d-flex align-items-center p-2 btn btn-secondary special-border"
+                               href="/sir/pages/secure/email.php">
+                                <span class="mx-2">Email</span>
+                                <i class="fa-solid fa-car-side"></i>
+                            </a>
+                        </div>
+>>>>>>> main
 
                     </div>
                     <div>

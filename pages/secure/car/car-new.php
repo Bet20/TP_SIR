@@ -5,7 +5,7 @@ require_once __DIR__ . '../../../../helpers/session.php';
 
 $title = ' - Registar Veículo';
 $user = user();
-require_once __DIR__ . '/../../../templates/header.php';
+require_once __DIR__ . '/../../../templates/header-secure.php'; 
 ?>
 
 <?= require_once __DIR__ . '/../../../templates/navbar.php' ?>
