@@ -11,7 +11,7 @@ $title = ' - Admin';
 require_once __DIR__ . '/../../../templates/header.php'; 
 ?>
 
-<?= require_once __DIR__ . '/../../../templates/navbar.php' ?>
+<?php require_once __DIR__ . '/../../../templates/navbar.php' ?>
 
 <div class="pt-1 container">
   <div class="p-5 mb-2 bg-dark text-white">

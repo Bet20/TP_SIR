@@ -1,14 +1,16 @@
 <?php
-$title = ' - Atualizar utilizador';
+
+$title = ' - Admin';
 require_once __DIR__ . '/../../../templates/header-secure.php'; 
 require_once __DIR__ . '/../../../infra/middlewares/middleware-admin.php';
 
-$title = ' - Atualizar utilizador';
-$user = getById($_REQUEST['id']);
-require_once __DIR__ . '/../../../templates/header.php'; 
+if(isset($_REQUEST['id'])){
+  $user = getById($_REQUEST['id']);
+}
+
 ?>
 
-<?= require_once __DIR__ . '/../../../templates/navbar.php' ?>
+<?php require_once __DIR__ . '/../../../templates/navbar.php' ?>
 
 <main>
   <section class="py-4">

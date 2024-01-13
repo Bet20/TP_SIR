@@ -2,14 +2,14 @@
 require_once __DIR__ . '../../../infra/middlewares/middleware-user.php';
 require_once __DIR__ . '../../../infra/repositories/carRepository.php';
 @require_once __DIR__ . '/../../helpers/session.php';
+$title = ' - APP';
 include_once __DIR__ . '../../../templates/header-secure.php';
 
+$user = user();
 $cars = getAllCarByUserId($user['id']);
-$title = ' - APP';
 
 $canCreateCar = count($cars) < 5;
 
-$user = user();
 ?>
 
 <main>
@@ -19,6 +19,15 @@ $user = user();
             <div>
                 <div>
                     <div class="row">
+                        <div class="col-12 row mb-5">
+                            <div class="col-6">
+                                <a class="d-flex align-items-center p-2 btn btn-danger special-border"
+                                href="/sir/pages/secure/email.php">
+                                <span class="mx-2">Email - este botao é para sair</span>
+                                <i class="fa-solid fa-car-side"></i>
+                                </a>
+                            </div>
+                        </div>
                         <?php
                         foreach ($cars as $car) {
                             echo '
@@ -43,27 +52,8 @@ $user = user();
                                     </div>
                                 </div>
                             </a>
-<<<<<<< HEAD
                         <?php } ?>
-=======
                         </div>
-                        <div class="col-4">
-
-                            <a class="d-flex align-items-center p-2 btn btn-secondary special-border"
-                               href="/sir/pages/secure/car/car.php">
-                                <span class="mx-2">Veículos</span>
-                                <i class="fa-solid fa-car-side"></i>
-                            </a>
-                        </div>
-                        <div class="col-4">
-
-                            <a class="d-flex align-items-center p-2 btn btn-secondary special-border"
-                               href="/sir/pages/secure/email.php">
-                                <span class="mx-2">Email</span>
-                                <i class="fa-solid fa-car-side"></i>
-                            </a>
-                        </div>
->>>>>>> main
 
                     </div>
                     <div>

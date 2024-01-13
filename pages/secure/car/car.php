@@ -6,10 +6,10 @@ require_once __DIR__ . '/../../../infra/middlewares/middleware-user.php';
 $car = getCarById($_GET['id']);
 
 $title = ' - Veículos';
-require_once __DIR__ . '/../../../templates/header.php'; 
+require_once __DIR__ . '/../../../templates/header-secure.php'; 
 ?>
 
-<?= include_once __DIR__ . '/../../../templates/navbar.php' ?>
+<?php include_once __DIR__ . '/../../../templates/navbar.php' ?>
 
 <div class="container">
     <section class="py-4">

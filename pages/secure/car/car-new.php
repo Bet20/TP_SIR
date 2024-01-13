@@ -1,14 +1,16 @@
 <?php
-require_once __DIR__ . '../../../../infra/repositories/carRepository.php';
-require_once __DIR__ . '../../../../infra/middlewares/middleware-user.php';
-require_once __DIR__ . '../../../../helpers/session.php';
+(isset($_REQUEST['action']) && $_REQUEST['action'] == 'update') ? $string = ' - Listar Veículo' : $string = ' - Registar Veículo';
 
-$title = ' - Registar Veículo';
-$user = user();
+$title = $string;
+
+require_once __DIR__ . '../../../../helpers/session.php';
 require_once __DIR__ . '/../../../templates/header-secure.php'; 
+require_once __DIR__ . '../../../../infra/repositories/carRepository.php';
+
+$user = user();
 ?>
 
-<?= require_once __DIR__ . '/../../../templates/navbar.php' ?>
+<?php require_once __DIR__ . '/../../../templates/navbar.php' ?>
 <main class="d-flex flex-column container">
 
     <h2>Formulário de Criação de Carro</h2>
