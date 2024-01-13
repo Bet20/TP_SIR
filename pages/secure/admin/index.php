@@ -1,10 +1,10 @@
 <?php
+$title = ' - Admin';
+require_once __DIR__ . '/../../../templates/header-secure.php'; 
 require_once __DIR__ . '/../../../infra/repositories/userRepository.php';
 require_once __DIR__ . '/../../../infra/middlewares/middleware-admin.php';
 
 $users = getAll();
-$title = ' - Admin';
-require_once __DIR__ . '/../../../templates/header.php'; 
 ?>
 
 <div class="pt-1 ">

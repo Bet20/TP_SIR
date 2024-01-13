@@ -1,8 +1,8 @@
 <?php
+$title = ' - Atualizar utilizador';
+require_once __DIR__ . '/../../../templates/header-secure.php'; 
 require_once __DIR__ . '/../../../infra/middlewares/middleware-admin.php';
 
-$title = ' - Atualizar utilizador';
-require_once __DIR__ . '/../../../templates/header.php'; 
 ?>
 
 <main>

@@ -1,10 +1,9 @@
 <?php
-require_once __DIR__ . '../../../infra/middlewares/middleware-user.php';
+$title = ' - APP';
+include_once __DIR__ . '../../../templates/header-secure.php';
 @require_once __DIR__ . '/../../helpers/session.php';
 
 $user = user();
-$title = ' - APP';
-include_once __DIR__ . '../../../templates/header.php';
 ?>
 
 <main>

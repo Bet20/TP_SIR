@@ -1,7 +1,6 @@
 <?php
 require_once __DIR__ . '../../../../infra/repositories/carRepository.php';
 require_once __DIR__ . '../../../../infra/repositories/maintenanceRepository.php';
-require_once __DIR__ . '../../../../infra/middlewares/middleware-user.php';
 
 $cars = getAllCarByUserId($_SESSION['id']);
 $title = ' - Veículos';
