@@ -75,7 +75,7 @@ function createUserPlan($userPlan)
     return $success;
 }
 
-function getById($id)
+function getPlanById($id)
 {
     $PDOStatement = $GLOBALS['pdo']->prepare('SELECT * FROM plan WHERE id = ?;');
     $PDOStatement->bindValue(1, $id, PDO::PARAM_INT);
