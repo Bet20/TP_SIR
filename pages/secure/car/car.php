@@ -6,12 +6,19 @@ require_once __DIR__ . '/../../../infra/middlewares/middleware-user.php';
 $car = getCarById($_GET['id']);
 
 $title = ' - Veículos';
-require_once __DIR__ . '/../../../templates/header-secure.php'; 
+require_once __DIR__ . '/../../../templates/header-secure.php';
+include_once __DIR__ . '/../../../infra/repositories/emailRepository.php';
+$render_messages = false;
+if ($car['estado'] === 0){
+    $maintenance_data = getMaintenanceByCarId($car['id']);
+    $messages = getMessagesByMaintenceId($maintenance_data['id']);
+    $render_messages = true;
+}
 ?>
 
 <?php include_once __DIR__ . '/../../../templates/navbar.php' ?>
 
-<div class="container">
+<div class="container-fluid">
     <section class="py-4">
       <div class="d-flex justify-content">
         <a href="/sir/pages/secure/"><button class="btn btn-secondary px-5 me-2">Voltar</button></a>
@@ -19,8 +26,8 @@ require_once __DIR__ . '/../../../templates/header-secure.php';
       </div>
     </section>
 
-
-  <main class="bg-light special-border p-3">
+<div class="row mx-auto justify-content-center gap-3">
+  <main class="bg-light special-border p-3 col-6">
     <section>
       <?php
       if (isset($_SESSION['errors'])) {
@@ -34,7 +41,6 @@ require_once __DIR__ . '/../../../templates/header-secure.php';
       ?>
     </section>
     <section>
-
         <div class="row">
             <div class="col-5">
                 <img class="img-fluid" src="https://live.staticflickr.com/65535/52941868007_113fe37dc3_k.jpg"/>
@@ -67,9 +73,6 @@ require_once __DIR__ . '/../../../templates/header-secure.php';
             </div>
         </div>
 
-
-
-
         <!-- modal Delete -->
         <div class="modal fade" id="delete<?= $car['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel"
              aria-hidden="true">
@@ -100,28 +103,25 @@ require_once __DIR__ . '/../../../templates/header-secure.php';
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
+
+
                             <form action="processar_agendamento.php" method="post">
                                 <!-- Campos do formulário -->
-                                <div>
-                                    <label for="dt_inicio">Data de Início:</label>
-                                    <input type="date" id="dt_inicio" name="dt_inicio" required>
+                                <div class="mb-3">
+                                    <label for="dt_inicio" class="form-label">Data de Início:</label>
+                                    <input type="date" class="form-control" id="dt_inicio" required>
                                 </div>
-                                <div>
-                                    <label for="dt_fim">Data de Fim:</label>
-                                    <input type="date" id="dt_fim" name="dt_fim">
+
+                                <div class="mb-3">
+                                    <label for="descricao" class="form-label">Descrição</label>
+                                    <textarea class="form-control" id="descricao" rows="3"></textarea>
                                 </div>
-                                <div>
-                                    <label for="descricao">Descrição:</label>
-                                    <textarea id="descricao" name="descricao" rows="4"></textarea>
+
+                                <div class="mb-3">
+                                    <label for="image_maintenance" class="form-label">Adicionar Imagem</label>
+                                    <input class="form-control" type="file" id="image_maintenance">
                                 </div>
-                                <div>
-                                    <label for="preco">Preço:</label>
-                                    <input type="number" id="preco" name="preco">
-                                </div>
-                                <div>
-                                    <label for="estado">Estado:</label>
-                                    <span id="estado" name="estado"><?= isset($car['estado']) ? $car['estado'] : null ?></span>
-                                </div>
+
                                 <input type="hidden" id="id_user" name="id_user" value="<?= isset($_SESSION['id']) ? $_SESSION['id'] : null ?>">
                                 <input type="hidden" id="estado" name="estado" value="0">
 
@@ -137,7 +137,7 @@ require_once __DIR__ . '/../../../templates/header-secure.php';
         <!-- modal Manutenção
               <?php $maintenance = getMaintenanceByCarId($car['id']);?> -->
 
-        <!--   <div class="modal fade" id="modalListarMarcacao<?php /*= $car['id'] */?>" tabindex="-1" aria-labelledby="modalMarcacaoLabel" aria-hidden="true">
+        <div class="modal fade" id="modalListarMarcacao<?php /*= $car['id'] */?>" tabindex="-1" aria-labelledby="modalMarcacaoLabel" aria-hidden="true">
                   <div class="modal-dialog">
                       <div class="modal-content">
                           <div class="modal-content">
@@ -174,10 +174,60 @@ require_once __DIR__ . '/../../../templates/header-secure.php';
                           </div>
                       </div>
                   </div>
-              </div>-->
+              </div>
 
     </section>
   </main>
+    <?php
+
+if ($render_messages) {
+    ?>
+    <div class="card special-border col-4">
+        <section>
+            <?php
+            if (isset($_SESSION['success'])) {
+                echo '<div class="alert alert-success alert-dismissible fade show" role="alert">';
+                echo $_SESSION['success'] . '<br>';
+                echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+                unset($_SESSION['success']);
+            }
+            if (isset($_SESSION['errors'])) {
+                echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
+                foreach ($_SESSION['errors'] as $error) {
+                    echo $error . '<br>';
+                }
+                echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
+                unset($_SESSION['errors']);
+            }
+            ?>
+        </section>
+
+            <div class="card-body messages-container">
+                <?php foreach ($messages as $message) : ?>
+                    <div class="message">
+                        <strong class="user"><?php echo $message['sender']; ?>:</strong>
+                        <span class="content"><?php echo $message['mensagem']; ?></span>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            <div class="card-footer">
+                <form enctype="multipart/form-data" action="/sir/controllers/email/email.php?<?= 'id=' . $_GET['id'] ?>" method="post">
+                    <div class="input-group">
+                        <input type="text" class="form-control special-border rounded" placeholder="Digite sua mensagem" name="mensagem">
+                        <input type="hidden" id="id_manutencao" name="id_manutencao" value="<?= $_GET['id'] ?>">
+                        <input type="hidden" id="data" name="data" value="<?= date('Y-m-d'); ?>">
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-outline-dark special-border" id="message" name="message" value="send"><i class="fa-solid fa-location-arrow"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+    </div>
+    <?php
+    }
+    ?>
+</div>
 </div>
 <?php
 include_once __DIR__ . '/../../../templates/footer.php'; ?>
