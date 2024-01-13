@@ -1,6 +1,7 @@
 <?php
 $title = ' - Change password';
-include_once __DIR__ . '../../../../templates/header-secure.php';
+include_once __DIR__ . '/../../../templates/header.php';
+require_once __DIR__ . '/../../../infra/middlewares/middleware-user.php';
 @require_once __DIR__ . '/../../../helpers/session.php';
 
 $user = user();
@@ -10,6 +11,7 @@ $user = user();
 
         <header class="p-3 border-bottom d-flex justify-content-between">
             <a href="/sir/pages/secure" class="d-flex align-items-center text-dark text-decoration-none">
+
                 <div class="d-flex flex-column align-items-center">
                     <img src="/sir/logo.svg" alt="logo" width="50" height="50">
 

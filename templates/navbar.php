@@ -21,9 +21,9 @@
         </button>
         <div class="dropdown-menu"> <!-- Add this div container -->
             <?php if (isAuthenticated() && $user['admin']) {
-                echo '<li><a class="dropdown-item" href="/sir/pages/secure/admin/"><i class="fa-solid fa-circle-user me-2"></i>Gerir Utilizadores</a></li>';
+                echo '<li><a class="dropdown-item" href="/sir/pages/secure/user/password.php"><i class="fa-solid fa-circle-user me-2"></i>Gerir Utilizadores</a></li>';
             } ?>
-            <li><a class="dropdown-item" href="/sir/pages/secure/admin/"><i class="fas fa-key me-2"></i>Alterar palavra-passe</a></li>
+            <li><a class="dropdown-item" href="/sir/pages/secure/user/password.php"><i class="fas fa-key me-2"></i>Alterar palavra-passe</a></li>
             <li>
                 <hr class="dropdown-divider">
             </li>

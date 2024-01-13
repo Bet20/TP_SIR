@@ -21,9 +21,12 @@ $canCreateCar = count($cars) < 5;
                     <div class="row justify-content-center">
                         <?php
                         if (count($cars) === 0) {
-
-                        echo '<div class="mb-3">
+                        echo '<div class="mb-3 align-text-center text-align-center">
                             <h2 class="text-center">Bem vindo! Comece por adicionar um carro.</h2>
+                            <div class="text-center fs-2">
+                            
+                            <i class="fa-solid fa-arrow-down text-center"></i>
+</div>
                         </div>';
                         }
                         ?>
