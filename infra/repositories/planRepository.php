@@ -48,31 +48,37 @@ function createUserPlan($userPlan)
     userplan (
         id_user,
         id_plan, 
-        dt_inicio, 
-        dt_fim, 
-        estado, 
+        dt_inicio
     ) VALUES (
         :id_user,
         :id_plan,
-        :dt_inicio,
-        :dt_fim,
-        :estado,
+        :dt_inicio
     )";
 
     $PDOStatement = $GLOBALS['pdo']->prepare($sqlCreate);
 
     $success = $PDOStatement->execute([
-        'id_user' => $userPlan['id_user'],
+        'id_user' =>  $userPlan['id_user'],
         'id_plan' => $userPlan['id_plan'],
-        'dt_inicio' => $userPlan['dt_inicio'],
-        'dt_fim' => $userPlan['dt_fim'],
-        'estado' => $userPlan['estado']
+        'dt_inicio' => date('Y-m-d')
     ]);
 
     if ($success) {
         $userPlan['id'] = $GLOBALS['pdo']->lastInsertId();
     }
     return $success;
+}
+
+function getAllPlans()
+{
+    $PDOStatement = $GLOBALS['pdo']->prepare('SELECT p.id, p.titulo, p.subtitulo, p.footerTitulo, p.preco, p.descricao, p.numVeiculos, p.estado, GROUP_CONCAT(pa.nome) as vantagens 
+    FROM plan as p 
+    LEFT JOIN planadvantages as pa 
+    ON p.id = pa.id_plan
+    GROUP BY p.id, p.titulo, p.subtitulo, p.footerTitulo, p.preco, p.descricao, p.numVeiculos, p.estado;'); 
+   
+    $PDOStatement->execute();    
+    return $PDOStatement->fetchAll();
 }
 
 function getPlanById($id)

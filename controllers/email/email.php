@@ -1,4 +1,6 @@
 <?php
+
+session_start();
 require_once __DIR__ . '/../../helpers/validations/message/validate-message.php';
 require_once __DIR__ . '/../../infra/repositories/emailRepository.php';
 require_once __DIR__ . '/../../helpers/session.php';
@@ -11,10 +13,8 @@ if (isset($_POST['message'])) {
 
 function sendMessagePost($req)
 {
-    echo "teste";
     $data = validatedMessage($req);
 
-    echo "teste";
     if (isset($data['invalid'])) {
         echo "teste";
         $_SESSION['errors'] = $data['invalid'];

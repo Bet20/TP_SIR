@@ -1,6 +1,6 @@
 <?php
 $title = "- Email";
-include_once __DIR__ . '../../../templates/header.php';
+include_once __DIR__ . '../../../templates/header-secure.php';
 include_once __DIR__ . '/../../infra/repositories/emailRepository.php';
 $messages = getMessagesByMaintenceId($_GET['id']);
 ?> 

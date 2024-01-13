@@ -33,6 +33,7 @@ function createCar($car)
 
     if ($success) {
         $car['id'] = $GLOBALS['pdo']->lastInsertId();
+        return $car['id'];
     }
     return $success;
 }

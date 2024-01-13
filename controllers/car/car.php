@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once __DIR__ . '/../../helpers/validations/car/validate-car.php';
 require_once __DIR__ . '/../../infra/repositories/carRepository.php';
 require_once __DIR__ . '/../../helpers/session.php';
@@ -75,11 +76,11 @@ function create($req)
         return false;
     }
 
-    $success = createCar($data);
+    $carId = createCar($data);
 
-    if ($success) {
+    if ($carId) {
         $_SESSION['success'] = 'User created successfully!';
-        header('location: /sir/pages/secure/car/car.php');
+        header('location: /sir/pages/secure/car/car.php?id=' . $carId);
     }
 }
 
@@ -109,5 +110,8 @@ function update($req)
 function delete_car($car)
 {
     $data = deleteCar($car['id']);
-    return $car;
+    
+    if($data){
+        header('location: /sir/pages/secure/' . $params);
+    }
 }
