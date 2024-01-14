@@ -22,7 +22,6 @@ if ($car['estado'] === 0){
     <section class="py-4">
       <div class="d-flex justify-content">
         <a href="/sir/pages/secure/"><button class="btn btn-secondary px-5 me-2">Voltar</button></a>
-
       </div>
     </section>
 

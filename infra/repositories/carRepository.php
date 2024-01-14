@@ -68,8 +68,33 @@ function getAllCarByUserId($userId)
 
 function getAllCarInMaintenance()
 {
-    $PDOStatement = $GLOBALS['pdo']->prepare('SELECT * FROM car WHERE estado != 0');
+    $PDOStatement = $GLOBALS['pdo']->prepare('SELECT car.*, user.name
+FROM car
+JOIN user ON car.id_user = user.id
+WHERE car.estado != 1;');
     $PDOStatement->execute();
+    $cars = [];
+    while ($carList = $PDOStatement->fetch()) {
+        $cars[] = $carList;
+    }
+    return $cars;
+}
+
+function getAllCarInMaintenanceWithSearchQuery($searchParam)
+{
+    $PDOStatement = $GLOBALS['pdo']->prepare('
+        SELECT car.*, user.name
+FROM car
+JOIN user ON car.id_user = user.id
+WHERE car.estado != 1
+        AND (car.marca LIKE :searchParam OR car.matricula LIKE :searchParam)
+    ');
+
+    $searchParam = '%' . $searchParam . '%';
+
+    $PDOStatement->bindParam(':searchParam', $searchParam, PDO::PARAM_STR);
+    $PDOStatement->execute();
+
     $cars = [];
     while ($carList = $PDOStatement->fetch()) {
         $cars[] = $carList;
