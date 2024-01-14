@@ -18,7 +18,7 @@ function sendMessagePost($req)
     if (isset($data['invalid'])) {
         echo "teste";
         $_SESSION['errors'] = $data['invalid'];
-        header('location: /sir/pages/secure/email.php?id=' . $_GET['id']);
+        header('location: /sir/pages/secure/car/car.php?id=' . $req['id_car']);
         return false;
     }
 
@@ -26,18 +26,6 @@ function sendMessagePost($req)
 
     if ($success) {
         $params = '?' . http_build_query($data);
-        header('location: /sir/pages/secure/email.php?id=' . $_GET['id']);
+        header('location: /sir/pages/secure/car/car.php?id='. $req['id_car']);
     }
-}
-
-function checkErrors($data, $req)
-{
-    if (isset($data['invalid'])) {
-        $_SESSION['errors'] = $data['invalid'];
-        header('location: /crud/pages/secure/email.php?id=' . $_GET['id']);
-        return false;
-    }
-
-    unset($_SESSION['errors']);
-    return true;
 }

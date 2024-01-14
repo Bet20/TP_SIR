@@ -66,6 +66,16 @@ function getAllCarByUserId($userId)
     return $cars;
 }
 
+function getAllCarInMaintenance()
+{
+    $PDOStatement = $GLOBALS['pdo']->prepare('SELECT * FROM car WHERE estado != 0');
+    $PDOStatement->execute();
+    $cars = [];
+    while ($carList = $PDOStatement->fetch()) {
+        $cars[] = $carList;
+    }
+    return $cars;
+}
 
 function updateCar($car)
 {
@@ -96,13 +106,13 @@ function updateEstado($car)
 {
     $sqlUpdate = "UPDATE  
     car SET
-        estado = :estado,
+        estado = :estado
     WHERE id = :id;";
 
     $PDOStatement = $GLOBALS['pdo']->prepare($sqlUpdate);
 
     return $PDOStatement->execute([
-        ':name' => $car['estado'],
+        ':estado' => $car['estado'],
         ':id' => $car['id']
     ]);
 }

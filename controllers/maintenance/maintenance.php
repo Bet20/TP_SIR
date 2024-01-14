@@ -1,11 +1,11 @@
 <?php
-require_once __DIR__ . '/../../helpers/validations/car/validate-car.php';
-require_once __DIR__ . '/../../infra/repositories/carRepository.php';
+require_once __DIR__ . '/../../helpers/validations/maintenance/validate-maintenance.php';
+require_once __DIR__ . '/../../infra/repositories/maintenanceRepository.php';
 require_once __DIR__ . '/../../helpers/session.php';
 
 if (isset($_POST['maintenance'])) {
     if ($_POST['maintenance'] == 'create') {
-        create($_POST);
+        createMaintenancePost($_POST);
     }
 
     if ($_POST['maintenance'] == 'update') {
@@ -64,22 +64,27 @@ if (isset($_GET['maintenance'])) {
     }
 }
 
-function create($req)
+function createMaintenancePost($req)
 {
     $data = validatedMaintenance($req);
 
     if (isset($data['invalid'])) {
         $_SESSION['errors'] = $data['invalid'];
         $params = '?' . http_build_query($req);
-        header('location: /sir/pages/secure/car/car.php' . $params);
+        header('location: /sir/pages/secure/car/car.php?id=' . $req['id_car']);
         return false;
     }
 
-    $success = create($data);
+    $success = createMaintenance($data);
+    
+    $car['id'] = $req['id_car'];
+    $car['estado'] = 0;
+
+    updateEstado($car);
 
     if ($success) {
         $_SESSION['success'] = 'Manutenção criada com sucesso!';
-        header('location: /sir/pages/secure/car/car.php');
+        header('location: /sir/pages/secure/car/car.php?id=' . $req['id_car']);
     }
 }
 

@@ -105,29 +105,29 @@ if ($car['estado'] === 0){
                         <div class="modal-body">
 
 
-                            <form action="processar_agendamento.php" method="post">
+                            <form action="/sir/controllers/maintenance/maintenance.php" method="post">
                                 <!-- Campos do formulário -->
                                 <div class="mb-3">
                                     <label for="dt_inicio" class="form-label">Data de Início:</label>
-                                    <input type="date" class="form-control" id="dt_inicio" required>
+                                    <input type="date" class="form-control" id="dt_inicio" name="dt_inicio" required>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="descricao" class="form-label">Descrição</label>
-                                    <textarea class="form-control" id="descricao" rows="3"></textarea>
+                                    <textarea class="form-control" id="descricao" name="descricao" rows="3"></textarea>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="image_maintenance" class="form-label">Adicionar Imagem</label>
-                                    <input class="form-control" type="file" id="image_maintenance">
+                                    <input class="form-control" type="file" id="image_maintenance" name="image_maintenance">
                                 </div>
 
                                 <input type="hidden" id="id_user" name="id_user" value="<?= isset($_SESSION['id']) ? $_SESSION['id'] : null ?>">
-                                <input type="hidden" id="estado" name="estado" value="0">
 
+                                <input type="hidden" id="id_car" name="id_car" value="<?= $_GET['id']?>">
                                 <!-- Adicione outros campos conforme necessário -->
 
-                                <button type="submit" class="btn btn-primary">Agendar</button>
+                                <button type="submit" class="btn btn-primary" name="maintenance" value="create">Agendar</button>
                             </form>
                         </div>
                     </div>
@@ -168,7 +168,7 @@ if ($car['estado'] === 0){
                                       <span id="estado" name="estado"><?php /*= isset($maintenance['estado']) ? $maintenance['estado'] : 'N/D' */?></span>
                                   </div>
                                   // Adicione outros campos conforme necessário
-
+                                    
                                   <button type="submit" class="btn btn-primary">Agendar</button>
                                 </div>
                           </div>
@@ -211,11 +211,12 @@ if ($render_messages) {
                 <?php endforeach; ?>
             </div>
             <div class="card-footer">
-                <form enctype="multipart/form-data" action="/sir/controllers/email/email.php?<?= 'id=' . $_GET['id'] ?>" method="post">
+                <form enctype="multipart/form-data" action="/sir/controllers/email/email.php?<?= 'id=' . $maintenance_data['id'] ?>" method="post">
                     <div class="input-group">
                         <input type="text" class="form-control special-border rounded" placeholder="Digite sua mensagem" name="mensagem">
-                        <input type="hidden" id="id_manutencao" name="id_manutencao" value="<?= $_GET['id'] ?>">
+                        <input type="hidden" id="id_manutencao" name="id_manutencao" value="<?= $maintenance_data['id'] ?>">
                         <input type="hidden" id="data" name="data" value="<?= date('Y-m-d'); ?>">
+                        <input type="hidden" id="id_car" name="id_car" value="<?= $car['id'] ?>">
                         <div class="input-group-append">
                             <button type="submit" class="btn btn-outline-dark special-border" id="message" name="message" value="send"><i class="fa-solid fa-location-arrow"></i></button>
                         </div>
