@@ -1,0 +1,94 @@
+-- Tabela 'user'
+CREATE TABLE user (
+    id INT PRIMARY key AUTO_INCREMENT,
+    email VARCHAR(255) NOT NULL,
+    name VARCHAR(255),
+    password VARCHAR(255),
+    admin bit default 0,
+    telemovel VARCHAR(20),
+    foto varchar(50) NULL,
+    estado INT NOT null default 1
+);
+
+-- Tabela 'car'
+CREATE TABLE car (
+    id INT PRIMARY key AUTO_INCREMENT,
+    id_user INT NOT null,
+    matricula VARCHAR(10) NOT null,
+    descricao VARCHAR(255),
+    marca VARCHAR(50),
+    modelo VARCHAR(50),
+    cor VARCHAR(8),
+    estado INT NOT null default 1,
+    FOREIGN KEY (id_user) REFERENCES user(id)
+);
+
+-- Tabela 'estadomanutencao'
+CREATE TABLE estadoManutencao (
+    id INT PRIMARY key AUTO_INCREMENT,
+    nome VARCHAR(50)
+);
+
+INSERT INTO EstadoManutencao (nome) VALUES
+    ('Em Análise'),
+    ('Em Manutenção'),
+    ('Concluído'),
+    ('Aguardando Pagamento');
+
+-- Tabela 'manutencao'
+CREATE TABLE manutencao (
+    id INT PRIMARY key AUTO_INCREMENT,
+    id_car INT,
+    id_estado INT DEFAULT 1,
+    dt_inicio DATE,
+    dt_fim DATE,
+    descricao VARCHAR(255),
+    preco DECIMAL(10, 2),
+    FOREIGN KEY (id_estado) REFERENCES estadoManutencao(id),
+    FOREIGN KEY (id_car) REFERENCES car(id) ON DELETE CASCADE
+);
+
+-- Tabela 'plan'
+CREATE TABLE plan (
+    id INT PRIMARY key AUTO_INCREMENT,
+    titulo VARCHAR(25),
+    subtitulo VARCHAR(25),
+    footerTitulo VARCHAR(25),
+    preco DECIMAL(10, 2),
+    descricao VARCHAR(255),
+    numVeiculos INT,
+    estado INT default 1,
+);
+
+-- Tabela 'userPlan'
+CREATE TABLE userplan (
+    id INT PRIMARY key AUTO_INCREMENT,
+    id_user INT NOT NULL,
+    id_plan INT NOT NULL,
+    dt_inicio DATE,
+    dt_fim DATE,
+    estado INT NOT null default 1,
+    FOREIGN KEY (id_user) REFERENCES car(id),
+    FOREIGN KEY (id_plan) REFERENCES plan(id)
+);
+
+-- Tabela 'plan advantages'
+CREATE TABLE planAdvantages (
+    id INT PRIMARY key AUTO_INCREMENT,
+    id_plan INT not null,
+    nome VARCHAR(50),
+    FOREIGN KEY (id_plan) REFERENCES plan(id)
+);
+
+-- Tabela 'mensagens'
+CREATE TABLE mensagens (
+    id INT PRIMARY key AUTO_INCREMENT,
+    id_manutencao INT not null,
+    sender INT not null,
+    mensagem VARCHAR(255),
+    data DATE,
+    vista BIT default 0,
+    image Varchar(255),
+    FOREIGN KEY (id_manutencao) REFERENCES manutencao(id) ON DELETE CASCADE,
+    FOREIGN KEY (sender) REFERENCES `user`(id)
+);

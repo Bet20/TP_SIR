@@ -1,6 +1,8 @@
 <?php
 require_once __DIR__ . '../../../infra/middlewares/middleware-user.php';
 require_once __DIR__ . '../../../infra/repositories/carRepository.php';
+require_once __DIR__ . '../../../infra/repositories/maintenanceRepository.php';
+require_once __DIR__ . '../../../infra/repositories/emailRepository.php';
 @require_once __DIR__ . '/../../helpers/session.php';
 $title = ' - APP';
 include_once __DIR__ . '../../../templates/header-secure.php';
@@ -25,6 +27,11 @@ if ($user['admin'] === 1) {
     <?php include_once __DIR__ . '../../../templates/navbar.php'; ?>
 
     <div class="p-2 container">
+        <?php
+        if ($user['admin'] === 1) {
+            echo '<h1>Veículos em Manutenção</h1>';
+        }
+        ?>
         <div class="mt-3">
             <?php
             if ($user['admin'] === 1) {
@@ -39,10 +46,7 @@ if ($user['admin'] === 1) {
 
             <div>
                 <div>
-                    <div class="row justify-content-center vh-100">
-
-
-
+                    <div class="row justify-content-center">
                         <?php if ($user['admin'] === 1) { ?>
                             <div class="special-border p-4 h-75 overflow-y-auto ">
                                 <table class="table">
@@ -51,41 +55,42 @@ if ($user['admin'] === 1) {
                                             <th>Marca</th>
                                             <th>Matricula</th>
                                             <th>Cliente</th>
+                                            <th>Estado manutenção</th>
                                             <th>Opções</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <?php foreach ($cars as $car) { ?>
-                                        <tr>
-                                            <td><?= $car['marca'] ?></td>
-                                            <td><?= $car['matricula'] ?></td>
-                                            <td><?= $car['name'] ?></td>
-                                            <td>
-                                                <a href="/sir/pages/secure/car/car.php?id=<?= $car['id'] ?>" class="btn btn-primary">Ver</a>
-                                                <a href="/sir/pages/secure/car/car-edit.php?id=<?= $car['id'] ?>" class="btn btn-warning">Editar</a>
-                                                <a href="/sir/pages/secure/car/car-delete.php?id=<?= $car['id'] ?>" class="btn btn-danger">Apagar</a>
-                                        </tr>
-                                    <?php } ?>
+                                        <?php foreach ($cars as $car) { ?>
+                                            <tr>
+                                                <td><?= $car['marca'] ?></td>
+                                                <td><?= $car['matricula'] ?></td>
+                                                <td><?= $car['name'] ?></td>
+                                                <td><?= $car['estado'] ?></td>
+                                                <td>
+                                                    <a href="/sir/pages/secure/car/car.php?id=<?= $car['id'] ?>" class="btn btn-primary">Ver</a>
+                                                    <a href="/sir/pages/secure/car/car-delete.php?id=<?= $car['id'] ?>" class="btn btn-danger">Apagar</a>
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
+
 
                         <?php } else {
 
 
                             if (count($cars) === 0) {
-                                echo '<div class="mb-3 align-text-center text-align-center">
-                            <h2 class="text-center">Bem vindo! Comece por adicionar um carro.</h2>
-                            <div class="text-center fs-2">
-                            
-                            <i class="fa-solid fa-arrow-down text-center"></i>
-</div>
-                        </div>';
+                                echo   '<div class="mb-3 align-text-center text-align-center">
+                                            <h2 class="text-center">Bem vindo! Comece por adicionar um carro.</h2>
+                                            <div class="text-center fs-2">
+                                                <i class="fa-solid fa-arrow-down text-center"></i>
+                                            </div>
+                                        </div>';
                             }
 
-
                             foreach ($cars as $car) {
-                            echo '
+                                echo '
                                 <a class="col-3 mt-2" href="/sir/pages/secure/car/car.php?id=' . $car['id'] . '">
                                     <div class="card text-center" style="background: ' . $car['cor'] . '22' . '">
                                         <div class="card-body">
@@ -96,7 +101,8 @@ if ($user['admin'] === 1) {
                                 
                                     </div>
                                 </a>';
-                        }}
+                            }
+                        }
                         ?>
 
                         <?php if ($canCreateCar) { ?>
@@ -108,15 +114,15 @@ if ($user['admin'] === 1) {
                                 </div>
                             </a>
                         <?php } ?>
-                        </div>
+                    </div>
 
-                    </div>
-                    <div>
-                    </div>
+                </div>
+                <div>
                 </div>
             </div>
-
         </div>
+
+    </div>
 </main>
 
 <?php
