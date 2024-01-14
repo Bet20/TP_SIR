@@ -25,7 +25,7 @@ if ($car['estado'] === 0){
       </div>
     </section>
 
-<div class="row mx-auto justify-content-center gap-3">
+<div class="row mx-auto justify-content-center gap-3 max-height-50vh">
   <main class="bg-light special-border p-3 col-6">
     <section>
       <?php
@@ -181,7 +181,7 @@ if ($car['estado'] === 0){
 
 if ($render_messages) {
     ?>
-    <div class="card special-border col-4">
+    <div class="card special-border max-height-50vh col-4">
         <section>
             <?php
             if (isset($_SESSION['success'])) {
@@ -201,23 +201,34 @@ if ($render_messages) {
             ?>
         </section>
 
-            <div class="card-body messages-container">
+            <div class="card-body messages-container overflow-y-auto">
                 <?php foreach ($messages as $message) : ?>
                     <div class="message">
                         <strong class="user"><?php echo $message['sender']; ?>:</strong>
                         <span class="content"><?php echo $message['mensagem']; ?></span>
                     </div>
+                        <?php if (isset($message['image'])) : ?>
+                    <div class="align-center">
+                            <img src="/<?= $message['image'] ?>" alt="image" width="200" height="200">
+                    </div>
+                        <?php endif; ?>
                 <?php endforeach; ?>
             </div>
             <div class="card-footer">
                 <form enctype="multipart/form-data" action="/sir/controllers/email/email.php?<?= 'id=' . $maintenance_data['id'] ?>" method="post">
                     <div class="input-group">
-                        <input type="text" class="form-control special-border rounded" placeholder="Digite sua mensagem" name="mensagem">
+                        <div class="w-100 d-flex gap-2">
+                            <input type="text" class="form-control special-border rounded" placeholder="Digite sua mensagem" name="mensagem">
+                            <label type="button" class="btn  special-border">
+                                <i class="fa-solid fa-upload"></i>
+                                <input type="file" accept="image/png, image/jpeg, image/jpg" name="image" style="display: none;">
+                            </label>
                         <input type="hidden" id="id_manutencao" name="id_manutencao" value="<?= $maintenance_data['id'] ?>">
                         <input type="hidden" id="data" name="data" value="<?= date('Y-m-d'); ?>">
                         <input type="hidden" id="id_car" name="id_car" value="<?= $car['id'] ?>">
                         <div class="input-group-append">
                             <button type="submit" class="btn btn-outline-dark special-border" id="message" name="message" value="send"><i class="fa-solid fa-location-arrow"></i></button>
+                        </div>
                         </div>
                     </div>
                 </form>

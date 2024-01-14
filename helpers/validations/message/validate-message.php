@@ -2,6 +2,10 @@
 
 function validatedMessage($req)
 {
+
+
+
+
     foreach ($req as $key => $value) {
         $req[$key] =  trim($req[$key]);
     }
