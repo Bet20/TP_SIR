@@ -171,8 +171,8 @@
       </div>
     </div>
     <!-- Carousel -->
-    <div class="mb-xs-4 pb-xs-2">
-      <div class="row d-block mb-sm-5 top">
+    <div class="mb-xs-4 pb-xs-2 carousel-size" style="max-height: 2000px">
+      <div class="row d-block mb-sm-5">
         <div class="col-md-10 col-12 mx-auto my-auto position-relative">
           <div id="carouselLanding" class="carousel carousel-dark slide p-2 special-border" data-bs-ride="carousel">
             <div class="carousel-inner">
@@ -389,7 +389,7 @@
     <div class="d-flex justify-content-center mt-3">
       <div class="wrapper">
         <div class="button">
-          <a href="https://www.facebook.com/" target="_blank" rel='noreferrer' class="facebook">
+          <a href="https://www.facebook.com/" target="_blank" rel='noreferrer' class="facebook text-secondary">
             <div class="icon">
               <i class="fab fa-facebook-f"></i>
             </div>
@@ -397,7 +397,7 @@
           </a>
         </div>
         <div class="button">
-          <a href="https://www.instagram.com/" target="_blank" rel='noreferrer' class="instagram">
+          <a href="https://www.instagram.com/" target="_blank" rel='noreferrer' class="instagram text-secondary">
             <div class="icon">
               <i class="fab fa-instagram"></i>
             </div>
@@ -405,7 +405,7 @@
           </a>
         </div>
         <div class="button">
-          <a href="https://www.youtube.com/" target="_blank" rel='noreferrer' class="youtube">
+          <a href="https://www.youtube.com/" target="_blank" rel='noreferrer' class="youtube text-secondary">
             <div class="icon">
               <i class="fab fa-youtube"></i>
             </div>
