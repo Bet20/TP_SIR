@@ -13,8 +13,9 @@ if (isset($_POST['user'])) {
     if ($_POST['user'] == 'update') {
         update($_POST);
     }
-
+    echo "teste";
     if ($_POST['user'] == 'profile') {
+        echo "teste";
         updateProfile($_POST);
     }
 
@@ -121,11 +122,12 @@ function updateProfile($req)
 
 function changePassword($req)
 {
+    echo "teste";
     $data = passwordIsValid($req);
     if (isset($data['invalid'])) {
         $_SESSION['errors'] = $data['invalid'];
         $params = '?' . http_build_query($req);
-        header('location: /sir/pages/secure/user/password.php' . $params);
+        header('location: /sir/pages/secure/user/password.php' . $data['invalid']);
     } else {
         $data['id'] = userId();
         $success = updatePassword($data);

@@ -75,8 +75,7 @@ function updateUser($user)
             telemovel = :telemovel, 
             email = :email, 
             foto = :foto, 
-            admin = :admin, 
-            password = :password
+            admin = :admin
         WHERE id = :id;";
 
         $PDOStatement = $GLOBALS['pdo']->prepare($sqlUpdate);
@@ -87,8 +86,7 @@ function updateUser($user)
             ':telemovel' => $user['telemovel'],
             ':email' => $user['email'],
             ':foto' => $user['foto'],
-            ':admin' => $user['admin'],
-            ':password' => $user['password']
+            ':admin' => $user['admin']
         ]);
     }
 
@@ -120,7 +118,6 @@ function updatePassword($user)
 
         $sqlUpdate = "UPDATE  
         user SET
-            name = :name, 
             password = :password
         WHERE id = :id;";
 
@@ -128,7 +125,6 @@ function updatePassword($user)
 
         return $PDOStatement->execute([
             ':id' => $user['id'],
-            ':name' => $user['name'],
             ':password' => $user['password']
         ]);
     }
