@@ -42,20 +42,20 @@ function getMaintenanceById($id)
 
 function getMaintenanceByCarId($carId)
 {
-    $PDOStatement = $GLOBALS['pdo']->prepare('SELECT m.id as id, id_car, dt_inicio, dt_fim, em.nome as estado, descricao, preco FROM tp_sir.manutencao as m JOIN tp_sir.estadomanutencao as em on id_estado = em.id WHERE id_car = ?;');
+    $PDOStatement = $GLOBALS['pdo']->prepare('SELECT m.id as id, id_car, dt_inicio, dt_fim, em.nome as estado, descricao, preco FROM tp_sir.manutencao as m JOIN tp_sir.estadomanutencao as em on id_estado = em.id WHERE id_car = ? and id_estado != "3";');
     $PDOStatement->bindValue(1, $carId, PDO::PARAM_INT);
     $PDOStatement->execute();
     return $PDOStatement->fetch();
 }
 
-function getAllMaintenance()
+function getAllMaintenanceStates()
 {
-    $PDOStatement = $GLOBALS['pdo']->query('SELECT * FROM '. $tabelaManutencao . ';');
-    $maintenance = [];
-    while ($listaMaintenance = $PDOStatement->fetch()) {
-        $maintenance[] = $listaMaintenance;
+    $PDOStatement = $GLOBALS['pdo']->query('SELECT nome FROM estadomanutencao;');
+    $maintenanceStates = [];
+    while ($listaMaintenanceStates = $PDOStatement->fetch()) {
+        $maintenanceStates[] = $listaMaintenanceStates;
     }
-    return $maintenance;
+    return $maintenanceStates;
 }
 
 function updateMaintenance($maintenance)
