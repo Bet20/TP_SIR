@@ -32,14 +32,6 @@ function createMaintenance($maintenance)
     return $success;
 }
 
-function getMaintenanceById($id)
-{
-    $PDOStatement = $GLOBALS['pdo']->prepare('SELECT * FROM ' . $tabelaManutencao . ' WHERE id = ?;');
-    $PDOStatement->bindValue(1, $id, PDO::PARAM_INT);
-    $PDOStatement->execute();
-    return $PDOStatement->fetch();
-}
-
 function getMaintenanceByCarId($carId)
 {
     $PDOStatement = $GLOBALS['pdo']->prepare('SELECT m.id as id, id_car, dt_inicio, dt_fim, em.nome as estado, descricao, preco FROM tp_sir.manutencao as m JOIN tp_sir.estadomanutencao as em on id_estado = em.id WHERE id_car = ? and id_estado != "3";');
@@ -50,7 +42,7 @@ function getMaintenanceByCarId($carId)
 
 function getAllMaintenanceStates()
 {
-    $PDOStatement = $GLOBALS['pdo']->query('SELECT nome FROM estadomanutencao;');
+    $PDOStatement = $GLOBALS['pdo']->query('SELECT id, nome FROM estadomanutencao;');
     $maintenanceStates = [];
     while ($listaMaintenanceStates = $PDOStatement->fetch()) {
         $maintenanceStates[] = $listaMaintenanceStates;
@@ -61,24 +53,28 @@ function getAllMaintenanceStates()
 function updateMaintenance($maintenance)
 {
     $sqlUpdate = "UPDATE  
-    $tabelaManutencao SET
-        name = :name,
-        telemovel = :telemovel, 
-        email = :email, 
-        foto = :foto, 
-        admin = :admin
+    manutencao SET
+        id_estado = :estado,
+        descricao = :descricao, 
+        preco = :preco
     WHERE id = :id;";
 
     $PDOStatement = $GLOBALS['pdo']->prepare($sqlUpdate);
 
     return $PDOStatement->execute([
-        ':id' => $user['id'],
-        ':name' => $user['name'],
-        ':telemovel' => $user['telemovel'],
-        ':email' => $user['email'],
-        ':foto' => $user['foto'],
-        ':admin' => $user['admin']
+        ':estado' => $maintenance['estado'],
+        ':descricao' => $maintenance['descricao'],
+        ':preco' => $maintenance['preco'],
+        ':id' => $maintenance['id']
     ]);
+}
+
+function getMaintenanceNameByCarId($carId)
+{
+    $PDOStatement = $GLOBALS['pdo']->prepare('SELECT em.nome as estadoNome FROM car JOIN manutencao as m on car.id = m.id_car JOIN estadomanutencao as em on em.id = m.id_estado WHERE car.id = ? AND m.id_estado !=3 LIMIT 1;');
+    $PDOStatement->bindValue(1, $carId);
+    $PDOStatement->execute();
+    return $PDOStatement->fetch();
 }
 
 function deleteMaintenanceById($id)

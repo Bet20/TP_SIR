@@ -3,6 +3,7 @@
 require_once __DIR__ . '/../../infra/repositories/userRepository.php';
 require_once __DIR__ . '/../../helpers/validations/admin/validate-user.php';
 require_once __DIR__ . '/../../helpers/validations/admin/validate-password.php';
+require_once __DIR__ . '/../../helpers/validations/admin/validate-profile.php';
 require_once __DIR__ . '/../../helpers/session.php';
 
 if (isset($_POST['user'])) {
@@ -13,7 +14,6 @@ if (isset($_POST['user'])) {
     if ($_POST['user'] == 'update') {
         update($_POST);
     }
-    echo "teste";
     if ($_POST['user'] == 'profile') {
         echo "teste";
         updateProfile($_POST);
@@ -98,15 +98,14 @@ function update($req)
 
 function updateProfile($req)
 {
-    $data = validatedUser($req);
+    $data = validatedUserProfile($req);
 
     if (isset($data['invalid'])) {
         $_SESSION['errors'] = $data['invalid'];
         $params = '?' . http_build_query($req);
         header('location: /sir/pages/secure/user/profile.php' . $params);
-        } else {
-        $user = user(); 
-        $data['id'] = $user['id'];
+        } else {  
+        $user = user();
         $data['admin'] = $user['admin'];
 
         $success = updateUser($data);
@@ -122,12 +121,11 @@ function updateProfile($req)
 
 function changePassword($req)
 {
-    echo "teste";
     $data = passwordIsValid($req);
     if (isset($data['invalid'])) {
         $_SESSION['errors'] = $data['invalid'];
         $params = '?' . http_build_query($req);
-        header('location: /sir/pages/secure/user/password.php' . $data['invalid']);
+        header('location: /sir/pages/secure/user/password.php' . $params);
     } else {
         $data['id'] = userId();
         $success = updatePassword($data);

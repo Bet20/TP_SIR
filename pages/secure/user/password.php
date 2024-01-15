@@ -10,7 +10,7 @@ $user = user();
         <?php require_once __DIR__ . '/../../../templates/navbar.php' ?>
         <div class="container mt-3">
             <div class="mb-3 text-black">
-                <h1>Edit your profile</h1>
+                <h1>Alterar Password</h1>
             </div>
 
             <section>

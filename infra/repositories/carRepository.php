@@ -87,7 +87,7 @@ function getAllCarInMaintenanceWithSearchQuery($searchParam)
 FROM car
 JOIN user ON car.id_user = user.id
 WHERE car.estado != 1
-        AND (car.marca LIKE :searchParam OR car.matricula LIKE :searchParam)
+        AND (car.marca LIKE :searchParam OR car.matricula LIKE :searchParam OR user.name LIKE :searchParam)
     ');
 
     $searchParam = '%' . $searchParam . '%';

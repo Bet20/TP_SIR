@@ -9,7 +9,7 @@ if (isset($_POST['maintenance'])) {
     }
 
     if ($_POST['maintenance'] == 'update') {
-        update($_POST);
+        updateMaintenancePost($_POST);
     }
 
     if ($_POST['maintenance'] == 'profile') {
@@ -19,47 +19,15 @@ if (isset($_POST['maintenance'])) {
     if ($_POST['maintenance'] == 'password') {
         changePassword($_POST);
     }
-}
 
-if (isset($_GET['maintenance'])) {
-    if ($_GET['maintenance'] == 'update') {
-        $maintenance = getMaintenanceById($_GET['id']);
+    if ($_GET['maintenance'] == 'delete') {
+        $maintenance = getMaintenanceByCarId($_GET['id']);
 
-        if(!isset($maintenance)){
-            $_SESSION['errors'] = ['Não existe esse manutenção.'];
-            header('location: /sir/pages/secure/car/car.php' . $params);
-        }
-
-        $manutenção['action'] = 'update';
-        $params = '?' . http_build_query($maintenance);
-        header('location: /sir/pages/secure/car/car.php' . $params);
-    }
-
-    if ($_GET['maintenance'] == 'details') {
-        $manutenção = getmaintenanceById($_GET['id']);
-
-        if(!isset($manutenção)){
-            $_SESSION['errors'] = ['Não existe essa manutenção.'];
-            header('location: /sir/pages/secure/car/car.php' . $params);
-        }
-
-        $params = '?' . http_build_query($manutenção);
-        header('location: /sir/pages/secure/car/car.php' . $params);
-    }
-
-    if ($_GET['manutenção'] == 'delete') {
-        $manutenção = getManutençãoById($_GET['id']);
-        if (!isset($manutenção) || $manutenção['id_user'] != $_SESSION['id']) {
-            $_SESSION['errors'] = ['Não é possivel apagar essa manutenção!'];
-            header('location: /sir/pages/secure/car/car.php');
-            return false;
-        }
-
-        $success = delete_car($manutenção);
+        $success = deleteMaintenanceById($maintenanceId);
 
         if ($success) {
-            $_SESSION['success'] = 'Car deleted successfully!';
-            header('location: /sir/pages/secure/car/car.php');
+            $_SESSION['success'] = 'Manutenção deleted successfully!';
+            header('location: /sir/pages/secure/car/car.php?id=' . $maintenance['id_car']);
         }
     }
 }
@@ -88,31 +56,13 @@ function createMaintenancePost($req)
     }
 }
 
-function update($req)
+function updateMaintenancePost($req)
 {
-    $data = validatedCar($req);
 
-    if (isset($data['invalid'])) {
-        $_SESSION['errors'] = $data['invalid'];
-        $_SESSION['action'] = 'update';
-        $params = '?' . http_build_query($req);
-        header('location: /sir/pages/secure/car/car.php' . $params . '&action=update');
-
-        return false;
-    }
-
-    $success = updateMaintenance($data);
+    $success = updateMaintenance($req);
 
     if ($success) {
         $_SESSION['success'] = 'Manutenção successfully updated!';
-        $data['action'] = 'update';
-        $params = '?' . http_build_query($data);
-        header('location: /sir/pages/secure/car/car.php' . $params);
+        header('location: /sir/pages/secure/car/car.php?id=' . $req['id_car']);
     }
-}
-
-function delete_Maintenance($maintenance)
-{
-    $data = deleteMaintenance($maintenance['id']);
-    return $maintenance;
 }

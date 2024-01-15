@@ -6,14 +6,12 @@ function validatedMaintenance($req)
         $req[$key] =  trim($req[$key]);
     }
 
-    
-
     if (empty($req['dt_inicio'])) {
-        $errors['dt_inicio'] = 'A matricula é um campo obrigatorio e deve ter entre 6 a 20 caracteres';
+        $errors['dt_inicio'] = 'A data de inicio é um campo obrigatorio e deve ser uma data valida';
     }
 
-    if (empty($req['descricao']) && strlen($req['descricao']) > 255) {
-        $errors['descricao'] = 'O modelo é um campo obrigatorio.';
+    if (empty($req['descricao'])) {
+        $errors['descricao'] = 'A descricao é um campo obrigatorio.';
     }
 
     if (isset($errors)) {

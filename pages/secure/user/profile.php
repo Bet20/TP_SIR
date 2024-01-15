@@ -11,7 +11,7 @@ $user = user();
 
         <div class="container mt-3">
             <div class="mb-3 text-black">
-                <h1>Edit your profile</h1>
+                <h1>Alterar Perfil</h1>
             </div>
             <section>
                 <?php
@@ -51,11 +51,11 @@ $user = user();
                         <input type="email" class="form-control" name="email" maxlength="255"
                                value="<?= isset($_REQUEST['email']) ? $_REQUEST['email'] : $user['email'] ?>" required>
                     </div>
-                    <div class="input-group mb-3">
+                    <!-- <div class="input-group mb-3">
                         <label class="input-group-text" for="inputGroupFile01">Picture</label>
                         <input accept="image/*" type="file" class="form-control" id="inputGroupFile01" name="foto"/>
-                    </div>
-
+                    </div> -->
+                    <input type="hidden" name="id" value="<?= $user['id'] ?>">
                     <div class="d-flex mb-3">
                         <div class="input-group">
                             <label class="input-group-text" for="inputGroupFile01">Password</label>

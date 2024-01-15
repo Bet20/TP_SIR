@@ -57,42 +57,12 @@
               <li class="nav-item mx-auto p-1">
                 <a class="nav-link" href="#contactos">Contactos</a>
               </li>
-              <!-- TODO - data-bs-toggle="modal" data-bs-target="#loginModal" -->
               <li class="nav-item special-border mx-auto p-1">
                 <a class="nav-link" href="/sir/pages/public/signin.php">Login</a>
               </li>
             </ul>
           </div>
         </nav>
-      </div>
-    </div>
-    <!-- Modal -->
-    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <form action="/sir/controllers/auth/signin.php" method="post">
-            <div class="modal-header">
-              <h5 class="modal-title" id="loginModalLabel">Login</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body p-4">
-              <div class="p-2">
-                <label for="email" class="form-label">Email:</label>
-                <input type="text" class="form-control special-border" id="email" name="email" required
-                  value="<?= isset($_REQUEST['email']) ? $_REQUEST['email'] : null ?>" />
-              </div>
-              <div class="p-2">
-                <label for="password" class="form-label">Password:</label>
-                <input type="password" class="form-control special-border" id="password" name="password" required
-                  value="<?= isset($_REQUEST['password']) ? $_REQUEST['password'] : null ?>" />
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
-              <button type="submit" class="btn btn-primary">Login</button>
-            </div>
-          </form>
-        </div>
       </div>
     </div>
     <!-- Banner -->
@@ -307,8 +277,11 @@
           <div class="simple-background special-border p-4">
             <h3>Envie-nos uma mensagem</h3>
             <p>A sua opinião é bem-vinda e estamos sempre disponíveis para ajudar. Por favor preencha o formulário.</p>
-            <span><i class="text-gray text-sm">Todos os campos são de preenchimento obrigatório<b
-                  class="text-danger">*</b></i></span>
+            <span>
+              <i class="text-gray text-sm">Todos os campos são de preenchimento obrigatório
+                <bclass="text-danger">*</b>
+              </i>
+            </span>
             <form action="mailto:CloudGarage@gmail.com" method="post" enctype="text/plain">
               <div class="row">
                 <div class="col-md-6 col-12">

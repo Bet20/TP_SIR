@@ -82,28 +82,27 @@ if ($car['estado'] === 0) {
                         </div>
                         <div class="col-6 border-end">
                             <h3>Formulario:</h3>
-                            <!-- TODO -->
-                            <form action="" method="post">
+                            <form action="/sir/controllers/maintenance/maintenance.php" method="post">
                                 <label for="estado">Estado:</label>
                                 <select 
-                                    name="estado" 
-                                    id="estado" 
                                     class="form-select" 
                                     aria-label="Default select example"
-                                    value="<?= $maintenance_data['estado'] ? $maintenance_data['estado']: '' ?>"
+                                    name="estado"
                                 >
                                     <?php 
                                         $maintenanceStates = getAllMaintenanceStates();
                                         foreach ($maintenanceStates as $state) {
-                                            echo '<option value=$state["id"]>' . $state['nome'] . '</option>';
+                                            echo '<option value="' . $state["id"] . '">' . $state['nome'] . '</option>';
                                         }
                                     ?>
                                 </select>
                                 <label for="descricao">Descrição:</label>
                                 <input type="text" name="descricao" id="descricao" class="form-control">
                                 <label for="preco">Preço:</label>
-                                <input type="text" name="preco" id="preco" class="form-control" value="<?= $maintenance_data['preco'] ? $maintenance_data['preco']: '' ?>">
-                                <button type="submit" class="btn btn-primary mt-2">Atualizar</button>
+                                <input type="number" name="preco" id="preco" class="form-control" value="<?= $maintenance_data['preco'] ? $maintenance_data['preco']: '' ?>">
+                                <input type="hidden" name="id" id="id" value="<?= $maintenance_data['id'] ? $maintenance_data['id']: '' ?>">
+                                <input type="hidden" name="id_car" id="id_car" value="<?= $car['id'] ? $car['id'] : '' ?>">
+                                <button type="submit" class="btn btn-primary mt-2" name="maintenance" value="update">Atualizar</button>
                             </form>
 
                         </div>

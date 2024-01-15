@@ -2,6 +2,7 @@
 require_once __DIR__ . '../../../infra/middlewares/middleware-user.php';
 require_once __DIR__ . '../../../infra/repositories/carRepository.php';
 require_once __DIR__ . '../../../infra/repositories/maintenanceRepository.php';
+require_once __DIR__ . '../../../infra/repositories/maintenanceRepository.php';
 require_once __DIR__ . '../../../infra/repositories/emailRepository.php';
 @require_once __DIR__ . '/../../helpers/session.php';
 $title = ' - APP';
@@ -60,12 +61,12 @@ if ($user['admin'] === 1) {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($cars as $car) { ?>
+                                        <?php foreach ($cars as $car) {  $maintenceStatusName = getMaintenanceNameByCarId($car['id']);?>
                                             <tr>
                                                 <td><?= $car['marca'] ?></td>
                                                 <td><?= $car['matricula'] ?></td>
                                                 <td><?= $car['name'] ?></td>
-                                                <td><?= $car['estado'] ?></td>
+                                                <td><?= $maintenceStatusName['estadoNome'] ?></td>
                                                 <td>
                                                     <a href="/sir/pages/secure/car/car.php?id=<?= $car['id'] ?>" class="btn btn-primary">Ver</a>
                                                     <a href="/sir/pages/secure/car/car-delete.php?id=<?= $car['id'] ?>" class="btn btn-danger">Apagar</a>

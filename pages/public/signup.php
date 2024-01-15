@@ -5,18 +5,15 @@ require_once __DIR__ . '../../../infra/middlewares/middleware-not-authenticated.
 ?>
 
 <div class="vh-100 d-flex flex-column justify-content-between special-background">
-  <main class="d-flex justify-content-center align-items-center h-100">
+  <main class="d-flex justify-content-center h-100">
     <div class="col-md-6 col-10">
       <div>
         <div class="d-flex justify-content-center">
           <img class="logo" src="../../logo.svg">
         </div>
-        <div class="d-flex flex-column align-items-center">
-          <h1 class="text-white text-shadow">CloudGarage</h1>
-        </div>
       </div>
-      <form action="/sir/controllers/auth/signup.php" method="post" class=" special-border simple-background p-5">
-          <section>
+      <form action="/sir/controllers/auth/signup.php" method="post" class=" special-border simple-background p-3">
+        <section>
           <?php
           if (isset($_SESSION['errors'])) {
             echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
@@ -28,7 +25,8 @@ require_once __DIR__ . '../../../infra/middlewares/middleware-not-authenticated.
           }
           ?>
         </section>
-        <h1 class="h3 mb-3 fw-bold text-center">Login</h1>
+        <h1 class="text-white text-shadow text-center">CloudGarage</h1>
+        <hr>
         <div class="col-12">
           <div class="px-2 py-2">
             <label for="email" class="form-label">Email</label>
@@ -59,13 +57,14 @@ require_once __DIR__ . '../../../infra/middlewares/middleware-not-authenticated.
         </div>
         <a href="/sir/pages/public/signin.php" class="text-center col-12">Já tem conta?</a>
         <div class="row justify-content-between mt-3 px-4">
-          <button class="btn btn-lg  special-border btn-success col-md-4 col-12 my-2" type="submit" name="user"
+          <button class="btn special-border btn-success col-md-4 col-12 my-2" type="submit" name="user"
             value="signUp"><b class="text-dark">Criar conta</b></button>
-          <a href="/sir/" class="btn btn-lg  special-border btn-secondary col-md-4 col-12 my-2">Voltar</a>
+          <a href="/sir/" class="btn special-border btn-secondary col-md-4 col-12 my-2">Voltar</a>
         </div>
       </form>
     </div>
   </main>
+</div>
 <?php
 include_once __DIR__ . '../../../templates/footer.php';
 ?>
