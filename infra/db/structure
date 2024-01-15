@@ -10,6 +10,11 @@ CREATE TABLE user (
     estado INT NOT null default 1
 );
 
+INSERT INTO `user`
+(id, email, name, password, admin, telemovel, foto, estado)
+VALUES(1, 'admin@admin.com', 'admin', '$2y$10$43EiwDJhl.sG4ncosFstQ.5vY6qj1sEeq63K6oDFiM1SP2IeK54nG', 1, NULL, NULL, 1);
+
+
 -- Tabela 'car'
 CREATE TABLE car (
     id INT PRIMARY key AUTO_INCREMENT,
@@ -20,16 +25,16 @@ CREATE TABLE car (
     modelo VARCHAR(50),
     cor VARCHAR(8),
     estado INT NOT null default 1,
-    FOREIGN KEY (id_user) REFERENCES user(id)
+    FOREIGN KEY (id_user) REFERENCES user(id) ON DELETE CASCADE
 );
 
 -- Tabela 'estadomanutencao'
-CREATE TABLE estadoManutencao (
+CREATE TABLE estadomanutencao (
     id INT PRIMARY key AUTO_INCREMENT,
     nome VARCHAR(50)
 );
 
-INSERT INTO EstadoManutencao (nome) VALUES
+INSERT INTO estadomanutencao (nome) VALUES
     ('Em Análise'),
     ('Em Manutenção'),
     ('Concluído'),
@@ -57,8 +62,19 @@ CREATE TABLE plan (
     preco DECIMAL(10, 2),
     descricao VARCHAR(255),
     numVeiculos INT,
-    estado INT default 1,
+    estado INT default 1
 );
+
+INSERT INTO plan
+(id, titulo, subtitulo, footerTitulo, preco, descricao, numVeiculos, estado)
+VALUES(1, 'Plano Básico', 'Plano Básico', 'Footer Básico', 5.0, 'descricao', 1, 1);
+INSERT INTO plan
+(id, titulo, subtitulo, footerTitulo, preco, descricao, numVeiculos, estado)
+VALUES(2, 'Plano Intermedio', 'Plano Intermedio', 'Footer Intermedio', 10.0, 'descricao', 3, 1);
+INSERT INTO plan
+(id, titulo, subtitulo, footerTitulo, preco, descricao, numVeiculos, estado)
+VALUES(3, 'Plano Pro', 'Plano Pro', 'Footer Pro', 15.0, 'descricao', 5, 1);
+
 
 -- Tabela 'userPlan'
 CREATE TABLE userplan (
@@ -68,12 +84,12 @@ CREATE TABLE userplan (
     dt_inicio DATE,
     dt_fim DATE,
     estado INT NOT null default 1,
-    FOREIGN KEY (id_user) REFERENCES car(id),
+    FOREIGN KEY (id_user) REFERENCES user(id) ON DELETE CASCADE,
     FOREIGN KEY (id_plan) REFERENCES plan(id)
 );
 
 -- Tabela 'plan advantages'
-CREATE TABLE planAdvantages (
+CREATE TABLE planadvantages (
     id INT PRIMARY key AUTO_INCREMENT,
     id_plan INT not null,
     nome VARCHAR(50),
@@ -92,3 +108,56 @@ CREATE TABLE mensagens (
     FOREIGN KEY (id_manutencao) REFERENCES manutencao(id) ON DELETE CASCADE,
     FOREIGN KEY (sender) REFERENCES `user`(id)
 );
+
+
+
+Segue o código para a imagem:
+
+NO HTML:
+      <div class="input-group mb-3">
+
+        <label class="input-group-text" for="foto">Picture</label>
+
+        <input accept="image/*" type="file" class="form-control" id="foto" name="foto" />
+      </div> 
+NO USER.PHP crias esta função:
+function saveFile($data, $oldImage = null)
+
+{
+    $fileName = $_FILES['foto']['name'];
+
+    $tempFile = $_FILES['foto']['tmp_name'];
+
+    $extension = pathinfo($fileName, PATHINFOEXTENSION);
+
+    $extension = strtolower($extension);
+
+    $newName = uniqid('foto') . '.' . $extension;
+
+    $path = DIR . '/../../assets/images/uploads/'; //ATENÇÃO AO PATH
+
+    $file = $path . $newName;
+
+    if (move_uploaded_file($tempFile, $file)) {
+        $data['foto'] = $newName;
+        if (isset($data['user']) && ($data['user'] == 'update') || ($data['user'] == 'profile')) {
+            unlink($path . $oldImage['foto']);
+        }
+    }
+    return $data;
+}
+
+E depois é só chamar no updateProfile por exemplo:
+
+        if (!empty($_FILES['foto']['name'])) {
+            $data = saveFile($data, $req);
+        }
+
+        $success = updateUser($data);
+
+Para mostrares a imagem:
+
+$user = user();
+$userPhotoPath =  "../../assets/images/uploads/" . $user['foto']; //ATENÇÃO AO PATH
+
+<img src="<?= $userPhotoPath ?>" /> 

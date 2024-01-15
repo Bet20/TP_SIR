@@ -59,7 +59,7 @@ $user = user();
                     <div class="d-flex mb-3">
                         <div class="input-group">
                             <label class="input-group-text" for="inputGroupFile01">Password</label>
-                            <input type="password" class="form-control" name="password" value="omegalulgg420"
+                            <input type="password" class="form-control" name="password" value="123456"
                                    maxlength="255"
                                    disabled
                                    readonly>

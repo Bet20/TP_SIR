@@ -10,14 +10,16 @@ function createCar($car)
         modelo, 
         cor, 
         id_user, 
-        descricao
+        descricao,
+        foto
     ) VALUES (
         :matricula,
         :marca, 
         :modelo, 
         :cor, 
         :id_user, 
-        :descricao
+        :descricao,
+        :foto
     )";
 
     $PDOStatement = $GLOBALS['pdo']->prepare($sqlCreate);
@@ -28,7 +30,8 @@ function createCar($car)
         ':modelo' => $car['modelo'],
         ':cor' => $car['cor'],
         ':id_user' => $_SESSION['id'],
-        ':descricao' => $car['descricao']
+        ':descricao' => $car['descricao'],
+        ':foto' => $car['foto']
     ]);
 
     if ($success) {

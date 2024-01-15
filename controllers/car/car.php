@@ -72,15 +72,16 @@ function create($req)
     if (isset($data['invalid'])) {
         $_SESSION['errors'] = $data['invalid'];
         $params = '?' . http_build_query($req);
-        header('location: /sir/pages/secure/car/car.php' . $params);
+        header('location: /sir/pages/secure/car/car-new.php' . $params);
         return false;
     }
-
+    if (!empty($_FILES['foto']['name'])) {
+        $data = saveFile($data, $req);
+    }
     $carId = createCar($data);
 
     if ($carId) {
-        $_SESSION['success'] = 'User created successfully!';
-        header('location: /sir/pages/secure/car/car.php?id=' . $carId);
+        header('location: /sir/pages/secure/car/car.php?id=' . $carId . '?foto=' . $data['foto']);
     }
 }
 
@@ -112,6 +113,30 @@ function delete_car($car)
     $data = deleteCar($car['id']);
     
     if($data){
-        header('location: /sir/pages/secure/' . $params);
+        header('location: /sir/pages/secure/');
     }
+}
+
+function saveFile($data, $oldImage = null)
+{
+    $fileName = $_FILES['foto']['name'];
+    $tempFile = $_FILES['foto']['tmp_name'];
+
+    $extension = pathinfo($fileName, PATHINFO_EXTENSION);
+    $extension = strtolower($extension);
+    $newName = uniqid('foto') . '.' . $extension;
+
+    $path = __DIR__ . '/../../assets/images/uploads/';
+
+    $file = $path . $newName;
+
+    if (move_uploaded_file($tempFile, $file)) {
+        $data['foto'] = $newName;
+
+        if (isset($data['car']) && ($data['car'] == 'update')) {
+            unlink($path . $oldImage['foto']);
+        }
+    }
+    return $data;
+
 }

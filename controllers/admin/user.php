@@ -15,7 +15,6 @@ if (isset($_POST['user'])) {
         update($_POST);
     }
     if ($_POST['user'] == 'profile') {
-        echo "teste";
         updateProfile($_POST);
     }
 
@@ -111,7 +110,7 @@ function updateProfile($req)
         $success = updateUser($data);
 
         if ($success) {
-            $_SESSION['success'] = 'User successfully changed!';
+            $_SESSION['success'] = 'Perfil atualizado com sucesso!';
             $_SESSION['action'] = 'update';
             $params = '?' . http_build_query($data);
             header('location: /sir/pages/secure/user/profile.php' . $params);

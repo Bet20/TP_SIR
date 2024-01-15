@@ -16,7 +16,6 @@ function sendMessagePost($req)
     $data = validatedMessage($req);
 
     if (isset($data['invalid'])) {
-        echo "teste";
         $_SESSION['errors'] = $data['invalid'];
         header('location: /sir/pages/secure/car/car.php?id=' . $req['id_car']);
         return false;

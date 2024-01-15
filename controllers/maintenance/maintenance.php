@@ -60,6 +60,17 @@ function updateMaintenancePost($req)
 {
 
     $success = updateMaintenance($req);
+    
+    if($req['estado'] == 3){
+        $car['id'] = $req['id_car'];
+        $car['estado'] = 1;
+        
+        updateEstado($car);
+
+        header('location: /sir/pages/secure/');      
+        return;  
+    }
+        
 
     if ($success) {
         $_SESSION['success'] = 'Manutenção successfully updated!';

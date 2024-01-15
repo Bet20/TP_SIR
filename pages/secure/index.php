@@ -28,11 +28,6 @@ if ($user['admin'] === 1) {
     <?php include_once __DIR__ . '../../../templates/navbar.php'; ?>
 
     <div class="p-2 container">
-        <?php
-        if ($user['admin'] === 1) {
-            echo '<h1>Veículos em Manutenção</h1>';
-        }
-        ?>
         <div class="mt-3">
             <?php
             if ($user['admin'] === 1) {

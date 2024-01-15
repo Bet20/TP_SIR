@@ -41,74 +41,31 @@ if ($car['estado'] === 0) {
                 ?>
             </section>
             <section>
-                <?php if(!admin()){?>
-                    <div class="row">
-                        <div class="col-5">
-                            <img class="img-fluid" src="https://live.staticflickr.com/65535/52941868007_113fe37dc3_k.jpg" />
+                <div class="row">
+                    <div class="col-5">
+                        <img class="img-fluid" src="<?= $car['foto'] ?>" />
+                    </div>
+                    <div class="col-5">
+                        <div class="d-inline-flex align-items-center">
+                            <h3><?= $car['marca'] . ' - ' . $car['modelo'] ?></h3>
+                            <div style="color: <?= $car['cor'] ?>" class="ms-2 fs-3 align-items-center float-end">
+                                <i class="fa-solid fa-car-side"></i>
+                            </div>
                         </div>
-                        <div class="col-5">
-                            <div class="d-inline-flex align-items-center">
-                                <h3><?= $car['marca'] . ' - ' . $car['modelo'] ?></h3>
-                                <div style="color: <?= $car['cor'] ?>" class="ms-2 fs-3 align-items-center float-end">
-                                    <i class="fa-solid fa-car-side"></i>
-                                </div>
-                            </div>
-                            <h4 class="text-secondary"><?= $car['matricula'] ?></h4>
-                            <p><?= $car['descricao'] ?></p>
+                        <h4 class="text-secondary"><?= $car['matricula'] ?></h4>
+                        <p><?= $car['descricao'] ?></p>
 
-                            <div class="d-flex align-self-end">
-                                <a href="/sir/controllers/car/car.php?<?= 'car=update&id=' . $car['id'] ?>"><button type="button" class="btn btn-primary me-2">Atualizar</button></a>
-                                <button type="button" class="btn btn-warning me-2" data-bs-toggle="modal" data-bs-target="#delete<?= $car['id'] ?>">Apagar</button>
-                                <?php if ($car['estado'] === 1) {
-                                    echo '<button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalCriarMarcacao' . $car["id"] . '">Agendar Manutenção</button>';
-                                } else {
-                                    echo '<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalListarMarcacao' . $car["id"] . '">Listar Manutenção</button>';
-                                } ?>
-                            </div>
+                        <div class="d-flex align-self-end">
+                            <a href="/sir/controllers/car/car.php?<?= 'car=update&id=' . $car['id'] ?>"><button type="button" class="btn btn-primary me-2">Atualizar</button></a>
+                            <button type="button" class="btn btn-warning me-2" data-bs-toggle="modal" data-bs-target="#delete<?= $car['id'] ?>">Apagar</button>
+                            <?php if ($car['estado'] === 1) {
+                                echo '<button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalCriarMarcacao' . $car["id"] . '">Agendar Manutenção</button>';
+                            } else {
+                                echo '<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalListarMarcacao' . $car["id"] . '">Listar Manutenção</button>';
+                            } ?>
                         </div>
                     </div>
-                <?php } else { ?>
-                    <div class="row">
-                        <div class="col-6 border-end">
-                            <h3>Dados da manutenção:</h3>
-                            <div>
-                                <p>ID do Carro: <?= $maintenance_data['id_car'] ? $maintenance_data['id_car']: 'N/D' ?></p>
-                                <p>Data de Início: <?= $maintenance_data['dt_inicio'] ? $maintenance_data['dt_inicio']: 'N/D' ?></p>
-                                <p>Data de Fim: <?= $maintenance_data['dt_fim'] ? $maintenance_data['dt_fim']: 'N/D' ?></p>
-                                <p>Estado: <?= $maintenance_data['estado'] ? $maintenance_data['estado']: 'N/D' ?></p>
-                                <p>Descrição: <?= $maintenance_data['descricao'] ? $maintenance_data['descricao']: 'N/D' ?></p>
-                                <p>Preço: <?= $maintenance_data['preco'] ? $maintenance_data['preco']: 'N/D' ?></p>
-                            </div>
-                        </div>
-                        <div class="col-6 border-end">
-                            <h3>Formulario:</h3>
-                            <form action="/sir/controllers/maintenance/maintenance.php" method="post">
-                                <label for="estado">Estado:</label>
-                                <select 
-                                    class="form-select" 
-                                    aria-label="Default select example"
-                                    name="estado"
-                                >
-                                    <?php 
-                                        $maintenanceStates = getAllMaintenanceStates();
-                                        foreach ($maintenanceStates as $state) {
-                                            echo '<option value="' . $state["id"] . '">' . $state['nome'] . '</option>';
-                                        }
-                                    ?>
-                                </select>
-                                <label for="descricao">Descrição:</label>
-                                <input type="text" name="descricao" id="descricao" class="form-control">
-                                <label for="preco">Preço:</label>
-                                <input type="number" name="preco" id="preco" class="form-control" value="<?= $maintenance_data['preco'] ? $maintenance_data['preco']: '' ?>">
-                                <input type="hidden" name="id" id="id" value="<?= $maintenance_data['id'] ? $maintenance_data['id']: '' ?>">
-                                <input type="hidden" name="id_car" id="id_car" value="<?= $car['id'] ? $car['id'] : '' ?>">
-                                <button type="submit" class="btn btn-primary mt-2" name="maintenance" value="update">Atualizar</button>
-                            </form>
-
-                        </div>
-                    </div>
-                    
-                <?php } ?>
+                </div>
 
                 <!-- modal Delete -->
                 <div class="modal fade" id="delete<?= $car['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -138,8 +95,6 @@ if ($car['estado'] === 0) {
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-
-
                                     <form action="/sir/controllers/maintenance/maintenance.php" method="post">
                                         <!-- Campos do formulário -->
                                         <div class="mb-3">
@@ -170,7 +125,7 @@ if ($car['estado'] === 0) {
                     </div>
                 </div>
                 <!-- modal Manutenção
-              <?php $maintenance = getMaintenanceByCarId($car['id']); ?> -->
+              <?php $maintenance = getMaintenanceByCarId($car['id']) ?> -->
 
                 <div class="modal fade" id="modalListarMarcacao<?= $car['id'] ?>" tabindex="-1" aria-labelledby="modalMarcacaoLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -181,28 +136,26 @@ if ($car['estado'] === 0) {
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    // Campos do formulário
                                     <div>
-                                        <label for="dt_inicio">Data de Início:</label>
-                                        <span id="dt_inicio" name="dt_inicio"><?php /*= isset($maintenance['dt_inicio']) ? $maintenance['dt_inicio'] : 'N/D' */ ?></span>
+                                        <span class="fw-bold">Data de Início:</span>
+                                        <span id="dt_inicio" name="dt_inicio"><?= isset($maintenance['dt_inicio']) ? $maintenance['dt_inicio'] : 'N/D' ?></span>
                                     </div>
                                     <div>
-                                        <label for="dt_fim">Data de Fim:</label>
-                                        <span id="dt_fim" name="dt_fim"><?php /*= isset($maintenance['dt_fim']) ? $maintenance['dt_fim'] : 'N/D' */ ?></span>
+                                        <span class="fw-bold">Data de Fim:</span>
+                                        <span id="dt_fim" name="dt_fim"><?= isset($maintenance['dt_fim']) ? $maintenance['dt_fim'] : 'N/D' ?></span>
                                     </div>
                                     <div>
-                                        <label for="descricao">Descrição:</label>
-                                        <span name="descricao" rows="4"><?php /*= isset($maintenance['descricao']) ? $maintenance['descricao'] : 'N/D' */ ?></span>
+                                        <span class="fw-bold">Descrição:</span>
+                                        <span name="descricao" rows="4"><?= isset($maintenance['descricao']) ? $maintenance['descricao'] : 'N/D' ?></span>
                                     </div>
                                     <div>
-                                        <label for="preco">Preço:</label>
-                                        <span id="preco" name="preco"><?php /*= isset($maintenance['preco']) ? $maintenance['preco'] : 'N/D' */ ?></span>
+                                        <span class="fw-bold">Preço:</span>
+                                        <span id="preco" name="preco"><?= isset($maintenance['preco']) ? $maintenance['preco'] : 'N/D'?></span>
                                     </div>
                                     <div>
-                                        <label for="estado">Estado:</label>
-                                        <span id="estado" name="estado"><?php /*= isset($maintenance['estado']) ? $maintenance['estado'] : 'N/D' */ ?></span>
+                                        <span class="fw-bold">Estado:</span>
+                                        <span id="estado" name="estado"><?= isset($maintenance['estado']) ? $maintenance['estado'] : 'N/D'?></span>
                                     </div>
-                                    // Adicione outros campos conforme necessário
 
                                     <button type="submit" class="btn btn-primary">Agendar</button>
                                 </div>

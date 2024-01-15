@@ -31,6 +31,7 @@ function login($req)
 
 function checkErrors($data, $req)
 {
+    unset($_SESSION['errors']);
     if (isset($data['invalid'])) {
         $_SESSION['errors'] = $data['invalid'];
         $params = '?' . http_build_query($req);
@@ -50,7 +51,7 @@ function doLogin($data)
     setcookie("id", $data['id'], time() + (60 * 60 * 24 * 30), "/");
     setcookie("name", $data['name'], time() + (60 * 60 * 24 * 30), "/");
 
-    $home_url = 'http://' . $_SERVER['HTTP_HOST'] . '/sir/pages/secure';
+    $home_url = 'http://' . $_SERVER['HTTP_HOST'] . '/sir/pages/' . ($data['admin'] === 1 ? 'secure/admin' : 'secure');
     header('Location: ' . $home_url);
 }
 

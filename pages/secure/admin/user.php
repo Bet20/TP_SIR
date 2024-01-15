@@ -52,6 +52,13 @@ if(isset($_REQUEST['id'])){
         <input type="email" class="form-control" name="email" maxlength="255"
           value="<?= isset($_REQUEST['email']) ? $_REQUEST['email'] : null ?>" required>
       </div>
+      <?php if((!isset($_REQUEST['action']))){
+            echo '<div class="input-group mb-3">
+            <span class="input-group-text">Password</span>
+            <input type="text" class="form-control" name="password" maxlength="255" required>
+            </div>';
+          }?>
+
       <div class="input-group mb-3">
         <label class="input-group-text" for="inputGroupFile01">Foto Profile</label>
         <input accept="image/*" type="file" class="form-control" id="inputGroupFile01" name="foto" />

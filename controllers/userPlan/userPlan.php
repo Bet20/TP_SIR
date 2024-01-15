@@ -2,7 +2,6 @@
 require_once __DIR__ . '/../../infra/repositories/planRepository.php';
 require_once __DIR__ . '/../../helpers/session.php';
 
-echo '<script>console.log("create")</script>';
 if (isset($_GET['userPlan'])) {
     if ($_GET['userPlan'] == 'create') {
         createUserPlanControl($_GET);
