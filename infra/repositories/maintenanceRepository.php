@@ -83,3 +83,23 @@ function deleteMaintenanceById($id)
     $PDOStatement->bindValue(1, $id, PDO::PARAM_INT);
     return $PDOStatement->execute();
 }
+
+function getAllMaintenance()
+{
+    $PDOStatement = $GLOBALS['pdo']->query('SELECT * FROM manutencao;');
+    $maintenance = [];
+    while ($listaMaintenance = $PDOStatement->fetch()) {
+        $maintenance[] = $listaMaintenance;
+    }
+    return $maintenance;
+}
+
+function getAllMaintenanceWithCarDetails()
+{
+    $PDOStatement = $GLOBALS['pdo']->query('SELECT m.id as id, id_car, dt_inicio, dt_fim, em.nome as estado, descricao, preco, marca, matricula FROM tp_sir.manutencao as m JOIN tp_sir.estadomanutencao as em on id_estado = em.id JOIN tp_sir.car as c on m.id_car = c.id WHERE id_estado != "3";');
+    $maintenance = [];
+    while ($listaMaintenance = $PDOStatement->fetch()) {
+        $maintenance[] = $listaMaintenance;
+    }
+    return $maintenance;
+}

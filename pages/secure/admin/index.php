@@ -17,18 +17,29 @@ if ($user['admin'] !== 1) {
 require_once __DIR__ . '/../../../templates/navbar.php';
 ?>
 
-<div>
-    <a href="/sir/pages/secure/admin/list-car.php">
-        <div>
-            <h3>Gerir Manutenções</h3>
+<main class="container">
+    <div class="row mt-5 ">
+        <div class="col-12 col-md-6">
+            <a href="/sir/pages/secure/admin/list-car.php">
+                <div class="card p-4 special-border">
+                    <h3>Gerir Manutenções</h3>
+                    <p>Onde podes gerir as manutenções dos clientes.</p>
+                </div>
+            </a>
         </div>
-    </a>
-    <a href="/sir/pages/secure/admin/list-user.php">
-        <div>
-            <h3>Gerir Utilizadores</h3>
+            <div class="col-12 col-md-6 mt-2 mt-md-0">
+            <a href="/sir/pages/secure/admin/list-user.php">
+                <div class="card p-4 special-border">
+                    <h3>Gerir Utilizadores</h3>
+                    <p>Onde podes gerir as contas dos utilizadores.</p>
+                </div>
+            </a>
         </div>
-    </a>
-</div>
+    </div>
+    <div class="row mt-5">
+        <?php include_once __DIR__ . '/../../../templates/calendar.php'; ?>
+    </div>
+</main>
 
 <?php
     include_once __DIR__ . '/../../../templates/footer.php';
