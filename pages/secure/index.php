@@ -32,11 +32,11 @@ if ($user['admin'] === 1) {
             <?php
             if ($user['admin'] === 1) {
                 echo '<div class="input-group rounded mb-3 gap-2">
-  <input id="car-search" type="search" class="form-control rounded" placeholder="Search" />
-  <button class="input-group-text border-0 rounded btn btn-warning" id="btnCancelSearch">
-    <i class="fas fa-close"></i>
-  </button>
-</div>';
+                    <input id="car-search" type="search" class="form-control rounded" placeholder="Search" />
+                    <button class="input-group-text border-0 rounded btn btn-warning" id="btnCancelSearch">
+                        <i class="fas fa-close"></i>
+                    </button>
+                </div>';
             }
             ?>
 

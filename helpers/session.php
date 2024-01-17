@@ -25,4 +25,3 @@ function admin()
     $user = user();
     return $user['admin'] ? true : false;
 }
-?>

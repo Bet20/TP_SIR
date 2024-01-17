@@ -60,7 +60,7 @@ $users = getAll();
                   <?= $user['name'] ?>
                 </th>
                 <td>
-                  <?= $user['telemovel'] ?>
+                  <?= isset($user['telemovel']) ? $user['telemovel'] : 'N/D' ?>
                 </td>
                 <td>
                   <?= $user['email'] ?>
@@ -71,9 +71,9 @@ $users = getAll();
                 <td>
                   <div class="d-flex justify-content">
                     <a href="/sir/controllers/admin/user.php?<?= 'user=update&id=' . $user['id'] ?>"><button type="button"
-                        class="btn btn-primary me-2">update</button></a>
-                    <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                      data-bs-target="#delete<?= $user['id'] ?>">delete</button>
+                        class="btn btn-info special-border me-2">Atualizar</button></a>
+                    <button type="button" class="btn btn-danger special-border" data-bs-toggle="modal"
+                      data-bs-target="#delete<?= $user['id'] ?>">Apagar</button>
                   </div>
                 </td>
               </tr>
@@ -82,14 +82,13 @@ $users = getAll();
                 <div class="modal-dialog modal-dialog-centered">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h1 class="modal-title fs-5" id="exampleModalLabel">Delete user</h1>
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Apagar utilizador</h1>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                      Are you sure you want to delete this user?
+                      Tem a certeza que deseja apagar o utilizador <i class="fw-bold"><?= $user['name'] ?></i>?
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                       <a href="/sir/controllers/admin/user.php?<?= 'user=delete&id=' . $user['id'] ?>"><button type="button"
                           class="btn btn-danger">Confirm</button></a>
                     </div>

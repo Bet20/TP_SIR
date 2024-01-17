@@ -17,19 +17,19 @@ if ($user['admin'] !== 1) {
 require_once __DIR__ . '/../../../templates/navbar.php';
 ?>
 
-<main class="container">
-    <div class="row mt-5 ">
+<main class="container flex-shrink-0 p-3">
+    <div class="row mt-3 ">
         <div class="col-12 col-md-6">
             <a href="/sir/pages/secure/admin/list-car.php">
-                <div class="card p-4 special-border">
+                <div class="card p-4 special-border bg-info-subtle">
                     <h3>Gerir Manutenções</h3>
                     <p>Onde podes gerir as manutenções dos clientes.</p>
                 </div>
             </a>
         </div>
-            <div class="col-12 col-md-6 mt-2 mt-md-0">
+        <div class="col-12 col-md-6 mt-2 mt-md-0">
             <a href="/sir/pages/secure/admin/list-user.php">
-                <div class="card p-4 special-border">
+                <div class="card p-4 special-border bg-success-subtle">
                     <h3>Gerir Utilizadores</h3>
                     <p>Onde podes gerir as contas dos utilizadores.</p>
                 </div>

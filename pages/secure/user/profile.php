@@ -42,9 +42,10 @@ $user = user();
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text">Telemóvel</span>
-                        <input type="tel" class="form-control" name="telemovel" maxlength="9"
-                               value="<?= isset($_REQUEST['telemovel']) ? $_REQUEST['telemovel'] : $user['telemovel'] ?>"
-                               required>
+                        <input type="tel" class="form-control" name="telemovel" maxlength="9" 
+                                placeholder="<?= !isset($_REQUEST['telemovel']) ? 'N/D' : '' ?>"
+                                value="<?= isset($_REQUEST['telemovel']) ? $_REQUEST['telemovel'] : $user['telemovel'] ?>"
+                                required>
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text">email</span>

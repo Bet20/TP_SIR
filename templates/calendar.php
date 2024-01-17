@@ -1,11 +1,8 @@
 <?php
 
-require_once __DIR__ . '/header.php';
 require_once __DIR__ . '/../infra/repositories/maintenanceRepository.php';
 
-
 $maintenances = getAllMaintenance();
-
 
     $events = [];
     foreach ($maintenances as $maintenance) {
@@ -17,7 +14,6 @@ $maintenances = getAllMaintenance();
             'end' => $maintenance['dt_fim'],
         ];
     }
-
 
 ?>
 
@@ -33,7 +29,6 @@ $maintenances = getAllMaintenance();
 </div>
 
 <style>
-
 
     body.#calendar {
         margin: 40px 10px;

@@ -41,7 +41,7 @@ if (isset($_GET['user'])) {
         $user = getById($_GET['id']);
         if ($user['admin']) {
             $_SESSION['errors'] = ['This user cannot be deleted!'];
-            header('location: /sir/pages/secure/admin/');
+            header('location: /sir/pages/secure/admin/list-user.php');
             return false;
         }
 
@@ -49,7 +49,7 @@ if (isset($_GET['user'])) {
 
         if ($success) {
             $_SESSION['success'] = 'User deleted successfully!';
-            header('location: /sir/pages/secure/admin/');
+            header('location: /sir/pages/secure/admin/list-user.php');
         }
     }
 }
@@ -69,7 +69,7 @@ function create($req)
 
     if ($success) {
         $_SESSION['success'] = 'User created successfully!';
-        header('location: /sir/pages/secure/admin/');
+        header('location: /sir/pages/secure/admin/list-user.php');
     }
 }
 

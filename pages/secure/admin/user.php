@@ -14,7 +14,7 @@ if(isset($_REQUEST['id'])){
 
 <main>
   <section class="py-4">
-    <a href="./"><button type="button" class="btn btn-secondary px-5">Back</button></a>
+    <a href="/sir/pages/secure/admin/"><button type="button" class="btn btn-secondary px-5">Back</button></a>
   </section>
   <section>
     <?php
@@ -52,13 +52,10 @@ if(isset($_REQUEST['id'])){
         <input type="email" class="form-control" name="email" maxlength="255"
           value="<?= isset($_REQUEST['email']) ? $_REQUEST['email'] : null ?>" required>
       </div>
-      <?php if((!isset($_REQUEST['action']))){
-            echo '<div class="input-group mb-3">
-            <span class="input-group-text">Password</span>
-            <input type="text" class="form-control" name="password" maxlength="255" required>
-            </div>';
-          }?>
-
+        <div class="input-group mb-3">
+          <span class="input-group-text">Password</span>
+          <input type="text" class="form-control" name="password" maxlength="255" required>
+        </div>
       <div class="input-group mb-3">
         <label class="input-group-text" for="inputGroupFile01">Foto</label>
         <input accept="image/*" type="file" class="form-control" id="inputGroupFile01" name="foto" />

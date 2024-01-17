@@ -15,10 +15,6 @@ function validatedUserProfile($req)
         $errors['telemovel'] = 'O número de telemovel é um campo obrigatorio.';
     }
 
-    if (!filter_var($req['telemovel'], FILTER_VALIDATE_INT) || strlen($req['telemovel']) != 9) {
-        $errors['telemovel'] = 'O número de telemovel é um campo obrigatorio.';
-    }
-
     if(strlen($req['telemovel']) < 9){
         $errors['telemovel'] = 'O número de telemovel tem de ter pelo menos 9 digitos.';
     }
