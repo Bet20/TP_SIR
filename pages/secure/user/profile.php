@@ -71,7 +71,7 @@ $user = user();
 
                     <div class="row justify-content-end">
                         <div class="d-grid col-4 ">
-                            <a href="/sir/pages/secure"
+                            <a href="/sir/pages/secure/<?= (admin()) ? 'admin' : '' ?>"
                                class="btn btn-md btn-warning special-border mb-2" type="submit">
                                 Cancel
                             </a>

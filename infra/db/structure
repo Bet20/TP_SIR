@@ -25,6 +25,7 @@ CREATE TABLE car (
     modelo VARCHAR(50),
     cor VARCHAR(8),
     estado INT NOT null default 1,
+    foto VARCHAR(255),
     FOREIGN KEY (id_user) REFERENCES user(id) ON DELETE CASCADE
 );
 

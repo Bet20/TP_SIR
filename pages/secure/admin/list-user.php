@@ -17,7 +17,7 @@ $users = getAll();
   <main class="bg-light">
     <section class="py-4">
       <div class="d-flex justify-content">
-        <a href="/sir/pages/secure/"><button class="btn btn-secondary px-5 me-2">Back</button></a>
+        <a href="/sir/pages/secure/admin"><button class="btn btn-secondary px-5 me-2">Back</button></a>
         <a href="./user.php"><button class="btn btn-success px-4 me-2">Create user</button></a>
       </div>
     </section>
