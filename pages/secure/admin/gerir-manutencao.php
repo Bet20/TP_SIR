@@ -4,7 +4,7 @@ require_once __DIR__ . '/../../../infra/repositories/maintenanceRepository.php';
 require_once __DIR__ . '/../../../infra/middlewares/middleware-user.php';
 require_once __DIR__ . '../../../../helpers/session.php';
 
-$car = getCarById($_GET['id']);
+$car = getCarById($car['id']);
 
 $title = ' - Veículos';
 require_once __DIR__ . '/../../../templates/header-secure.php';
