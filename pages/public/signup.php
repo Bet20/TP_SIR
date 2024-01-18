@@ -2,6 +2,7 @@
 $title = ' - Login';
 include_once __DIR__ . '../../../templates/header.php';
 require_once __DIR__ . '../../../infra/middlewares/middleware-not-authenticated.php';
+session_start();
 ?>
 
 <div class="vh-100 d-flex flex-column justify-content-between special-background">

@@ -186,6 +186,18 @@ img{
     color: var(--icon);
 }
 
+.warning{
+    background-color: #f9f9cc;
+}
+
+.success{
+    background-color: #eaffec;
+}
+
+.info{
+    background-color: #97ecfb;
+}
+
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
@@ -236,7 +248,7 @@ body {
   animation: logo-anim 4s cubic-bezier(0.86, 0, 0.07, 1) infinite;
 }
 
-label::after {
+TODO::after {
   content: ' *';
   color: red;
 }

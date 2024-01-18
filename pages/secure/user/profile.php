@@ -33,51 +33,56 @@ $user = user();
             </section>
             <section>
                 <form enctype="multipart/form-data" action="/sir/controllers/admin/user.php" method="post"
-                      class="form-control py-3 special-border">
-                    <div class="input-group mb-3">
-                        <span class="input-group-text">Name</span>
-                        <input type="text" class="form-control" name="name" placeholder="name" maxlength="100"
-                               size="100"
-                               value="<?= isset($_REQUEST['name']) ? $_REQUEST['name'] : $user['name'] ?>" required>
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text">Telemóvel</span>
-                        <input type="tel" class="form-control" name="telemovel" maxlength="9" 
-                                placeholder="<?= !isset($_REQUEST['telemovel']) ? 'N/D' : '' ?>"
-                                value="<?= isset($_REQUEST['telemovel']) ? $_REQUEST['telemovel'] : $user['telemovel'] ?>"
-                                required>
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text">email</span>
-                        <input type="email" class="form-control" name="email" maxlength="255"
-                               value="<?= isset($_REQUEST['email']) ? $_REQUEST['email'] : $user['email'] ?>" required>
-                    </div>
-                    <!-- <div class="input-group mb-3">
-                        <label class="input-group-text" for="inputGroupFile01">Picture</label>
-                        <input accept="image/*" type="file" class="form-control" id="inputGroupFile01" name="foto"/>
-                    </div> -->
-                    <input type="hidden" name="id" value="<?= $user['id'] ?>">
-                    <div class="d-flex mb-3">
-                        <div class="input-group">
-                            <label class="input-group-text" for="inputGroupFile01">Password</label>
-                            <input type="password" class="form-control" name="password" value="123456"
-                                   maxlength="255"
-                                   disabled
-                                   readonly>
+                    class="form-control py-3 special-border">
+                    <div class="row mb-3">
+                        <div class="col-4">
+                            <label for="foto" class="d-flex align-items-center justify-content-center h-100 border">
+                                <i class="fa-solid fa-circle-user fs-1"></i>
+                                <input type="file" id="foto" name="foto" accept="image/*" class="d-none">
+                            </label>
                         </div>
-                        <a class="float-right ms-2 text-nowrap btn special-border px-2" href="./password.php">
-                            Change Password
-                        </a>
+                        <div class="col-8">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Name</span>
+                                <input type="text" class="form-control" name="name" placeholder="name" maxlength="100"
+                                    size="100"
+                                    value="<?= isset($_REQUEST['name']) ? $_REQUEST['name'] : $user['name'] ?>" required>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Telemóvel</span>
+                                <input type="tel" class="form-control" name="telemovel" maxlength="9" 
+                                        placeholder="<?= !isset($_REQUEST['telemovel']) ? 'N/D' : '' ?>"
+                                        value="<?= isset($_REQUEST['telemovel']) ? $_REQUEST['telemovel'] : $user['telemovel'] ?>"
+                                        required>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">email</span>
+                                <input type="email" class="form-control" name="email" maxlength="255"
+                                    value="<?= isset($_REQUEST['email']) ? $_REQUEST['email'] : $user['email'] ?>" required>
+                            </div>
+                            <input type="hidden" name="id" value="<?= $user['id'] ?>">
+                            <div class="d-flex">
+                                <div class="input-group">
+                                    <label class="input-group-text" for="inputGroupFile01">Password</label>
+                                    <input type="password" class="form-control" name="password" value="123456"
+                                        maxlength="255"
+                                        disabled
+                                        readonly>
+                                </div>
+                                <a class="float-right ms-2 text-nowrap btn special-border px-2" href="./password.php">
+                                    Change Password
+                                </a>
+                            </div>
+                        </div>
                     </div>
-
-                    <div class="row justify-content-end">
-                        <div class="d-grid col-4 ">
+                    <div class="row justify-content-between">
+                        <div class="d-grid col-6">
                             <a href="/sir/pages/secure/<?= (admin()) ? 'admin' : '' ?>"
                                class="btn btn-md btn-warning special-border mb-2" type="submit">
                                 Cancel
                             </a>
                         </div>
-                        <div class="d-grid col-4 ">
+                        <div class="d-grid col-6">
                             <button class="btn btn-md btn-success special-border mb-2" type="submit" name="user"
                                     value="profile">
                                 Confirm

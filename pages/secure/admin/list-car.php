@@ -24,18 +24,18 @@ if ($user['admin'] === 1) {
 
 ?>
 
-<main>
+<main class="vh-100">
     <?php include_once __DIR__ . '/../../../templates/navbar.php'; ?>
-
-    <h1>Veículos em Manutenção</h1>
-<?php if ($user['admin'] === 1) { ?>
-    <div class="special-border p-4 h-75 overflow-y-auto ">
-        <table class="table">
-            <thead>
+    <div class="col-md-8 col-12 mx-auto">
+        <h1 class="ms-5 mt-4">Veículos em Manutenção</h1>
+    </div>
+    <div class="m-4 h-75 overflow-y-auto rounded col-md-8 col-12 mx-auto">
+        <table class="table special-border m-0">
+            <thead class="table-dark">
                 <tr>
+                    <th>Cliente</th>
                     <th>Marca</th>
                     <th>Matricula</th>
-                    <th>Cliente</th>
                     <th>Estado manutenção</th>
                     <th>Opções</th>
                 </tr>
@@ -45,41 +45,56 @@ if ($user['admin'] === 1) {
                     if(count($cars) == 0){
                         echo '<tr><td class="ps-5 fw-bold text-primary" colspan="5">Não existem veículos em manutenção</td></tr>';
                     };
-                    
+                    // badge rounded-pill text-bg-danger || badge rounded-pill text-bg-warning || badge rounded-pill text-bg-info
                     foreach ($cars as $car) {  $maintenceStatusName = getMaintenanceNameByCarId($car['id']);?>
-                    <tr >
-                        <td><?= $car['marca'] ?></td>
-                        <td><?= $car['matricula'] ?></td>
-                        <td><?= $car['name'] ?></td>
-                        <td><?= $maintenceStatusName['estadoNome'] ?></td>
+                    <tr>
+                        <th class="align-middle"><?= $car['name'] ?></th>
+                        <td class="align-middle"><?= $car['marca'] ?></td>
+                        <td class="align-middle"><?= $car['matricula'] ?></td>
+                        <td class="align-middle"><div class="
+                            <?php
+                                switch ($maintenceStatusName['estadoNome']) {
+                                    case "Em Análise":
+                                        echo 'badge rounded-pill text-primary info';
+                                        break;
+                                    case "Aguardando Pagamento":
+                                        echo 'badge rounded-pill text-warning warning';
+                                        break;
+                                    case "Em Manutenção":
+                                        echo 'badge rounded-pill text-success success';
+                                        break;
+                                    default:
+                                        echo 'badge rounded-pill text-dark';
+                                }?>">
+                            <?= $maintenceStatusName['estadoNome'] ?></div></td>
                         <td>
-                            <button href="/sir/pages/secure/car/car.php?id=<?= $car['id'] ?>" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalManutencao<?= $car['id'] ?>">Listar</button>
+                            <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalManutencao<?= $car['id'] ?>">Gerir Manutenção</button>
                             <!-- Modal Ver Manutenção Admin -->
                             <div class="modal fade" id="modalManutencao<?= $car['id'] ?>" tabindex="-1" aria-labelledby="modalManutencaoLabel<?= $car['id'] ?>" aria-hidden="true">
-                                <div class="modal-dialog modal-lg">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <?php
-                                        include_once __DIR__ . '/gerir-manutencao.php';
-                                        ?>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                <div class="modal-dialog modal-xl">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <?php
+                                            include_once __DIR__ . '/gerir-manutencao.php';
+                                            ?>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary">Save changes</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <a href="/sir/pages/secure/car/car-delete.php?id=<?= $car['id'] ?>" class="btn btn-danger">Apagar</a>
                         </td>
                     </tr>
                 <?php } ?>
             </tbody>
         </table>
     </div>
-<?php } ?>
 </main>
 
 <?php
