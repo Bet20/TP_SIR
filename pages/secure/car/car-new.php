@@ -35,76 +35,57 @@ $user = user();
         </section>
 
         <div class="special-border p-3">
-            <form enctype="multipart/form-data" action="/sir/controllers/car/car.php" method="post" class="row">
+            <form enctype="multipart/form-data" action="/sir/controllers/car/car.php" method="post" class="row g-3">
                 <div class="col-md-4 col-12">
                     <label id="labelFoto" for="foto" class="d-flex align-items-center justify-content-center border h-100">
                         <img id="preview" src="/sir/assets/images/uploads/cars/<?= isset($_REQUEST['foto']) ? $_REQUEST['foto'] : '' ?>" alt="foto" height="200" class="<?= !isset($_REQUEST['foto']) ? 'd-none' : '' ?>">
-                        <i id="noImage" class="fa-solid fa-car fs-2 me-2  <?= isset($_REQUEST['foto']) ? 'd-none' : '' ?>" ></i>
+                        <i id="noImage" class="fa-solid fa-car fs-2 me-2  <?= isset($_REQUEST['foto']) ? 'd-none' : '' ?>"></i>
                         <input type="file" id="foto" name="foto" accept="image/*" class="d-none" onchange="previewImage()">
                     </label>
                 </div>
-                <div class="mb-3 row col-md-8 col-12">
-                    <div class="col-6 d-flex justify-content-between">
-                        <label for="marca" class="col-sm-2 col-form-label">Marca</label>
-                        <input class="me-5 right-50"
-                                type="text" id="marca" name="marca" required
-                            value="<?= isset($_REQUEST['marca']) ? $_REQUEST['marca'] : null ?>">
+                <div class="col-md-8 col-12">
+                    <div class="mb-3 row">
+                        <div class="col-6">
+                            <label for="marca" class="form-label">Marca</label>
+                            <input type="text" class="form-control" id="marca" name="marca" required value="<?= isset($_REQUEST['marca']) ? $_REQUEST['marca'] : null ?>">
+                        </div>
+                        <div class="col-6">
+                            <label for="matricula" class="form-label">Matrícula</label>
+                            <input type="text" class="form-control" id="matricula" name="matricula" required minlength="5" maxlength="20" value="<?= isset($_REQUEST['matricula']) ? $_REQUEST['matricula'] : null ?>">
+                        </div>
+                        <div class="col-6">
+                            <label for="modelo" class="form-label">Modelo</label>
+                            <input type="text" class="form-control" id="modelo" name="modelo" required value="<?= isset($_REQUEST['modelo']) ? $_REQUEST['modelo'] : null ?>">
+                        </div>
+                        <div class="col-6">
+                            <label for="cor" class="form-label">Cor</label>
+                            <input type="color" class="form-control" id="cor" name="cor" value="<?= isset($_REQUEST['cor']) ? $_REQUEST['cor'] : '#000000' ?>">
+                        </div>
+                        <div class="col-12">
+                            <label for="descricao" class="form-label">Descrição</label>
+                            <textarea id="descricao" name="descricao" class="form-control" rows="4"><?= isset($_REQUEST['descricao']) ? $_REQUEST['descricao'] : null ?></textarea>
+                        </div>
                     </div>
-                    <div class="col-6 d-flex justify-content-between">
-                        <label for="inputPassword" class="col-sm-2 col-form-label">Matrícula</label>
-                        <input class="me-5 right-50" type="text" id="matricula" name="matricula" required minlength="5" maxlength="20"
-                            value="<?= isset($_REQUEST['matricula']) ? $_REQUEST['matricula'] : null ?>">
+                    <input type="hidden" name="id" value="<?= isset($_REQUEST['id']) ? $_REQUEST['id'] : null ?>">
+                    <div class="row justify-content-end">
+                        <div class="col-auto">
+                            <a href="/sir/pages/secure" class="btn btn-warning btn-md special-border mb-2" type="submit">Cancel</a>
+                        </div>
+                        <div class="col-auto">
+                            <?php
+                            $submitButtonLabel = (isset($_REQUEST['action']) && $_REQUEST['action'] == 'update') ? 'Atualizar' : 'Criar';
+                            echo '<button class="btn btn-success btn-md special-border mb-2" type="submit" name="car" value="update">
+                    ' . $submitButtonLabel . '
+                </button>';
+                            ?>
+                        </div>
                     </div>
-
-                    <div class="col-6 d-flex justify-content-between">
-                        <label for="modelo">Modelo:</label>
-                        <input class="me-5 right-50" type="text" name="modelo" id="modelo" required
-                            value="<?= isset($_REQUEST['modelo']) ? $_REQUEST['modelo'] : null ?>">
-                    </div>
-
-                    <div class="col-6 d-flex justify-content-between">
-                        <label for="cor">Cor:</label>
-                        <input class="me-5 right-50" type="color" id="cor" name="cor"
-                            value="<?= isset($_REQUEST['cor']) ? $_REQUEST['cor'] : '#000000' ?>">
-                    </div>
-
-                    <div class="col-6">
-                        <label for="descricao">Descrição</label>
-                        <input id="descricao" name="descricao" class="width-100" rows="4"
-                            value="<?= isset($_REQUEST['descricao']) ? $_REQUEST['descricao'] : null ?>">
-                    </div>
-                </div>
-                <input type="hidden" name="id" value="<?= isset($_REQUEST['id']) ? $_REQUEST['id'] : null ?>">
-                <div class="row justify-content-end">
-                    <div class="d-grid col-4 ">
-                        <a href="/sir/pages/secure"
-                        class="btn btn-md btn-warning special-border mb-2" type="submit">
-                            Cancel
-                        </a>
-                    </div>
-                    <?php
-                    if ((isset($_REQUEST['action']) && $_REQUEST['action'] == 'update')) {
-                        echo '<div class="d-grid col-4 ">
-                        <button class="btn btn-md btn-success special-border mb-2" type="submit" name="car"
-                                value="update">
-                            Atualizar
-                        </button>
-                    </div>';
-                    } else {
-                        echo '<div class="d-grid col-4 ">
-                        <button class="btn btn-md btn-success special-border mb-2" type="submit" name="car"
-                                value="create">
-                            Criar
-                        </button>
-                    </div>';
-                    }
-                    ?>
 
                 </div>
-
-
             </form>
-        </div>
+
+
+    </div>
     </div>
 <?php
 require_once __DIR__ . '/../../../templates/footer.php';

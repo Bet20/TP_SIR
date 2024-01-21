@@ -38,42 +38,43 @@ if ($car['estado'] === 0) {
             <section class="h-100">
                 <div class="row h-100">
                     <div class="col-5">
-                        <img class="img-fluid" src="/sir/assets/images/uploads/cars/<?= $car['foto'] ?>" />
+                        <img class="img-fluid object-contain-cover" src="/sir/assets/images/uploads/cars/<?= $car['foto'] ?>" alt="Car Photo" />
                     </div>
-                    <div class="col-5 h-100 justify-content-space-between d-grid">
 
+                    <div class="col-5 h-100 d-flex flex-column">
                         <div class="row">
-                            <div class="col-12 h-0">
-                        <div class="d-inline-flex align-items-center">
-                            <h3><?= $car['marca'] . ' - ' . $car['modelo'] ?></h3>
-                            <div style="color: <?= $car['cor'] ?>" class="ms-2 fs-3 align-items-center float-end">
-                                <i class="fa-solid fa-car-side"></i>
-                            </div>
-                        </div>
+                            <div class="col-12">
+                                <div class="d-inline-flex align-items-center">
+                                    <h3><?= $car['marca'] . ' - ' . $car['modelo'] ?></h3>
+                                    <div style="color: <?= $car['cor'] ?>" class="ms-2 fs-3 align-items-center float-end">
+                                        <i class="fa-solid fa-car-side"></i>
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-12">
-                        <h4 class="text-secondary"><?= $car['matricula'] ?></h4>
+                                <h4 class="text-secondary"><?= $car['matricula'] ?></h4>
                             </div>
                         </div>
-                            <div class="col-12">
-                        <p><?= $car['descricao'] ?></p>
-                            </div>
-
-                            <div class="col-12 mt-auto align-end">
-                        <div class="mt-auto d-flex">
-                        <div class="d-flex align-self-end">
-                            <a href="/sir/controllers/car/car.php?<?= 'car=update&id=' . $car['id'] ?>"><button type="button" class="btn btn-primary me-2 special-border">Atualizar</button></a>
-                            <button type="button" class="btn btn-warning me-2 special-border" data-bs-toggle="modal" data-bs-target="#delete<?= $car['id'] ?>">Apagar</button>
-                            <?php if ($car['estado'] === 1) {
-                                echo '<button type="button" class="btn btn-info special-border" data-bs-toggle="modal" data-bs-target="#modalCriarMarcacao' . $car["id"] . '">Agendar Manutenção</button>';
-                            } else {
-                                echo '<button type="button" class="btn btn-success special-border" data-bs-toggle="modal" data-bs-target="#modalListarMarcacao' . $car["id"] . '">Listar Manutenção</button>';
-                            } ?>
+                        <div class="col-12 flex-grow-1">
+                            <p><?= $car['descricao'] ?></p>
                         </div>
-                        </div>
+                        <div class="col-12 mt-auto align-self-end">
+                            <div class="mt-auto d-flex">
+                                <div class="d-flex">
+                                    <a href="/sir/controllers/car/car.php?<?= 'car=update&id=' . $car['id'] ?>">
+                                        <button type="button" class="btn btn-primary me-2 special-border">Atualizar</button>
+                                    </a>
+                                    <button type="button" class="btn btn-warning me-2 special-border" data-bs-toggle="modal" data-bs-target="#delete<?= $car['id'] ?>">Apagar</button>
+                                    <?php if ($car['estado'] === 1) {
+                                        echo '<button type="button" class="btn btn-info special-border" data-bs-toggle="modal" data-bs-target="#modalCriarMarcacao' . $car["id"] . '">Agendar Manutenção</button>';
+                                    } else {
+                                        echo '<button type="button" class="btn btn-success special-border" data-bs-toggle="modal" data-bs-target="#modalListarMarcacao' . $car["id"] . '">Listar Manutenção</button>';
+                                    } ?>
+                                </div>
                             </div>
-
+                        </div>
                     </div>
+
                 </div>
 
                 <!-- modal Delete -->
