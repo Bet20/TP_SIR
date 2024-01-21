@@ -295,6 +295,14 @@ hr {
     max-height: 50vh;
 }
 
+.min-height-50vh {
+    min-height: 40vh;
+}
+
+.h-0 {
+    height: 0;
+}
+
 /* end of changes */
 
 

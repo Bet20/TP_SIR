@@ -6,12 +6,26 @@ $maintenances = getAllMaintenance();
 
     $events = [];
     foreach ($maintenances as $maintenance) {
+        $bgcolor = '#0dcaf0';
+        $textColor = '#fff';
+
+        if ($maintenance['id_estado'] == 4) {
+            $bgcolor = '#ffc107';
+            $textColor = '#000';
+
+        } else if ($maintenance['id_estado'] == 2) {
+            $bgcolor = '#198754';
+        }
+
         $events[] = [
             'id' => $maintenance['id'],
             'title' => $maintenance['descricao'],
             'url' => '/sir/pages/secure/car/car.php?id=' . $maintenance['id_car'],
             'start' => $maintenance['dt_inicio'],
             'end' => $maintenance['dt_fim'],
+            'backgroundColor' => $bgcolor,
+            'borderColor' => $bgcolor,
+            'textColor' => $textColor,
         ];
     }
 
