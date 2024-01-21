@@ -121,7 +121,7 @@ require_once __DIR__ . '/../../../templates/footer.php';
             var reader = new FileReader();
             
             reader.onload = function(e) {
-                var foto = <?php echo json_encode(isset($user['foto'])); ?>;
+                var foto = <?php echo json_encode(isset($car['foto'])); ?>;
                 //Para ver o preview caso não tenha foto
                 if(!foto){
                     document.getElementById('noImage').classList.add('d-none');

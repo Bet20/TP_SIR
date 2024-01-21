@@ -46,7 +46,6 @@ if ($user['admin'] === 1) {
                         if(count($cars) == 0){
                             echo '<tr><td class="ps-5 fw-bold text-dark" colspan="5">Não existem veículos em manutenção</td></tr>';
                         };
-                        // badge rounded-pill text-bg-danger || badge rounded-pill text-bg-warning || badge rounded-pill text-bg-info
                         foreach ($cars as $car) {  $maintenceStatusName = getMaintenanceNameByCarId($car['id']);?>
                         <tr>
                             <th class="align-middle"><?= $car['name'] ?></th>
@@ -82,10 +81,6 @@ if ($user['admin'] === 1) {
                                                 <?php
                                                 include_once __DIR__ . '/gerir-manutencao.php';
                                                 ?>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary">Save changes</button>
                                             </div>
                                         </div>
                                     </div>

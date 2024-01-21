@@ -21,44 +21,8 @@ function sendMessagePost($req)
         return false;
     }
 
-    if(isset($_FILES['image']) && $_FILES['image']['size'] > 0) {
-
-        $targetDirectory = "sir/assets/images/uploads/";
-
-        if (!file_exists($targetDirectory)) {
-            mkdir($targetDirectory, 0777, true);
-        }
-
-        $targetFile = $targetDirectory . basename($_FILES["image"]["name"]);
-        $uploadOk = 1;
-        $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
-
-        if ($_FILES["image"]["size"] > 500000) {
-            echo "Sorry, your file is too large.";
-            $uploadOk = 0;
-        }
-        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
-            echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-            $uploadOk = 0;
-        }
-
-        if ($uploadOk == 0) {
-            echo "Sorry, your file was not uploaded.";
-        } else {
-            if (move_uploaded_file($_FILES["image"]["name"], $targetFile)) {
-                error_log("The file " . htmlspecialchars(basename($_FILES["image"]["name"])) . " has been uploaded.");
-
-                $data['image'] = $targetFile;
-            } else {
-                if (is_writable($targetDirectory)) {
-                    error_log("The directory is writable.");
-                } else {
-                    echo "The directory is not writable. Please check permissions.";
-                }
-                error_log("Sorry, there was an error uploading your file.");
-                echo "Sorry, there was an error uploading your file.";
-            }
-        }
+    if (!empty($_FILES['image']['name'])) {
+        $data = saveFile($data, $req);
     }
 
     $success = sendMessage($data);
@@ -67,4 +31,23 @@ function sendMessagePost($req)
         $params = '?' . http_build_query($data);
         header('location: /sir/pages/secure/car/car.php?id='. $req['id_car']);
     }
+}
+
+function saveFile($data, $oldImage = null)
+{
+    $fileName = $_FILES['foto']['name'];
+    $tempFile = $_FILES['foto']['tmp_name'];
+
+    $extension = pathinfo($fileName, PATHINFO_EXTENSION);
+    $extension = strtolower($extension);
+    $newName = uniqid('foto') . '.' . $extension;
+
+    $path = __DIR__ . '/../../assets/images/uploads/message/';
+
+    $file = $path . $newName;
+
+    if (move_uploaded_file($tempFile, $file)) {
+        $data['foto'] = $newName;
+    }
+    return $data;
 }

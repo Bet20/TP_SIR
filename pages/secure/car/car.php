@@ -88,8 +88,7 @@ if ($car['estado'] === 0) {
                                 Tem a certeza que quer apagar este carro?
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <a href="/sir/controllers/car/car.php?<?= 'car=delete&id=' . $car['id'] ?>"><button type="button" class="btn btn-danger">Confirm</button></a>
+                                <a href="/sir/controllers/car/car.php?<?= 'car=delete&id=' . $car['id'] ?>"><button type="button" class="btn btn-danger">Apagar</button></a>
                             </div>
                         </div>
                     </div>
@@ -114,11 +113,6 @@ if ($car['estado'] === 0) {
                                         <div class="mb-3">
                                             <label for="descricao" class="form-label">Descrição</label>
                                             <textarea class="form-control" id="descricao" name="descricao" rows="3"></textarea>
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label for="image_maintenance" class="form-label">Adicionar Imagem</label>
-                                            <input class="form-control" type="file" id="image_maintenance" name="image_maintenance">
                                         </div>
 
                                         <input type="hidden" id="id_user" name="id_user" value="<?= isset($_SESSION['id']) ? $_SESSION['id'] : null ?>">
@@ -165,8 +159,6 @@ if ($car['estado'] === 0) {
                                         <span class="fw-bold">Estado:</span>
                                         <span id="estado" name="estado"><?= isset($maintenance['estado']) ? $maintenance['estado'] : 'N/D'?></span>
                                     </div>
-
-                                    <button type="submit" class="btn btn-primary">Agendar</button>
                                 </div>
                             </div>
                         </div>

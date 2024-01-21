@@ -18,8 +18,6 @@ function sendMessage($message)
         :image
     )";
 
-
-
     $PDOStatement = $GLOBALS['pdo']->prepare($sqlCreate);
 
     $success = $PDOStatement->execute([
@@ -56,55 +54,6 @@ function getMessagesByMaintenceId($id)
     $PDOStatement->bindValue(1, $id, PDO::PARAM_INT);
     $PDOStatement->execute();
     return $PDOStatement->fetchAll();
-}
-
-function updateMessage($mensagem)
-{
-    if (isset($user['password']) && !empty($user['password'])) {
-        $user['password'] = password_hash($user['password'], PASSWORD_DEFAULT);
-
-        $sqlUpdate = "UPDATE  
-        user SET
-            name = :name,
-            telemovel = :telemovel, 
-            email = :email, 
-            foto = :foto, 
-            admin = :admin, 
-            password = :password
-        WHERE id = :id;";
-
-        $PDOStatement = $GLOBALS['pdo']->prepare($sqlUpdate);
-
-        return $PDOStatement->execute([
-            ':id' => $user['id'],
-            ':name' => $user['name'],
-            ':telemovel' => $user['telemovel'],
-            ':email' => $user['email'],
-            ':foto' => $user['foto'],
-            ':admin' => $user['admin'],
-            ':password' => $user['password']
-        ]);
-    }
-
-    $sqlUpdate = "UPDATE  
-    user SET
-        name = :name,
-        telemovel = :telemovel, 
-        email = :email, 
-        foto = :foto, 
-        admin = :admin
-    WHERE id = :id;";
-
-    $PDOStatement = $GLOBALS['pdo']->prepare($sqlUpdate);
-
-    return $PDOStatement->execute([
-        ':id' => $user['id'],
-        ':name' => $user['name'],
-        ':telemovel' => $user['telemovel'],
-        ':email' => $user['email'],
-        ':foto' => $user['foto'],
-        ':admin' => $user['admin']
-    ]);
 }
 
 function deleteMessage($id)

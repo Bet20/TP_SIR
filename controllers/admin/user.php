@@ -65,6 +65,10 @@ function create($req)
         return false;
     }
 
+    if (!empty($_FILES['foto']['name'])) {
+        $data = saveFile($data, $req);
+    }
+
     $success = createUser($data);
 
     if ($success) {
