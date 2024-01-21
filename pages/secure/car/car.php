@@ -16,19 +16,16 @@ if ($car['estado'] === 0) {
     $render_messages = true;
 }
 ?>
-
-<?php include_once __DIR__ . '/../../../templates/navbar.php' ?>
-
-<div class="container-fluid">
-    <section class="py-4">
-        <div class="d-flex justify-content">
-            <a href="/sir/pages/secure/"><button class="btn btn-secondary px-5 me-2">Voltar</button></a>
-        </div>
-    </section>
-
-    <div class="row mx-auto justify-content-center gap-3 max-height-50vh">
-        <main class="bg-light special-border p-3 col-md-6 col-12">
-            <section>
+<main class="min-vh-100 d-flex flex-column justify-content-between">
+    <?php include_once __DIR__ . '/../../../templates/navbar.php' ?>
+    
+    <div class="d-flex justify-content container mt-5x">
+        <a href="/sir/pages/secure/"><button class="btn btn-secondary px-5 me-2">Voltar</button></a>
+    </div>
+    <div class="container-fluid flex-grow-1">
+        <div class="row mx-auto justify-content-center gap-3 max-height-50vh">
+            <main class="bg-light special-border p-3 col-md-6 col-12">
+                <section>
                 <?php
                 if (isset($_SESSION['errors'])) {
                     echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
@@ -43,7 +40,7 @@ if ($car['estado'] === 0) {
             <section>
                 <div class="row">
                     <div class="col-5">
-                        <img class="img-fluid" src="<?= $car['foto'] ?>" />
+                        <img class="img-fluid" src="/sir/assets/images/uploads/cars/<?= $car['foto'] ?>" />
                     </div>
                     <div class="col-5">
                         <div class="d-inline-flex align-items-center">
@@ -232,6 +229,6 @@ if ($car['estado'] === 0) {
         }
         ?>
     </div>
-</div>
-<?php
-include_once __DIR__ . '/../../../templates/footer.php'; ?>
+    </div>
+    <?php include_once __DIR__ . '/../../../templates/footer.php'; ?>
+</main>

@@ -84,6 +84,10 @@ function update($req)
 
         return false;
     }
+    
+    if (!empty($_FILES['foto']['name'])) {
+        $data = saveFile($data, $req);
+    }
 
     $success = updateUser($data);
 
@@ -106,6 +110,10 @@ function updateProfile($req)
         } else {  
         $user = user();
         $data['admin'] = $user['admin'];
+
+        if (!empty($_FILES['foto']['name'])) {
+            $data = saveFile($data, $req);
+        }
 
         $success = updateUser($data);
 
@@ -138,5 +146,28 @@ function changePassword($req)
 function delete_user($user)
 {
     $data = deleteUser($user['id']);
+    return $data;
+}
+
+function saveFile($data, $oldImage = null)
+{
+    $fileName = $_FILES['foto']['name'];
+    $tempFile = $_FILES['foto']['tmp_name'];
+
+    $extension = pathinfo($fileName, PATHINFO_EXTENSION);
+    $extension = strtolower($extension);
+    $newName = uniqid('foto') . '.' . $extension;
+
+    $path = __DIR__ . '/../../assets/images/uploads/users/';
+
+    $file = $path . $newName;
+
+    if (move_uploaded_file($tempFile, $file)) {
+        $data['foto'] = $newName;
+
+        if (isset($data['user']) && ($data['user'] == 'update')) {
+            unlink($path . $oldImage['foto']);
+        }
+    }
     return $data;
 }

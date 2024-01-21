@@ -37,3 +37,24 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
+
+
+// Mostra ou oculta o botão com base no scroll
+window.onscroll = function() {
+  scrollFunction();
+};
+
+function scrollFunction() {
+  var scrollToTopBtn = document.getElementById("scrollToTopBtn");
+  
+  if (document.body.scrollTop > 150 || document.documentElement.scrollTop > 150) {
+      scrollToTopBtn.style.display = "block";
+  } else {
+      scrollToTopBtn.style.display = "none";
+  }
+}
+
+function scrollToTop() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}

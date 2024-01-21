@@ -16,6 +16,9 @@
 .navbar-brand {
     color: #ffffff;
 }
+.navbar-collapse {
+    z-index: 1001;
+}
 
 .top{
     height: calc(100vh - 83px);
@@ -102,6 +105,16 @@ img{
 .carousel-control-prev,
 .carousel-control-next {
     background: rgba(245, 245, 245, 0.291);
+}
+
+.img-carousel {
+    max-width: 1000px;
+    max-height: 50vh;
+    object-fit: cover;
+}
+
+.fa-regular.fa-circle{
+    cursor: pointer;
 }
 
 /* Social */
@@ -248,11 +261,6 @@ body {
   animation: logo-anim 4s cubic-bezier(0.86, 0, 0.07, 1) infinite;
 }
 
-TODO::after {
-  content: ' *';
-  color: red;
-}
-
 label .special-border {
     color: black;
     content: '';
@@ -327,4 +335,16 @@ hr {
       /* Adjust styles for the "Secção Planos" container */
       margin-top: 10px; /* Add a margin to separate it from the carousel above */
    }
+}
+#scrollToTopBtn {
+    display: none;
+    position: fixed;
+    bottom: 40px;
+    left: 20px;
+    cursor: pointer;
+    z-index: 10; 
+}
+
+#scrollToTopBtn i {
+    font-size: 20px;
 }

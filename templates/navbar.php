@@ -4,9 +4,9 @@
 ?>
 
 <header class="p-3 border-bottom d-flex justify-content-between">
-    <a href="/sir/pages/secure" class="d-flex align-items-center text-dark text-decoration-none">
+    <a href="/sir/pages/secure/<?= (admin()) ? 'admin' : ''?>" class="d-flex align-items-center text-dark text-decoration-none">
         <div class="d-flex flex-column align-items-center">
-            <img src="<?= isset($user['foto']) ? 'user["foto"]' : '/sir/logo.svg'?>" alt="logo" width="50" height="50">
+            <img src="/sir/logo.svg" alt="logo" width="50" height="50">
         </div>
     </a>
 
@@ -17,7 +17,7 @@
             <span class="mx-2">
                 <?= $user['name'] ?>
             </span>
-            <i class="fa-solid fa-circle-user fs-2 me-2"></i>
+            <?= isset($user['foto']) ? '<img src="/sir/assets/images/uploads/users/' . $user["foto"] . '"  alt="user foto" width="35" height="35">' : '<i class="fa-solid fa-circle-user fs-2 me-2"></i>'?>
         </button>
         <div class="dropdown-menu"> <!-- Add this div container -->
             <?php if (isAuthenticated() && $user['admin']) {

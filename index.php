@@ -31,10 +31,14 @@
 
 <body>
   <div class="container-fluid">
+    <!-- Botão Para puxar o site para cima -->
+    <button id="scrollToTopBtn" class="btn btn-dark" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </button>
     <!-- Navbar section -->
-    <div class="row fixed-top">
-      <div class="col">
-        <nav class="navbar navbar-expand-lg special-border bg-white">
+    <div class="row p-1">
+      <div class="col special-border">
+        <nav class="navbar navbar-expand-lg bg-white">
           <a class="navbar-brand p-3" href="#">
             <i class="fa-solid fa-gear fa-fw spin text-secondary"></i>
           </a>
@@ -43,7 +47,7 @@
             aria-label="Toggle navigation">
             <i class="fa-solid fa-bars"></i>
           </button>
-          <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <div class="collapse navbar-collapse justify-content-end " id="navbarNav">
             <ul class="navbar-nav bg-white p-1">
               <li class="nav-item mx-auto p-1">
                 <a class="nav-link active" href="#banner">Home</a>
@@ -66,7 +70,7 @@
       </div>
     </div>
     <!-- Banner -->
-    <div id="banner" style="margin-top: 82px;">
+    <div id="banner" class="mt-1">
       <div class="grad special-border top d-flex align-items-center">
         <div class="text-center text-dark">
           <div>
@@ -141,15 +145,15 @@
       </div>
     </div>
     <!-- Carousel -->
-    <div class="mb-xs-4 pb-xs-2 carousel-size" style="max-height: 2000px">
+    <div class="mb-xs-4 pb-xs-2">
       <div class="row d-block mb-sm-5">
-        <div class="col-md-10 col-12 mx-auto my-auto position-relative">
+        <div class="col-md-10 col-12 m-auto">
           <div id="carouselLanding" class="carousel carousel-dark slide p-2 special-border" data-bs-ride="carousel">
             <div class="carousel-inner">
               <!-- 1º Item -->
               <div class="carousel-item active">
-                <div class="d-block w-100 h-75 special-border">
-                  <img src="images/Carousel/inovacao.png" class="obj-fit w-100 h-100 d-block" alt="Image 1">
+                <div class="d-block special-border">
+                  <img src="images/Carousel/inovacao.png" class="obj-fit mx-auto d-block img-carousel"  alt="Image 1">
                 </div>
                 <div class="m-1 p-2 bg-light rounded special-border">
                   <h2>Tecnologia Avançada</h2>
@@ -159,8 +163,8 @@
               </div>
               <!-- 2º Item -->
               <div class="carousel-item">
-                <div class="d-block w-100 h-75 special-border">
-                  <img src="images/Carousel/ecologico.png" class="obj-fit w-100 h-100 d-block" alt="Image 2">
+                <div class="d-block special-border">
+                  <img src="images/Carousel/ecologico.png" class="obj-fit mx-auto d-block img-carousel"  alt="Image 2">
                 </div>
                 <div class="m-1 p-2 bg-light rounded special-border">
                   <h2>Comprometidos com o Ambiente</h2>
@@ -170,8 +174,8 @@
               </div>
               <!-- 3º Item -->
               <div class="carousel-item">
-                <div class="d-block w-100 h-75 special-border">
-                  <img src="images/Carousel/seguranca.png" class="obj-fit w-100 h-100 d-block" alt="Image 3">
+                <div class="d-block special-border">
+                  <img src="images/Carousel/seguranca.png" class="obj-fit mx-auto d-block img-carousel"  alt="Image 3">
                 </div>
                 <div class="m-1 p-2 bg-light rounded special-border">
                   <h2>Serviços Personalizados</h2>
@@ -182,8 +186,8 @@
               </div>
               <!-- 4º Item -->
               <div class="carousel-item">
-                <div class="d-block w-100 h-75 special-border">
-                  <img src="images/Carousel/inov.jpg" class="obj-fit w-100 h-100 d-block" alt="Image 4">
+                <div class="d-block special-border">
+                  <img src="images/Carousel/inov.jpg" class="obj-fit mx-auto d-block img-carousel"  alt="Image 4">
                 </div>
                 <div class="m-1 p-2 bg-light rounded special-border">
                   <h2>Prioridade na Segurança</h2>
@@ -279,7 +283,7 @@
             <p>A sua opinião é bem-vinda e estamos sempre disponíveis para ajudar. Por favor preencha o formulário.</p>
             <span>
               <i class="text-gray text-sm">Todos os campos são de preenchimento obrigatório
-                <bclass="text-danger">*</b>
+                <b class="text-danger">*</b>
               </i>
             </span>
             <form action="mailto:CloudGarage@gmail.com" method="post" enctype="text/plain">
@@ -362,7 +366,7 @@
     <div class="d-flex justify-content-center mt-3">
       <div class="wrapper">
         <div class="button">
-          <a href="https://www.facebook.com/" target="_blank" rel='noreferrer' class="facebook text-secondary">
+          <a href="https://www.facebook.com/" target="_blank" rel='noreferrer' class="facebook">
             <div class="icon">
               <i class="fab fa-facebook-f"></i>
             </div>
@@ -370,7 +374,7 @@
           </a>
         </div>
         <div class="button">
-          <a href="https://www.instagram.com/" target="_blank" rel='noreferrer' class="instagram text-secondary">
+          <a href="https://www.instagram.com/" target="_blank" rel='noreferrer' class="instagram">
             <div class="icon">
               <i class="fab fa-instagram"></i>
             </div>
@@ -378,7 +382,7 @@
           </a>
         </div>
         <div class="button">
-          <a href="https://www.youtube.com/" target="_blank" rel='noreferrer' class="youtube text-secondary">
+          <a href="https://www.youtube.com/" target="_blank" rel='noreferrer' class="youtube">
             <div class="icon">
               <i class="fab fa-youtube"></i>
             </div>

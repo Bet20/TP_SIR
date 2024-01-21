@@ -10,8 +10,8 @@ function validatedUser($req)
         $errors['name'] = 'The Name field cannot be empty and must be between 3 and 255 characters';
     }
 
-    if (!filter_var($req['telemovel'], FILTER_VALIDATE_INT) || strlen($req['telemovel']) != 9) {
-        $errors['telemovel'] = 'The Mobile phone field cannot be empty and must have 9 numbers.';
+    if (!empty($req['telemovel']) && strlen($req['telemovel']) != 9) {
+        $errors['telemovel'] = 'O número de telemóvel tem de ter pelo menos 9 digitos.O número de telemovel tem de ter pelo menos 9 digitos.';
     }
 
     if (!filter_var($req['email'], FILTER_VALIDATE_EMAIL)) {

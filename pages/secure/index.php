@@ -24,10 +24,10 @@ if ($user['admin'] === 1) {
 
 ?>
 
-<main>
+<main class="min-vh-100 d-flex flex-column justify-content-between">
     <?php include_once __DIR__ . '../../../templates/navbar.php'; ?>
 
-    <div class="p-2 container">
+    <div class="p-2 container flex-grow-1">
         <div class="mt-3">
             <?php
             if ($user['admin'] === 1) {
@@ -119,11 +119,11 @@ if ($user['admin'] === 1) {
         </div>
 
     </div>
+    <?php
+    include_once __DIR__ . '../../../templates/footer.php';
+    ?>
 </main>
 
-<?php
-include_once __DIR__ . '../../../templates/footer.php';
-?>
 
 <script>
     let t = null

@@ -74,6 +74,30 @@ function updateUser($user)
             name = :name,
             telemovel = :telemovel, 
             email = :email, 
+            password = :password,
+            foto = :foto, 
+            admin = :admin
+        WHERE id = :id;";
+
+        $PDOStatement = $GLOBALS['pdo']->prepare($sqlUpdate);
+
+        return $PDOStatement->execute([
+            ':id' => $user['id'],
+            ':name' => $user['name'],
+            ':telemovel' => $user['telemovel'],
+            ':email' => $user['email'],
+            ':password' => $user['password'],
+            ':foto' => $user['foto'],
+            ':admin' => $user['admin']
+        ]);
+    }
+
+    if (isset($user['foto']) && !empty($user['foto'])) {
+        $sqlUpdate = "UPDATE  
+        user SET
+            name = :name,
+            telemovel = :telemovel, 
+            email = :email, 
             foto = :foto, 
             admin = :admin
         WHERE id = :id;";
@@ -95,7 +119,6 @@ function updateUser($user)
         name = :name,
         telemovel = :telemovel, 
         email = :email, 
-        foto = :foto, 
         admin = :admin
     WHERE id = :id;";
 
@@ -106,7 +129,6 @@ function updateUser($user)
         ':name' => $user['name'],
         ':telemovel' => $user['telemovel'],
         ':email' => $user['email'],
-        ':foto' => $user['foto'],
         ':admin' => $user['admin']
     ]);
 }

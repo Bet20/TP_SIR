@@ -107,7 +107,30 @@ WHERE car.estado != 1
 
 function updateCar($car)
 {
-
+    if($car['foto'] != null){
+        $sqlUpdate = "UPDATE  
+        car SET
+            matricula = :matricula,
+            marca =     :marca, 
+            modelo =    :modelo, 
+            cor =       :cor, 
+            descricao = :descricao,
+            foto =      :foto
+        WHERE id =      :id;";
+    
+        $PDOStatement = $GLOBALS['pdo']->prepare($sqlUpdate);
+    
+        return $PDOStatement->execute([
+            ':matricula' => $car['matricula'],
+            ':marca'     => $car['marca'],
+            ':modelo'    => $car['modelo'],
+            ':cor'       => $car['cor'],
+            ':descricao' => $car['descricao'],
+            ':foto'      => $car['foto'],
+            ':id'        => $car['id']
+        ]);
+    }
+    
     $sqlUpdate = "UPDATE  
     car SET
         matricula = :matricula,
@@ -127,7 +150,6 @@ function updateCar($car)
         ':descricao' => $car['descricao'],
         ':id'        => $car['id']
     ]);
-
 }
 
 function updateEstado($car)

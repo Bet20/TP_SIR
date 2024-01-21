@@ -75,9 +75,11 @@ function create($req)
         header('location: /sir/pages/secure/car/car-new.php' . $params);
         return false;
     }
+
     if (!empty($_FILES['foto']['name'])) {
         $data = saveFile($data, $req);
     }
+
     $carId = createCar($data);
 
     if ($carId) {
@@ -96,6 +98,10 @@ function update($req)
         header('location: /sir/pages/secure/car/car-new.php' . $params . '&action=update');
 
         return false;
+    }
+ 
+    if (!empty($_FILES['foto']['name'])) {
+        $data = saveFile($data, $req);
     }
 
     $success = updateCar($data);
@@ -126,7 +132,7 @@ function saveFile($data, $oldImage = null)
     $extension = strtolower($extension);
     $newName = uniqid('foto') . '.' . $extension;
 
-    $path = __DIR__ . '/../../assets/images/uploads/';
+    $path = __DIR__ . '/../../assets/images/uploads/cars/';
 
     $file = $path . $newName;
 
@@ -138,5 +144,4 @@ function saveFile($data, $oldImage = null)
         }
     }
     return $data;
-
 }
