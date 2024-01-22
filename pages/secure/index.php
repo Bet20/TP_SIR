@@ -12,11 +12,7 @@ $user = user();
 $canCreateCar = false;
 
 if ($user['admin'] === 1) {
-    if (isset($_GET['search'])) {
-        $cars = getAllCarInMaintenanceWithSearchQuery($_GET['search']);
-    } else {
-        $cars = getAllCarInMaintenance();
-    }
+    header('/sir/pages/secure/admin/');
 } else {
     $cars = getAllCarByUserId($user['id']);
     $canCreateCar = count($cars) < 5;

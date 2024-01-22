@@ -40,9 +40,9 @@ if(isset($_GET['id'])){
         class="form-control special-border py-3">
         <div class="row">
           <div class="col-md-4">
-            <label id="labelFoto" for="foto" class="d-flex align-items-center justify-content-center border h-100">
-                <img id="preview" src="/sir/assets/images/uploads/users/<?= $userObtido['foto'] ?>" alt="foto" height="260" class="<?= !isset($userObtido['foto']) ? 'd-none' : '' ?>">
-                <i id="noImage" class="fa-solid fa-circle-user fs-2 me-2  <?= isset($userObtido['foto']) ? 'd-none' : '' ?>" ></i>
+            <label id="labelFoto" for="foto" class="d-flex align-items-center justify-content-center border h-100 w-100">
+                <img id="preview" src="/sir/assets/images/uploads/users/<?= $userObtido['foto'] ?>" alt="foto" class="img-fluid d-block <?= !isset($userObtido['foto']) ? 'd-none' : '' ?>" style="max-height: 260px;">
+                <i id="noImage" class="fa-solid fa-circle-user fs-2 me-2 <?= isset($userObtido['foto']) ? 'd-none' : '' ?>"></i>
                 <input type="file" id="foto" name="foto" accept="image/*" class="d-none" onchange="previewImage()">
             </label>
           </div>

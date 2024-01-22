@@ -5,7 +5,7 @@ require_once __DIR__ . '../../../infra/middlewares/middleware-not-authenticated.
 session_start();
 ?>
 
-<div class="vh-100 d-flex flex-column justify-content-between special-background">
+<div class="min-vh-100 d-flex flex-column justify-content-between special-background">
   <main class="d-flex justify-content-center h-100">
     <div class="col-md-6 col-10">
       <div>
@@ -65,7 +65,7 @@ session_start();
       </form>
     </div>
   </main>
+  <?php
+  include_once __DIR__ . '../../../templates/footer.php';
+  ?>
 </div>
-<?php
-include_once __DIR__ . '../../../templates/footer.php';
-?>

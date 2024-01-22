@@ -8,8 +8,8 @@ $user = user();
 <main class="min-vh-100 d-flex flex-column justify-content-between">
     <?php require_once __DIR__ . '/../../../templates/navbar.php' ?>
 
-    <div class="container mt-3">
-        <div class="mb-3 text-black">
+    <div class="container">
+        <div class="mb-2 text-black">
             <h1>Alterar Perfil</h1>
         </div>
         <section>
