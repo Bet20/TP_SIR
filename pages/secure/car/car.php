@@ -20,8 +20,10 @@ if ($car['estado'] === 0) {
     <?php include_once __DIR__ . '/../../../templates/navbar.php' ?>
 
     <div class="container-fluid flex-grow-1">
-        <a href="/sir/pages/secure/"><button class="btn btn-secondary px-5 me-2">Voltar</button></a>
         <div class="row mx-auto justify-content-center gap-3 max-height-50vh min-height-50vh">
+            <div class="col-md-6 col-12 p-0 mt-4">
+                <a href="/sir/pages/secure/"><button class="btn btn-secondary px-5">Voltar</button></a>
+            </div>
             <main class="bg-light special-border p-3 col-md-6 col-12">
                 <section>
                 <?php
@@ -204,7 +206,7 @@ if ($car['estado'] === 0) {
                         </div>
                         <?php if (isset($message['image'])) : ?>
                             <div class="align-center">
-                                <img src="/<?= $message['image'] ?>" alt="image" width="200" height="200">
+                                <img src="/sir/assets/images/uploads/message/<?= $message['image'] ?>" alt="image" width="200" height="200">
                             </div>
                         <?php endif; ?>
                     <?php endforeach; ?>
@@ -215,8 +217,8 @@ if ($car['estado'] === 0) {
                             <div class="w-100 d-flex gap-2">
                                 <input type="text" class="form-control special-border rounded" placeholder="Digite sua mensagem" name="mensagem">
                                 <label type="button" class="btn  special-border">
-                                    <i class="fa-solid fa-upload"></i>
-                                    <input type="file" accept="image/png, image/jpeg, image/jpg" name="image" style="display: none;">
+                                    <i id="imageUpload" class="fa-solid fa-upload"></i>
+                                    <input type="file" accept="image/png, image/jpeg, image/jpg" name="image" style="display: none;" onchange="selectImage()">
                                 </label>
                                 <input type="hidden" id="id_manutencao" name="id_manutencao" value="<?= $maintenance_data['id'] ?>">
                                 <input type="hidden" id="data" name="data" value="<?= date('Y-m-d'); ?>">
@@ -237,3 +239,27 @@ if ($car['estado'] === 0) {
     </div>
     <?php include_once __DIR__ . '/../../../templates/footer.php'; ?>
 </main>
+
+<script>
+    // Adicionar imagem ao input com variável loading a girar
+    function selectImage() {
+        const imageUpload = document.getElementById('imageUpload');
+        imageUpload.classList.remove('fa-upload');
+        imageUpload.classList.add('fa-spinner', 'fa-spin');
+
+        const file = document.querySelector('input[type=file]').files[0];
+        const reader = new FileReader();
+
+        reader.addEventListener("load", function() {
+            setTimeout(() => {
+                    imageUpload.classList.remove('fa-spinner', 'fa-spin');
+                    imageUpload.classList.add('fa-check', 'text-success');
+            }, 500);
+            
+        }, false);
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    }
+</script>

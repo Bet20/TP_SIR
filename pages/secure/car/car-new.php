@@ -72,12 +72,23 @@ $user = user();
                             <a href="/sir/pages/secure" class="btn btn-warning btn-md special-border mb-2" type="submit">Cancel</a>
                         </div>
                         <div class="col-auto">
-                            <?php
-                            $submitButtonLabel = (isset($_REQUEST['action']) && $_REQUEST['action'] == 'update') ? 'Atualizar' : 'Criar';
-                            echo '<button class="btn btn-success btn-md special-border mb-2" type="submit" name="car" value="update">
-                    ' . $submitButtonLabel . '
-                </button>';
-                            ?>
+                        <?php
+                            if ((isset($_REQUEST['action']) && $_REQUEST['action'] == 'update')) {
+                                echo '<div class="d-grid col-4 ">
+                                <button class="btn btn-md btn-success special-border mb-2" type="submit" name="car"
+                                        value="update">
+                                    Atualizar
+                                </button>
+                            </div>';
+                            } else {
+                                echo '<div class="d-grid col-4 ">
+                                <button class="btn btn-md btn-success special-border mb-2" type="submit" name="car"
+                                        value="create">
+                                    Criar
+                                </button>
+                            </div>';
+                            }
+                        ?>
                         </div>
                     </div>
 

@@ -34,7 +34,7 @@ if(isset($_GET['id'])){
     </section>
     <section class="pb-4 container">
       <section class="py-4">
-        <a href="/sir/pages/secure/admin/list-user.php"><button type="button" class="btn btn-secondary px-5">Voltar</button></a>
+        <a href="/sir/pages/secure/admin/list-user.php"><button type="button" class="btn btn-secondary special-border px-5">Voltar</button></a>
       </section>
       <form enctype="multipart/form-data" action="/sir/controllers/admin/user.php" method="post"
         class="form-control special-border py-3">
@@ -84,9 +84,9 @@ if(isset($_GET['id'])){
           <input type="hidden" name="id" value="<?= isset($_REQUEST['id']) ? $_REQUEST['id'] : null ?>">
           <?php 
             if((isset($_REQUEST['action']) && $_REQUEST['action'] == 'update')){
-              echo '<button type="submit" class="btn btn-success" name="user" value="update">Atualizar</button>';
+              echo '<button type="submit" class="btn btn-success special-border" name="user" value="update">Atualizar</button>';
             } else {
-              echo '<button type="submit" class="btn btn-success" name="user" value="create">Criar</button>';
+              echo '<button type="submit" class="btn btn-success special-border" name="user" value="create">Criar</button>';
             }
           ?>
         </div>

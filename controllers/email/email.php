@@ -17,7 +17,7 @@ function sendMessagePost($req)
 
     if (isset($data['invalid'])) {
         $_SESSION['errors'] = $data['invalid'];
-        header('location: /sir/pages/secure/car/car.php?id=' . $req['id_car']);
+        header('location: /sir/pages/secure/car/car.php?id='. $req['id_car']);
         return false;
     }
 
@@ -27,27 +27,27 @@ function sendMessagePost($req)
 
     $success = sendMessage($data);
 
-    if ($success) {
-        $params = '?' . http_build_query($data);
+    if (isset($success)) {
         header('location: /sir/pages/secure/car/car.php?id='. $req['id_car']);
     }
 }
 
+
 function saveFile($data, $oldImage = null)
 {
-    $fileName = $_FILES['foto']['name'];
-    $tempFile = $_FILES['foto']['tmp_name'];
+    $fileName = $_FILES['image']['name'];
+    $tempFile = $_FILES['image']['tmp_name'];
 
     $extension = pathinfo($fileName, PATHINFO_EXTENSION);
     $extension = strtolower($extension);
-    $newName = uniqid('foto') . '.' . $extension;
+    $newName = uniqid('image') . '.' . $extension;
 
     $path = __DIR__ . '/../../assets/images/uploads/message/';
 
     $file = $path . $newName;
 
     if (move_uploaded_file($tempFile, $file)) {
-        $data['foto'] = $newName;
+        $data['image'] = $newName;
     }
     return $data;
 }
