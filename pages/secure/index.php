@@ -123,32 +123,3 @@ if ($user['admin'] === 1) {
     include_once __DIR__ . '../../../templates/footer.php';
     ?>
 </main>
-
-
-<script>
-    let t = null
-    const carSearchInput = document.getElementById('car-search');
-    const btnCancelSearch = document.getElementById('btnCancelSearch');
-
-    btnCancelSearch.addEventListener('click', () => {
-        window.location.href = '/sir/pages/secure/index.php';
-    });
-
-    <?php if (isset($_GET['search'])) { ?>
-        carSearchInput.value = "<?= $_GET['search'] ?>";
-    <?php } ?>
-
-    carSearchInput.addEventListener('keyup', (e) => {
-        console.log('stopped writing')
-
-        if (t) {
-            clearTimeout(t);
-        }
-
-        t = setTimeout(() => {
-            console.log("was set!")
-            const search = e.target.value;
-            window.location.href = `/sir/pages/secure/index.php?search=${search}`;
-        }, 1000);
-    });
-</script>

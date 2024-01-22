@@ -20,7 +20,7 @@ $maintenances = getAllMaintenance();
         $events[] = [
             'id' => $maintenance['id'],
             'title' => $maintenance['descricao'],
-            'url' => '/sir/pages/secure/car/car.php?id=' . $maintenance['id_car'],
+            'url' => '/sir/pages/secure/admin/list-manutencao.php?id=' . $maintenance['id_car'],
             'start' => $maintenance['dt_inicio'],
             'end' => $maintenance['dt_fim'],
             'backgroundColor' => $bgcolor,

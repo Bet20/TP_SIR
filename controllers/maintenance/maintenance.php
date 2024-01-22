@@ -67,13 +67,13 @@ function updateMaintenancePost($req)
         
         updateEstado($car);
 
-        header('location: /sir/pages/secure/');      
+        header('location: http://localhost/sir/pages/secure/admin/list-manutencao.php');      
         return;  
     }
         
 
     if ($success) {
         $_SESSION['success'] = 'Manutenção successfully updated!';
-        header('location: /sir/pages/secure/car/car.php?id=' . $req['id_car']);
+        header('location: http://localhost/sir/pages/secure/admin/list-manutencao.php?id=' . $req['id_car']);
     }
 }
